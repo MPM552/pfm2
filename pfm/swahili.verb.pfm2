@@ -1,0 +1,101 @@
+﻿Language: Swahili verbs
+Author: Gregory Stump
+
+Swahili verb inflection, analysis based on
+E. O. Ashton. 1947. Swahili grammar (2nd edition). Harlow, Essex: Longman.
+
+ParadigmSchema(V) =
+{ 
+SUBJ:{sg/pl m_wa/m_mi/ki_vi/ji_ma} 
+OBJ:{sg/pl m_wa/m_mi/ki_vi/ji_ma} 
+TNS:{past/pres/fut}
+}
+
+Lexeme: sukuma
+Meaning: push
+Syntactic category: V
+Root(sukuma) = sukuma
+
+Paradigm function
+PF(<X, σ>) = [ iii : [ ii : [ i : <X, σ> ]]]
+
+
+Block i
+      i, X [V], σ:{OBJ:{m_wa sg}} → mX
+      i, X [V], σ:{OBJ:τ} → [ Agr : <X, τ> ]
+Block ii
+      ii, X [V], σ:{TNS:{past}} → liX
+      ii, X [V], σ:{TNS:{pres}} → naX
+      ii, X [V], σ:{TNS:{fut}} → taX
+Block iii
+      iii, X [V], σ:{SUBJ:{m_wa sg}} → aX
+      iii, X [V], σ:{SUBJ:τ} → [ Agr : <X, τ> ]
+Block Agr
+      Agr, X [V], σ:{m_wa pl} → waX
+      Agr, X [V], σ:{m_mi sg} → uX
+      Agr, X [V], σ:{m_mi pl} → iX
+      Agr, X [V], σ:{ki_vi sg} → kiX
+      Agr, X [V], σ:{ki_vi pl} → viX
+      Agr, X [V], σ:{ji_ma sg} → liX
+      Agr, X [V], σ:{ji_ma pl} → yaX
+
+
+% Random 1
+
+ShowOnlyTruth
+
+Truth = {
+PF(<sukuma, {SUBJ:{m_wa sg} OBJ:{m_wa sg} TNS:{past}}>) = alimsukuma
+PF(<sukuma, {SUBJ:{m_wa sg} OBJ:{m_mi sg} TNS:{past}}>) = aliusukuma
+PF(<sukuma, {SUBJ:{m_wa sg} OBJ:{ki_vi sg} TNS:{past}}>) = alikisukuma
+PF(<sukuma, {SUBJ:{m_wa sg} OBJ:{ji_ma sg} TNS:{past}}>) = alilisukuma
+PF(<sukuma, {SUBJ:{m_wa sg} OBJ:{m_wa sg} TNS:{pres}}>) = anamsukuma
+PF(<sukuma, {SUBJ:{m_wa sg} OBJ:{m_mi sg} TNS:{pres}}>) = anausukuma
+PF(<sukuma, {SUBJ:{m_wa sg} OBJ:{ki_vi sg} TNS:{pres}}>) = anakisukuma
+PF(<sukuma, {SUBJ:{m_wa sg} OBJ:{ji_ma sg} TNS:{pres}}>) = analisukuma
+PF(<sukuma, {SUBJ:{m_wa sg} OBJ:{m_wa sg} TNS:{fut}}>) = atamsukuma
+PF(<sukuma, {SUBJ:{m_wa sg} OBJ:{m_mi sg} TNS:{fut}}>) = atausukuma
+PF(<sukuma, {SUBJ:{m_wa sg} OBJ:{ki_vi sg} TNS:{fut}}>) = atakisukuma
+PF(<sukuma, {SUBJ:{m_wa sg} OBJ:{ji_ma sg} TNS:{fut}}>) = atalisukuma
+PF(<sukuma, {SUBJ:{m_mi sg} OBJ:{m_wa sg} TNS:{past}}>) = ulimsukuma
+PF(<sukuma, {SUBJ:{m_mi sg} OBJ:{m_mi sg} TNS:{past}}>) = uliusukuma
+PF(<sukuma, {SUBJ:{m_mi sg} OBJ:{ki_vi sg} TNS:{past}}>) = ulikisukuma
+PF(<sukuma, {SUBJ:{m_mi sg} OBJ:{ji_ma sg} TNS:{past}}>) = ulilisukuma
+PF(<sukuma, {SUBJ:{m_mi sg} OBJ:{m_wa sg} TNS:{pres}}>) = unamsukuma
+PF(<sukuma, {SUBJ:{m_mi sg} OBJ:{m_mi sg} TNS:{pres}}>) = unausukuma
+PF(<sukuma, {SUBJ:{m_mi sg} OBJ:{ki_vi sg} TNS:{pres}}>) = unakisukuma
+PF(<sukuma, {SUBJ:{m_mi sg} OBJ:{ji_ma sg} TNS:{pres}}>) = unalisukuma
+PF(<sukuma, {SUBJ:{m_mi sg} OBJ:{m_wa sg} TNS:{fut}}>) = utamsukuma
+PF(<sukuma, {SUBJ:{m_mi sg} OBJ:{m_mi sg} TNS:{fut}}>) = utausukuma
+PF(<sukuma, {SUBJ:{m_mi sg} OBJ:{ki_vi sg} TNS:{fut}}>) = utakisukuma
+PF(<sukuma, {SUBJ:{m_mi sg} OBJ:{ji_ma sg} TNS:{fut}}>) = utalisukuma
+PF(<sukuma, {SUBJ:{ki_vi sg} OBJ:{m_wa sg} TNS:{past}}>) = kilimsukuma
+PF(<sukuma, {SUBJ:{ki_vi sg} OBJ:{m_mi sg} TNS:{past}}>) = kiliusukuma
+PF(<sukuma, {SUBJ:{ki_vi sg} OBJ:{ki_vi sg} TNS:{past}}>) = kilikisukuma
+PF(<sukuma, {SUBJ:{ki_vi sg} OBJ:{ji_ma sg} TNS:{past}}>) = kililisukuma
+PF(<sukuma, {SUBJ:{ki_vi sg} OBJ:{m_wa sg} TNS:{pres}}>) = kinamsukuma
+PF(<sukuma, {SUBJ:{ki_vi sg} OBJ:{m_mi sg} TNS:{pres}}>) = kinausukuma
+PF(<sukuma, {SUBJ:{ki_vi sg} OBJ:{ki_vi sg} TNS:{pres}}>) = kinakisukuma
+PF(<sukuma, {SUBJ:{ki_vi sg} OBJ:{ji_ma sg} TNS:{pres}}>) = kinalisukuma
+PF(<sukuma, {SUBJ:{ki_vi sg} OBJ:{m_wa sg} TNS:{fut}}>) = kitamsukuma
+PF(<sukuma, {SUBJ:{ki_vi sg} OBJ:{m_mi sg} TNS:{fut}}>) = kitausukuma
+PF(<sukuma, {SUBJ:{ki_vi sg} OBJ:{ki_vi sg} TNS:{fut}}>) = kitakisukuma
+PF(<sukuma, {SUBJ:{ki_vi sg} OBJ:{ji_ma sg} TNS:{fut}}>) = kitalisukuma
+PF(<sukuma, {SUBJ:{ji_ma sg} OBJ:{m_wa sg} TNS:{past}}>) = lilimsukuma
+PF(<sukuma, {SUBJ:{ji_ma sg} OBJ:{m_mi sg} TNS:{past}}>) = liliusukuma
+PF(<sukuma, {SUBJ:{ji_ma sg} OBJ:{ki_vi sg} TNS:{past}}>) = lilikisukuma
+PF(<sukuma, {SUBJ:{ji_ma sg} OBJ:{ji_ma sg} TNS:{past}}>) = lililisukuma
+PF(<sukuma, {SUBJ:{ji_ma sg} OBJ:{m_wa sg} TNS:{pres}}>) = linamsukuma
+PF(<sukuma, {SUBJ:{ji_ma sg} OBJ:{m_mi sg} TNS:{pres}}>) = linausukuma
+PF(<sukuma, {SUBJ:{ji_ma sg} OBJ:{ki_vi sg} TNS:{pres}}>) = linakisukuma
+PF(<sukuma, {SUBJ:{ji_ma sg} OBJ:{ji_ma sg} TNS:{pres}}>) = linalisukuma
+PF(<sukuma, {SUBJ:{ji_ma sg} OBJ:{m_wa sg} TNS:{fut}}>) = litamsukuma
+PF(<sukuma, {SUBJ:{ji_ma sg} OBJ:{m_mi sg} TNS:{fut}}>) = litausukuma
+PF(<sukuma, {SUBJ:{ji_ma sg} OBJ:{ki_vi sg} TNS:{fut}}>) = litakisukuma
+PF(<sukuma, {SUBJ:{ji_ma sg} OBJ:{ji_ma sg} TNS:{fut}}>) = litalisukuma
+}
+
+% vim:nospell tw=1000 filetype=PFM2:
+
+
+

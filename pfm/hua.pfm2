@@ -1,0 +1,73 @@
+﻿Language: Hua verbs
+Author: Gregory Stump 5/2013
+
+Verbs in Hua (Trans-New-Guinea) 
+based on John Haiman 1980: "A grammar of Hua"
+
+Content paradigm schema = {
+	(1/2/3 pl/sg/du interrogative/exclamatory)
+}
+
+Root(DO) = hu 
+Root(EAT) = do
+Root(GIVE) = mi
+
+% Stem(Lexeme:name) = value
+Stem(L:front) = front(Root(L))
+Stem(L:back) = back(Root(L))
+Stem(L:diag) = low(Root(L))
+
+Corr: % mapping Content Paradigm to Form Paradigm
+Corr(<L, σ:{1}>) = <Stem(L:back), pm(σ)>
+Corr(<L, σ:{2}>) = <Stem(L:diag), pm(σ)>
+Corr(<L, σ:{3}>) = <Stem(L:front), pm(σ)>
+
+Property mapping pm = {
+	(2 sg) → (2 c)
+	(3 du) → (2 du)
+	(1 pl) → (1 c)
+	(3 pl) → (2 pl)
+}
+
+Paradigm function % Form Paradigm to Realized Paradigm
+
+	% PF(<L, σ>) = PF(Corr(<L, σ>))
+
+	PF(<X, σ>) = [ II : [ I : <X, σ>] ]		
+		
+Morphophonological operations = { % default is the identity
+	front(Pu) = Pi
+	front(Po) = Pe
+	low(Po) = Pa
+	low(Pu) = Pa
+	back(Pi) = Pu
+	back(Pe) = Po
+}
+
+Word-realization rules: 	
+
+	Block I
+	I, X [], S:{du} → X' % glottal stop
+
+	Block II	
+	II, X [], S:{interrogative} → Xve
+	II, X [], S:{interrogative c} → Xpe
+	II, X [], S:{exclamatory} → Xmana
+	II, X [], S:{exclamatory c} → Xpana
+
+Lexeme: DO % hu
+Meaning: to do
+Syntactic category: V
+
+Lexeme: EAT % do
+Meaning: to eat
+Syntactic category: V
+
+Lexeme: GIVE % mi
+Meaning: to give
+Syntactic category: V
+
+Truth = {
+	DO:{1 sg interrogative} = huve
+	DO:{2 sg interrogative} = hape
+}

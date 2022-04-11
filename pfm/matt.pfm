@@ -1,0 +1,53 @@
+Language: Matthew Carroll test
+
+Content paradigm schema(N <\d>A) = { % nouns of class A
+	NUM:{sg/pl}
+	CLASS:{c$1}
+	DEF:{loc1/loc2/loc3/nonDef}
+	INFL:{nonRel (poss (1 sg)/(1 pl excl/incl)/(2/3 sg/pl))/nonPoss}
+}
+
+Content paradigm schema(N <\d>B) = { % nouns of class B
+	CLASS:{c$1}
+	DEF:{loc1/loc2/loc3/nonDef}
+	(NUM:{sg} INFL:{nonPoss (rel (1 sg)/(1 pl excl/incl)/(2/3 sg/pl))/nonRel})/
+	(NUM:{pl} INFL:{nonRel (poss (1 sg)/(1 pl excl/incl)/(2/3 sg/pl))/nonPoss})
+}
+
+Content paradigm schema(V/P) = { % verbs and prepositions
+	AGR(U):{1/2/3 sg/nsg fem/masc}
+	ASP:{pfv/ipfv}
+	TENSE:{fut/rct/rmt}
+}
+
+Root(TEST) = τεστ
+
+% Stem(L) = Root(L)
+
+Corr(<L, σ>) = <Stem(L), MetaSync(UndergoerMorphomics(σ))> 
+
+Property mapping MetaSync = {
+    (AGR(U):{1 nsg}) → (AGR(U):{2 sg})
+    (AGR(U):{2 nsg}) → (AGR(U):{3 nsg})
+    (AGR(U):{3 sg fem}) → (AGR(U):{1 sg})
+}
+Property mapping UndergoerMorphomics = {
+    (ASP:{pfv}) → (ASP:{pfv} ALPHA)
+    (TENSE:{fut}) → (TENSE:{fut} ALPHA)
+    (TENSE:{rct} ASP:{neu}) → (TENSE:{rct} ASP:{neu} BETA)
+    (TENSE:{rmt} ASP:{ipfv}) → (TENSE:{rmt} ASP:{ipfv} BETA)
+}
+
+Lexeme: TEST
+Meaning: test
+Syntactic category: V
+
+Paradigm function % Form Paradigm to Realized Paradigm
+
+PF(<X, σ>) = [ i : <X, σ> ]
+
+Word-realization rules: 	
+
+	Block i 
+	i, X [N], S:{} → X
+

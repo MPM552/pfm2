@@ -1,0 +1,373 @@
+﻿Language: Garifuna
+Author: Gregory Stump 2012
+Verbs
+	Arawakan; Honduras
+
+Paradigm Function
+
+PF(<L, σ>) = V(IV(III(II(I(Stem(<L, σ>))))))
+
+ParadigmSchema(V) = {
+	TAM:{aorist/perfect/continuative/future/participle}
+	POL:{negative/positive}
+	VAL:{intransitive/transitive}
+	SUBJ:{1sgM/2sgM/3sgM/3sgF/1plM/2plM/3plM/none}
+	OBJ:{1sgM/2sgM/3sgM/3sgF/1plM/2plM/3plM/none}
+}
+
+Disallow = {
+	(TAM:{participle}  SUBJ:{1sgM/2sgM/3sgM/3sgF/1plM/2plM/3plM})  / 
+	(TAM:{participle}  OBJ:{1sgM/2sgM/3sgM/3sgF/1plM/2plM/3plM})  / 
+	(TAM:{participle}  POL:{negative})  /
+	(TAM:{aorist/perfect/continuative/future}  SUBJ:{none})  /
+	(VAL:{intransitive} OBJ:{1sgM/2sgM/3sgM/3sgF/1plM/2plM/3plM}) /
+	(VAL:{transitive} OBJ:{none}) 
+}
+
+
+Lexeme: EAT
+Meaning: eat
+Syntactic category: V
+Inflection class:
+
+Stem-selection rules
+
+Stem(<EAT, σ:{POL:{negative}}>) = eigi
+Stem(<EAT, σ:{POL:{positive} TAM:{future}}>) = eigi
+Stem(<EAT, σ:{POL:{positive}}>) = hou
+
+	
+Rules of exponence
+
+Block I
+	I, X[], σ:{POL:{negative}} → mX
+
+Block II
+	II, X[], σ:{SUBJ:{1sgM}} → Xnu
+	II, X[], σ:{SUBJ:{2sgM}} → Xbu
+	II, X[], σ:{SUBJ:{3sgM}} → Xlu
+	II, X[], σ:{SUBJ:{1plM}} → Xwa
+	II, X[], σ:{SUBJ:{2plM}} → Xhu
+	II, X[], σ:{SUBJ:{3plM}} → Xha
+
+Block III
+	III, X[], σ:{TAM:{aorist}}→ Xmu
+	III, X[], σ:{TAM:{perfect}}→ Xa
+	III, X[], σ:{TAM:{continuative}}→ Xagi
+	III, X[], σ:{TAM:{future}}→ Xba
+
+Block IV
+	IV, X[], σ:{TAM:{aorist}} → Xti
+	IV, X[], σ:{TAM:{perfect/continuative/future}} → Xdi
+	IV, X[], σ:{OBJ:{3plM} TAM:{perfect/continuative/future}} → X
+	IV, X[], σ:{OBJ:{3sgM} TAM:{perfect/continuative/future}} → Xli
+	IV, X[], σ:{OBJ:{3sgM} POL:{negative} TAM:{future}} → Xe
+
+
+Block V
+	V, X[], σ:{OBJ:{1sgM}} → Xna
+	V, X[], σ:{OBJ:{2sgM}} → Xbu
+	V, X[], σ:{TAM:{future} OBJ:{3sgM}} → Xi
+	V, X[], σ:{OBJ:{1plM}} → Xwa
+	V, X[], σ:{OBJ:{2plM}} → Xü
+	V, X[], σ:{OBJ:{3plM}} → Xña
+
+PhonologicalClass   vowel = a e i o u ü
+PhonologicalClass   highVowel = i u ü
+
+Sandhi {
+i → Ø / _[highVowel]
+a → Ø / _e
+[vowel] → Ø / _a
+}
+
+Truth = {
+EAT:{OBJ:{1sgM} SUBJ:{1sgM} TAM:{aorist} POL:{positive} VAL:{transitive}} = hounumutina
+EAT:{OBJ:{2sgM} SUBJ:{1sgM} TAM:{aorist} POL:{positive} VAL:{transitive}} = hounumutibu
+EAT:{OBJ:{3sgM} SUBJ:{1sgM} TAM:{aorist} POL:{positive} VAL:{transitive}} = hounumuti
+EAT:{OBJ:{1plM} SUBJ:{1sgM} TAM:{aorist} POL:{positive} VAL:{transitive}} = hounumutiwa
+EAT:{OBJ:{2plM} SUBJ:{1sgM} TAM:{aorist} POL:{positive} VAL:{transitive}} = hounumutü
+EAT:{OBJ:{3plM} SUBJ:{1sgM} TAM:{aorist} POL:{positive} VAL:{transitive}} = hounumutiña
+EAT:{OBJ:{1sgM} SUBJ:{2sgM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houbumutina
+EAT:{OBJ:{2sgM} SUBJ:{2sgM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houbumutibu
+EAT:{OBJ:{3sgM} SUBJ:{2sgM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houbumuti
+EAT:{OBJ:{1plM} SUBJ:{2sgM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houbumutiwa
+EAT:{OBJ:{2plM} SUBJ:{2sgM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houbumutü
+EAT:{OBJ:{3plM} SUBJ:{2sgM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houbumutiña
+EAT:{OBJ:{1sgM} SUBJ:{3sgM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houlumutina
+EAT:{OBJ:{2sgM} SUBJ:{3sgM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houlumutibu
+EAT:{OBJ:{3sgM} SUBJ:{3sgM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houlumuti
+EAT:{OBJ:{1plM} SUBJ:{3sgM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houlumutiwa
+EAT:{OBJ:{2plM} SUBJ:{3sgM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houlumutü
+EAT:{OBJ:{3plM} SUBJ:{3sgM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houlumutiña
+EAT:{OBJ:{1sgM} SUBJ:{1plM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houwamutina
+EAT:{OBJ:{2sgM} SUBJ:{1plM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houwamutibu
+EAT:{OBJ:{3sgM} SUBJ:{1plM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houwamuti
+EAT:{OBJ:{1plM} SUBJ:{1plM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houwamutiwa
+EAT:{OBJ:{2plM} SUBJ:{1plM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houwamutü
+EAT:{OBJ:{3plM} SUBJ:{1plM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houwamutiña
+EAT:{OBJ:{1sgM} SUBJ:{2plM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houhumutina
+EAT:{OBJ:{2sgM} SUBJ:{2plM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houhumutibu
+EAT:{OBJ:{3sgM} SUBJ:{2plM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houhumuti
+EAT:{OBJ:{1plM} SUBJ:{2plM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houhumutiwa
+EAT:{OBJ:{2plM} SUBJ:{2plM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houhumutü
+EAT:{OBJ:{3plM} SUBJ:{2plM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houhumutiña
+EAT:{OBJ:{1sgM} SUBJ:{3plM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houhamutina
+EAT:{OBJ:{2sgM} SUBJ:{3plM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houhamutibu
+EAT:{OBJ:{3sgM} SUBJ:{3plM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houhamuti
+EAT:{OBJ:{1plM} SUBJ:{3plM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houhamutiwa
+EAT:{OBJ:{2plM} SUBJ:{3plM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houhamutü
+EAT:{OBJ:{3plM} SUBJ:{3plM} TAM:{aorist} POL:{positive} VAL:{transitive}} = houhamutiña
+EAT:{OBJ:{1sgM} SUBJ:{1sgM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meiginumutina
+EAT:{OBJ:{2sgM} SUBJ:{1sgM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meiginumutibu
+EAT:{OBJ:{3sgM} SUBJ:{1sgM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meiginumuti
+EAT:{OBJ:{1plM} SUBJ:{1sgM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meiginumutiwa
+EAT:{OBJ:{2plM} SUBJ:{1sgM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meiginumutü
+EAT:{OBJ:{3plM} SUBJ:{1sgM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meiginumutiña
+EAT:{OBJ:{1sgM} SUBJ:{2sgM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigibumutina
+EAT:{OBJ:{2sgM} SUBJ:{2sgM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigibumutibu
+EAT:{OBJ:{3sgM} SUBJ:{2sgM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigibumuti
+EAT:{OBJ:{1plM} SUBJ:{2sgM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigibumutiwa
+EAT:{OBJ:{2plM} SUBJ:{2sgM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigibumutü
+EAT:{OBJ:{3plM} SUBJ:{2sgM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigibumutiña
+EAT:{OBJ:{1sgM} SUBJ:{3sgM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigilumutina
+EAT:{OBJ:{2sgM} SUBJ:{3sgM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigilumutibu
+EAT:{OBJ:{3sgM} SUBJ:{3sgM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigilumuti
+EAT:{OBJ:{1plM} SUBJ:{3sgM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigilumutiwa
+EAT:{OBJ:{2plM} SUBJ:{3sgM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigilumutü
+EAT:{OBJ:{3plM} SUBJ:{3sgM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigilumutiña
+EAT:{OBJ:{1sgM} SUBJ:{1plM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigiwamutina
+EAT:{OBJ:{2sgM} SUBJ:{1plM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigiwamutibu
+EAT:{OBJ:{3sgM} SUBJ:{1plM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigiwamuti
+EAT:{OBJ:{1plM} SUBJ:{1plM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigiwamutiwa
+EAT:{OBJ:{2plM} SUBJ:{1plM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigiwamutü
+EAT:{OBJ:{3plM} SUBJ:{1plM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigiwamutiña
+EAT:{OBJ:{1sgM} SUBJ:{2plM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigihumutina
+EAT:{OBJ:{2sgM} SUBJ:{2plM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigihumutibu
+EAT:{OBJ:{3sgM} SUBJ:{2plM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigihumuti
+EAT:{OBJ:{1plM} SUBJ:{2plM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigihumutiwa
+EAT:{OBJ:{2plM} SUBJ:{2plM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigihumutü
+EAT:{OBJ:{3plM} SUBJ:{2plM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigihumutiña
+EAT:{OBJ:{1sgM} SUBJ:{3plM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigihamutina
+EAT:{OBJ:{2sgM} SUBJ:{3plM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigihamutibu
+EAT:{OBJ:{3sgM} SUBJ:{3plM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigihamuti
+EAT:{OBJ:{1plM} SUBJ:{3plM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigihamutiwa
+EAT:{OBJ:{2plM} SUBJ:{3plM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigihamutü
+EAT:{OBJ:{3plM} SUBJ:{3plM} TAM:{aorist} POL:{negative} VAL:{transitive}} = meigihamutiña
+EAT:{OBJ:{1sgM} SUBJ:{1sgM} TAM:{perfect} POL:{positive} VAL:{transitive}} = hounadina
+EAT:{OBJ:{2sgM} SUBJ:{1sgM} TAM:{perfect} POL:{positive} VAL:{transitive}} = hounadibu
+EAT:{OBJ:{3sgM} SUBJ:{1sgM} TAM:{perfect} POL:{positive} VAL:{transitive}} = hounali
+EAT:{OBJ:{1plM} SUBJ:{1sgM} TAM:{perfect} POL:{positive} VAL:{transitive}} = hounadiwa
+EAT:{OBJ:{2plM} SUBJ:{1sgM} TAM:{perfect} POL:{positive} VAL:{transitive}} = hounadü
+EAT:{OBJ:{3plM} SUBJ:{1sgM} TAM:{perfect} POL:{positive} VAL:{transitive}} = hounaña
+EAT:{OBJ:{1sgM} SUBJ:{2sgM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houbadina
+EAT:{OBJ:{2sgM} SUBJ:{2sgM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houbadibu
+EAT:{OBJ:{3sgM} SUBJ:{2sgM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houbali
+EAT:{OBJ:{1plM} SUBJ:{2sgM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houbadiwa
+EAT:{OBJ:{2plM} SUBJ:{2sgM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houbadü
+EAT:{OBJ:{3plM} SUBJ:{2sgM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houbaña
+EAT:{OBJ:{1sgM} SUBJ:{3sgM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houladina
+EAT:{OBJ:{2sgM} SUBJ:{3sgM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houladibu
+EAT:{OBJ:{3sgM} SUBJ:{3sgM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houlali
+EAT:{OBJ:{1plM} SUBJ:{3sgM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houladiwa
+EAT:{OBJ:{2plM} SUBJ:{3sgM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houladü
+EAT:{OBJ:{3plM} SUBJ:{3sgM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houlaña
+EAT:{OBJ:{1sgM} SUBJ:{1plM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houwadina
+EAT:{OBJ:{2sgM} SUBJ:{1plM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houwadibu
+EAT:{OBJ:{3sgM} SUBJ:{1plM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houwali
+EAT:{OBJ:{1plM} SUBJ:{1plM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houwadiwa
+EAT:{OBJ:{2plM} SUBJ:{1plM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houwadü
+EAT:{OBJ:{3plM} SUBJ:{1plM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houwaña
+EAT:{OBJ:{1sgM} SUBJ:{2plM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houhadina
+EAT:{OBJ:{2sgM} SUBJ:{2plM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houhadibu
+EAT:{OBJ:{3sgM} SUBJ:{2plM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houhali
+EAT:{OBJ:{1plM} SUBJ:{2plM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houhadiwa
+EAT:{OBJ:{2plM} SUBJ:{2plM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houhadü
+EAT:{OBJ:{3plM} SUBJ:{2plM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houhaña
+EAT:{OBJ:{1sgM} SUBJ:{3plM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houhadina
+EAT:{OBJ:{2sgM} SUBJ:{3plM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houhadibu
+EAT:{OBJ:{3sgM} SUBJ:{3plM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houhali
+EAT:{OBJ:{1plM} SUBJ:{3plM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houhadiwa
+EAT:{OBJ:{2plM} SUBJ:{3plM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houhadü
+EAT:{OBJ:{3plM} SUBJ:{3plM} TAM:{perfect} POL:{positive} VAL:{transitive}} = houhaña
+EAT:{OBJ:{1sgM} SUBJ:{1sgM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meiginadina
+EAT:{OBJ:{2sgM} SUBJ:{1sgM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meiginadibu
+EAT:{OBJ:{3sgM} SUBJ:{1sgM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meiginali
+EAT:{OBJ:{1plM} SUBJ:{1sgM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meiginadiwa
+EAT:{OBJ:{2plM} SUBJ:{1sgM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meiginadü
+EAT:{OBJ:{3plM} SUBJ:{1sgM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meiginaña
+EAT:{OBJ:{1sgM} SUBJ:{2sgM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigibadina
+EAT:{OBJ:{2sgM} SUBJ:{2sgM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigibadibu
+EAT:{OBJ:{3sgM} SUBJ:{2sgM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigibali
+EAT:{OBJ:{1plM} SUBJ:{2sgM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigibadiwa
+EAT:{OBJ:{2plM} SUBJ:{2sgM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigibadü
+EAT:{OBJ:{3plM} SUBJ:{2sgM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigibaña
+EAT:{OBJ:{1sgM} SUBJ:{3sgM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigiladina
+EAT:{OBJ:{2sgM} SUBJ:{3sgM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigiladibu
+EAT:{OBJ:{3sgM} SUBJ:{3sgM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigilali
+EAT:{OBJ:{1plM} SUBJ:{3sgM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigiladiwa
+EAT:{OBJ:{2plM} SUBJ:{3sgM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigiladü
+EAT:{OBJ:{3plM} SUBJ:{3sgM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigilaña
+EAT:{OBJ:{1sgM} SUBJ:{1plM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigiwadina
+EAT:{OBJ:{2sgM} SUBJ:{1plM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigiwadibu
+EAT:{OBJ:{3sgM} SUBJ:{1plM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigiwali
+EAT:{OBJ:{1plM} SUBJ:{1plM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigiwadiwa
+EAT:{OBJ:{2plM} SUBJ:{1plM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigiwadü
+EAT:{OBJ:{3plM} SUBJ:{1plM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigiwaña
+EAT:{OBJ:{1sgM} SUBJ:{2plM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigihadina
+EAT:{OBJ:{2sgM} SUBJ:{2plM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigihadibu
+EAT:{OBJ:{3sgM} SUBJ:{2plM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigihali
+EAT:{OBJ:{1plM} SUBJ:{2plM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigihadiwa
+EAT:{OBJ:{2plM} SUBJ:{2plM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigihadü
+EAT:{OBJ:{3plM} SUBJ:{2plM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigihaña
+EAT:{OBJ:{1sgM} SUBJ:{3plM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigihadina
+EAT:{OBJ:{2sgM} SUBJ:{3plM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigihadibu
+EAT:{OBJ:{3sgM} SUBJ:{3plM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigihali
+EAT:{OBJ:{1plM} SUBJ:{3plM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigihadiwa
+EAT:{OBJ:{2plM} SUBJ:{3plM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigihadü
+EAT:{OBJ:{3plM} SUBJ:{3plM} POL:{negative} TAM:{perfect} VAL:{transitive}} = meigihaña
+EAT:{OBJ:{1sgM} SUBJ:{1sgM} TAM:{continuative} POL:{positive} VAL:{transitive}} = hounagidina
+EAT:{OBJ:{2sgM} SUBJ:{1sgM} TAM:{continuative} POL:{positive} VAL:{transitive}} = hounagidibu
+EAT:{OBJ:{3sgM} SUBJ:{1sgM} TAM:{continuative} POL:{positive} VAL:{transitive}} = hounagili
+EAT:{OBJ:{1plM} SUBJ:{1sgM} TAM:{continuative} POL:{positive} VAL:{transitive}} = hounagidiwa
+EAT:{OBJ:{2plM} SUBJ:{1sgM} TAM:{continuative} POL:{positive} VAL:{transitive}} = hounagidü
+EAT:{OBJ:{3plM} SUBJ:{1sgM} TAM:{continuative} POL:{positive} VAL:{transitive}} = hounagiña
+EAT:{OBJ:{1sgM} SUBJ:{2sgM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houbagidina
+EAT:{OBJ:{2sgM} SUBJ:{2sgM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houbagidibu
+EAT:{OBJ:{3sgM} SUBJ:{2sgM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houbagili
+EAT:{OBJ:{1plM} SUBJ:{2sgM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houbagidiwa
+EAT:{OBJ:{2plM} SUBJ:{2sgM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houbagidü
+EAT:{OBJ:{3plM} SUBJ:{2sgM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houbagiña
+EAT:{OBJ:{1sgM} SUBJ:{3sgM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houlagidina
+EAT:{OBJ:{2sgM} SUBJ:{3sgM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houlagidibu
+EAT:{OBJ:{3sgM} SUBJ:{3sgM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houlagili
+EAT:{OBJ:{1plM} SUBJ:{3sgM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houlagidiwa
+EAT:{OBJ:{2plM} SUBJ:{3sgM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houlagidü
+EAT:{OBJ:{3plM} SUBJ:{3sgM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houlagiña
+EAT:{OBJ:{1sgM} SUBJ:{1plM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houwagidina
+EAT:{OBJ:{2sgM} SUBJ:{1plM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houwagidibu
+EAT:{OBJ:{3sgM} SUBJ:{1plM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houwagili
+EAT:{OBJ:{1plM} SUBJ:{1plM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houwagidiwa
+EAT:{OBJ:{2plM} SUBJ:{1plM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houwagidü
+EAT:{OBJ:{3plM} SUBJ:{1plM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houwagiña
+EAT:{OBJ:{1sgM} SUBJ:{2plM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houhagidina
+EAT:{OBJ:{2sgM} SUBJ:{2plM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houhagidibu
+EAT:{OBJ:{3sgM} SUBJ:{2plM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houhagili
+EAT:{OBJ:{1plM} SUBJ:{2plM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houhagidiwa
+EAT:{OBJ:{2plM} SUBJ:{2plM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houhagidü
+EAT:{OBJ:{3plM} SUBJ:{2plM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houhagiña
+EAT:{OBJ:{1sgM} SUBJ:{3plM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houhagidina
+EAT:{OBJ:{2sgM} SUBJ:{3plM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houhagidibu
+EAT:{OBJ:{3sgM} SUBJ:{3plM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houhagili
+EAT:{OBJ:{1plM} SUBJ:{3plM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houhagidiwa
+EAT:{OBJ:{2plM} SUBJ:{3plM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houhagidü
+EAT:{OBJ:{3plM} SUBJ:{3plM} TAM:{continuative} POL:{positive} VAL:{transitive}} = houhagiña
+EAT:{OBJ:{1sgM} SUBJ:{1sgM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meiginagidina
+EAT:{OBJ:{2sgM} SUBJ:{1sgM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meiginagidibu
+EAT:{OBJ:{3sgM} SUBJ:{1sgM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meiginagili
+EAT:{OBJ:{1plM} SUBJ:{1sgM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meiginagidiwa
+EAT:{OBJ:{2plM} SUBJ:{1sgM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meiginagidü
+EAT:{OBJ:{3plM} SUBJ:{1sgM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meiginagiña
+EAT:{OBJ:{1sgM} SUBJ:{2sgM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigibagidina
+EAT:{OBJ:{2sgM} SUBJ:{2sgM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigibagidibu
+EAT:{OBJ:{3sgM} SUBJ:{2sgM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigibagili
+EAT:{OBJ:{1plM} SUBJ:{2sgM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigibagidiwa
+EAT:{OBJ:{2plM} SUBJ:{2sgM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigibagidü
+EAT:{OBJ:{3plM} SUBJ:{2sgM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigibagiña
+EAT:{OBJ:{1sgM} SUBJ:{3sgM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigilagidina
+EAT:{OBJ:{2sgM} SUBJ:{3sgM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigilagidibu
+EAT:{OBJ:{3sgM} SUBJ:{3sgM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigilagili
+EAT:{OBJ:{1plM} SUBJ:{3sgM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigilagidiwa
+EAT:{OBJ:{2plM} SUBJ:{3sgM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigilagidü
+EAT:{OBJ:{3plM} SUBJ:{3sgM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigilagiña
+EAT:{OBJ:{1sgM} SUBJ:{1plM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigiwagidina
+EAT:{OBJ:{2sgM} SUBJ:{1plM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigiwagidibu
+EAT:{OBJ:{3sgM} SUBJ:{1plM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigiwagili
+EAT:{OBJ:{1plM} SUBJ:{1plM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigiwagidiwa
+EAT:{OBJ:{2plM} SUBJ:{1plM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigiwagidü
+EAT:{OBJ:{3plM} SUBJ:{1plM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigiwagiña
+EAT:{OBJ:{1sgM} SUBJ:{2plM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigihagidina
+EAT:{OBJ:{2sgM} SUBJ:{2plM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigihagidibu
+EAT:{OBJ:{3sgM} SUBJ:{2plM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigihagili
+EAT:{OBJ:{1plM} SUBJ:{2plM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigihagidiwa
+EAT:{OBJ:{2plM} SUBJ:{2plM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigihagidü
+EAT:{OBJ:{3plM} SUBJ:{2plM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigihagiña
+EAT:{OBJ:{1sgM} SUBJ:{3plM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigihagidina
+EAT:{OBJ:{2sgM} SUBJ:{3plM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigihagidibu
+EAT:{OBJ:{3sgM} SUBJ:{3plM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigihagili
+EAT:{OBJ:{1plM} SUBJ:{3plM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigihagidiwa
+EAT:{OBJ:{2plM} SUBJ:{3plM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigihagidü
+EAT:{OBJ:{3plM} SUBJ:{3plM} TAM:{continuative} POL:{negative} VAL:{transitive}} = meigihagiña
+EAT:{OBJ:{1sgM} SUBJ:{1sgM} TAM:{future} POL:{positive} VAL:{transitive}} = neigibadina
+EAT:{OBJ:{2sgM} SUBJ:{1sgM} TAM:{future} POL:{positive} VAL:{transitive}} = neigibadibu
+EAT:{OBJ:{3sgM} SUBJ:{1sgM} TAM:{future} POL:{positive} VAL:{transitive}} = neigibei
+EAT:{OBJ:{1plM} SUBJ:{1sgM} TAM:{future} POL:{positive} VAL:{transitive}} = neigibadiwa
+EAT:{OBJ:{2plM} SUBJ:{1sgM} TAM:{future} POL:{positive} VAL:{transitive}} = neigibadü
+EAT:{OBJ:{3plM} SUBJ:{1sgM} TAM:{future} POL:{positive} VAL:{transitive}} = neigibaña
+EAT:{OBJ:{1sgM} SUBJ:{2sgM} TAM:{future} POL:{positive} VAL:{transitive}} = beigibadina
+EAT:{OBJ:{2sgM} SUBJ:{2sgM} TAM:{future} POL:{positive} VAL:{transitive}} = beigibadibu
+EAT:{OBJ:{3sgM} SUBJ:{2sgM} TAM:{future} POL:{positive} VAL:{transitive}} = beigibei
+EAT:{OBJ:{1plM} SUBJ:{2sgM} TAM:{future} POL:{positive} VAL:{transitive}} = beigibadiwa
+EAT:{OBJ:{2plM} SUBJ:{2sgM} TAM:{future} POL:{positive} VAL:{transitive}} = beigibadü
+EAT:{OBJ:{3plM} SUBJ:{2sgM} TAM:{future} POL:{positive} VAL:{transitive}} = beigibaña
+EAT:{OBJ:{1sgM} SUBJ:{3sgM} TAM:{future} POL:{positive} VAL:{transitive}} = leigibadina
+EAT:{OBJ:{2sgM} SUBJ:{3sgM} TAM:{future} POL:{positive} VAL:{transitive}} = leigibadibu
+EAT:{OBJ:{3sgM} SUBJ:{3sgM} TAM:{future} POL:{positive} VAL:{transitive}} = leigibei
+EAT:{OBJ:{1plM} SUBJ:{3sgM} TAM:{future} POL:{positive} VAL:{transitive}} = leigibadiwa
+EAT:{OBJ:{2plM} SUBJ:{3sgM} TAM:{future} POL:{positive} VAL:{transitive}} = leigibadü
+EAT:{OBJ:{3plM} SUBJ:{3sgM} TAM:{future} POL:{positive} VAL:{transitive}} = leigibaña
+EAT:{OBJ:{1sgM} SUBJ:{1plM} TAM:{future} POL:{positive} VAL:{transitive}} = weigibadina
+EAT:{OBJ:{2sgM} SUBJ:{1plM} TAM:{future} POL:{positive} VAL:{transitive}} = weigibadibu
+EAT:{OBJ:{3sgM} SUBJ:{1plM} TAM:{future} POL:{positive} VAL:{transitive}} = weigibei
+EAT:{OBJ:{1plM} SUBJ:{1plM} TAM:{future} POL:{positive} VAL:{transitive}} = weigibadiwa
+EAT:{OBJ:{2plM} SUBJ:{1plM} TAM:{future} POL:{positive} VAL:{transitive}} = weigibadü
+EAT:{OBJ:{3plM} SUBJ:{1plM} TAM:{future} POL:{positive} VAL:{transitive}} = weigibaña
+EAT:{OBJ:{1sgM} SUBJ:{2plM} TAM:{future} POL:{positive} VAL:{transitive}} = heigibadina
+EAT:{OBJ:{2sgM} SUBJ:{2plM} TAM:{future} POL:{positive} VAL:{transitive}} = heigibadibu
+EAT:{OBJ:{3sgM} SUBJ:{2plM} TAM:{future} POL:{positive} VAL:{transitive}} = heigibei
+EAT:{OBJ:{1plM} SUBJ:{2plM} TAM:{future} POL:{positive} VAL:{transitive}} = heigibadiwa
+EAT:{OBJ:{2plM} SUBJ:{2plM} TAM:{future} POL:{positive} VAL:{transitive}} = heigibadü
+EAT:{OBJ:{3plM} SUBJ:{2plM} TAM:{future} POL:{positive} VAL:{transitive}} = heigibaña
+EAT:{OBJ:{1sgM} SUBJ:{3plM} TAM:{future} POL:{positive} VAL:{transitive}} = heigibadina
+EAT:{OBJ:{2sgM} SUBJ:{3plM} TAM:{future} POL:{positive} VAL:{transitive}} = heigibadibu
+EAT:{OBJ:{3sgM} SUBJ:{3plM} TAM:{future} POL:{positive} VAL:{transitive}} = heigibei
+EAT:{OBJ:{1plM} SUBJ:{3plM} TAM:{future} POL:{positive} VAL:{transitive}} = heigibadiwa
+EAT:{OBJ:{2plM} SUBJ:{3plM} TAM:{future} POL:{positive} VAL:{transitive}} = heigibadü
+EAT:{OBJ:{3plM} SUBJ:{3plM} TAM:{future} POL:{positive} VAL:{transitive}} = heigibaña
+EAT:{OBJ:{1sgM} SUBJ:{1sgM} TAM:{future} POL:{negative} VAL:{transitive}} = meiginubadina
+EAT:{OBJ:{2sgM} SUBJ:{1sgM} TAM:{future} POL:{negative} VAL:{transitive}} = meiginubadibu
+EAT:{OBJ:{3sgM} SUBJ:{1sgM} TAM:{future} POL:{negative} VAL:{transitive}} = meiginubei
+EAT:{OBJ:{1plM} SUBJ:{1sgM} TAM:{future} POL:{negative} VAL:{transitive}} = meiginubadiwa
+EAT:{OBJ:{2plM} SUBJ:{1sgM} TAM:{future} POL:{negative} VAL:{transitive}} = meiginubadü
+EAT:{OBJ:{3plM} SUBJ:{1sgM} TAM:{future} POL:{negative} VAL:{transitive}} = meiginubaña
+EAT:{OBJ:{1sgM} SUBJ:{2sgM} TAM:{future} POL:{negative} VAL:{transitive}} = meigibubadina
+EAT:{OBJ:{2sgM} SUBJ:{2sgM} TAM:{future} POL:{negative} VAL:{transitive}} = meigibubadibu
+EAT:{OBJ:{3sgM} SUBJ:{2sgM} TAM:{future} POL:{negative} VAL:{transitive}} = meigibubei
+EAT:{OBJ:{1plM} SUBJ:{2sgM} TAM:{future} POL:{negative} VAL:{transitive}} = meigibubadiwa
+EAT:{OBJ:{2plM} SUBJ:{2sgM} TAM:{future} POL:{negative} VAL:{transitive}} = meigibubadü
+EAT:{OBJ:{3plM} SUBJ:{2sgM} TAM:{future} POL:{negative} VAL:{transitive}} = meigibubaña
+EAT:{OBJ:{1sgM} SUBJ:{3sgM} TAM:{future} POL:{negative} VAL:{transitive}} = meigilubadina
+EAT:{OBJ:{2sgM} SUBJ:{3sgM} TAM:{future} POL:{negative} VAL:{transitive}} = meigilubadibu
+EAT:{OBJ:{3sgM} SUBJ:{3sgM} TAM:{future} POL:{negative} VAL:{transitive}} = meigilubei
+EAT:{OBJ:{1plM} SUBJ:{3sgM} TAM:{future} POL:{negative} VAL:{transitive}} = meigilubadiwa
+EAT:{OBJ:{2plM} SUBJ:{3sgM} TAM:{future} POL:{negative} VAL:{transitive}} = meigilubadü
+EAT:{OBJ:{3plM} SUBJ:{3sgM} TAM:{future} POL:{negative} VAL:{transitive}} = meigilubaña
+EAT:{OBJ:{1sgM} SUBJ:{1plM} TAM:{future} POL:{negative} VAL:{transitive}} = meigiwabadina
+EAT:{OBJ:{2sgM} SUBJ:{1plM} TAM:{future} POL:{negative} VAL:{transitive}} = meigiwabadibu
+EAT:{OBJ:{3sgM} SUBJ:{1plM} TAM:{future} POL:{negative} VAL:{transitive}} = meigiwabei
+EAT:{OBJ:{1plM} SUBJ:{1plM} TAM:{future} POL:{negative} VAL:{transitive}} = meigiwabadiwa
+EAT:{OBJ:{2plM} SUBJ:{1plM} TAM:{future} POL:{negative} VAL:{transitive}} = meigiwabadü
+EAT:{OBJ:{3plM} SUBJ:{1plM} TAM:{future} POL:{negative} VAL:{transitive}} = meigiwabaña
+EAT:{OBJ:{1sgM} SUBJ:{2plM} TAM:{future} POL:{negative} VAL:{transitive}} = meigihubadina
+EAT:{OBJ:{2sgM} SUBJ:{2plM} TAM:{future} POL:{negative} VAL:{transitive}} = meigihubadibu
+EAT:{OBJ:{3sgM} SUBJ:{2plM} TAM:{future} POL:{negative} VAL:{transitive}} = meigihubei
+EAT:{OBJ:{1plM} SUBJ:{2plM} TAM:{future} POL:{negative} VAL:{transitive}} = meigihubadiwa
+EAT:{OBJ:{2plM} SUBJ:{2plM} TAM:{future} POL:{negative} VAL:{transitive}} = meigihubadü
+EAT:{OBJ:{3plM} SUBJ:{2plM} TAM:{future} POL:{negative} VAL:{transitive}} = meigihubaña
+EAT:{OBJ:{1sgM} SUBJ:{3plM} TAM:{future} POL:{negative} VAL:{transitive}} = meigihabadina
+EAT:{OBJ:{2sgM} SUBJ:{3plM} TAM:{future} POL:{negative} VAL:{transitive}} = meigihabadibu
+EAT:{OBJ:{3sgM} SUBJ:{3plM} TAM:{future} POL:{negative} VAL:{transitive}} = meigihabei
+EAT:{OBJ:{1plM} SUBJ:{3plM} TAM:{future} POL:{negative} VAL:{transitive}} = meigihabadiwa
+EAT:{OBJ:{2plM} SUBJ:{3plM} TAM:{future} POL:{negative} VAL:{transitive}} = meigihabadü
+EAT:{OBJ:{3plM} SUBJ:{3plM} TAM:{future} POL:{negative} VAL:{transitive}} = meigihabaña
+}

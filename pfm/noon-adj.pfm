@@ -1,0 +1,141 @@
+Language: Noon adjectives
+Author: Gregory Stump and Raphael Finkel 2012
+Adjectives
+	Niger-Congo; Senegal
+	authority: Maria Soukka
+
+The purpose of this file is to experiment with PFM syntax and semantics.
+
+% Adjectives are specified for the inflectional categories CLASS, NUM,
+% DEFINITENESS, LOCATION, ANIMACY and DIMINUTIVITY:
+
+	CLASS: 1/2/3/4/5/6 (agrees with class of modified noun)
+	NUM: number (like "4 chairs")
+	DEF: definiteness (like "the chair")
+	LOC: location (like "near me", specified if and only if definite)
+	ANIM: animacy (minus/plus)
+	DIM: diminutivity (minus/plus)
+
+Paradigm Function
+
+	PF(<L,σ>) = V(IV(III(II(I(Stem(<L,σ>))))))
+
+ParadigmSchema(A) = {
+	CLASS:{1/2/3/4/5/6}
+	NUM:{sg/pl}
+	DEF:{plus/minus}
+	LOC:{1/2/3/noLoc} 
+	ANIM:{plus/minus}
+	DIM:{plus/minus}
+}
+
+Disallow(A-) = {
+	(LOC:{1/2/3}  DEF:{minus})  / % location requires definiteness
+	(LOC:{noLoc} DEF:{plus}) % only for adjectives
+}
+
+Lexeme: BIG
+Meaning: big
+Syntactic category: A
+% Inflection class: 
+% Syntactic category: N % N / A
+% Inflection class: A % A / (B Bmun) (only for some syntactic categories)
+% Morphosyntactic class: 1 % (1/2/3/4/5/6 animate/inanimate/diminutive)
+
+Stem-selection rules
+
+	Stem(<BIG, σ>) = yak
+
+Rules of exponence
+
+	Block I
+       	I, X[], σ:{} → iX	
+	Block II
+		II, X[], σ:{DIM:{minus} ANIM:{minus} CLASS:{1} NUM:{sg}} → wX
+       	II, X[], σ:{DIM:{minus} ANIM:{minus} CLASS:{2} NUM:{sg}} → fX
+       	II, X[], σ:{DIM:{minus} ANIM:{minus} CLASS:{3} NUM:{sg}} → mX
+       	II, X[], σ:{DIM:{minus} ANIM:{minus} CLASS:{4} NUM:{sg}} → kX
+      	II, X[], σ:{DIM:{minus} ANIM:{minus} CLASS:{5} NUM:{sg}} → pX
+       	II, X[], σ:{DIM:{minus} ANIM:{minus} CLASS:{6} NUM:{sg}} → jX
+       	II, X[], σ:{DIM:{minus} ANIM:{minus} CLASS:{1/2/3} NUM:{pl}} → cX
+       	II, X[], σ:{DIM:{minus} ANIM:{minus} CLASS:{4/5/6} NUM:{pl}} → tX
+       	II, X[], σ:{DIM:{minus} ANIM:{plus} NUM:{sg}} → yX
+       	II, X[], σ:{DIM:{minus} ANIM:{plus} NUM:{pl}} → ɓX
+       	II, X[], σ:{DIM:{plus} NUM:{sg}} → jX
+       	II, X[], σ:{DIM:{plus} NUM:{pl}} → tX
+	Block III
+       	III, X[], σ:{DEF:{plus} DIM:{minus} ANIM:{minus} CLASS:{1} NUM:{sg}} → Xw
+		III, X[], σ:{DEF:{plus} DIM:{minus} ANIM:{minus} CLASS:{2} NUM:{sg}} → Xf
+       	III, X[], σ:{DEF:{plus} DIM:{minus} ANIM:{minus} CLASS:{3} NUM:{sg}} → Xm
+       	III, X[], σ:{DEF:{plus} DIM:{minus} ANIM:{minus} CLASS:{4} NUM:{sg}} → Xk
+       	III, X[], σ:{DEF:{plus} DIM:{minus} ANIM:{minus} CLASS:{5} NUM:{sg}} → Xp
+       	III, X[], σ:{DEF:{plus} DIM:{minus} ANIM:{minus} CLASS:{6} NUM:{sg}} → Xj
+       	III, X[], σ:{DEF:{plus} DIM:{minus} ANIM:{minus} CLASS:{1/2/3} NUM:{pl}} → Xc
+       	III, X[], σ:{DEF:{plus} DIM:{minus} ANIM:{minus} CLASS:{4/5/6} NUM:{pl}} → Xt
+       	III, X[], σ:{DEF:{plus} DIM:{minus} ANIM:{plus} NUM:{sg}} → Xy
+       	III, X[], σ:{DEF:{plus} DIM:{minus} ANIM:{plus} NUM:{pl}} → Xɓ
+       	III, X[], σ:{DEF:{plus} DIM:{plus} NUM:{sg}} → Xj
+       	III, X[], σ:{DEF:{plus} DIM:{plus} NUM:{pl}} → Xt
+	Block IV 
+		IV, X[],σ:{LOC:{1}} →  Xii
+		IV, X[],σ:{LOC:{2}} →  Xum
+		IV, X[],σ:{LOC:{3}} →  Xaa
+	Block V
+		%No rules for adjectives in Block V
+
+Sandhi {
+	m → Ø / m_ % taanammuniigoo	→ taanamuniigoo
+} % Sandhi
+
+Truth = {
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{1} DEF:{minus} LOC:{noLoc}} = wiyak
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{2} DEF:{minus} LOC:{noLoc}} = fiyak
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{3} DEF:{minus} LOC:{noLoc}} = miyak
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{4} DEF:{minus} LOC:{noLoc}} = kiyak
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{5} DEF:{minus} LOC:{noLoc}} = piyak
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{6} DEF:{minus} LOC:{noLoc}} = jiyak
+BIG:{DIM:{minus} ANIM:{minus} NUM:{pl} CLASS:{1/2/3} DEF:{minus} LOC:{noLoc}} = ciyak
+BIG:{DIM:{minus} ANIM:{minus} NUM:{pl} CLASS:{4/5/6} DEF:{minus} LOC:{noLoc}} = tiyak
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{1} DEF:{plus} LOC:{1}} = wiyakwii
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{2} DEF:{plus} LOC:{1}} = fiyakfii
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{3} DEF:{plus} LOC:{1}} = miyakmii
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{4} DEF:{plus} LOC:{1}} = kiyakkii
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{5} DEF:{plus} LOC:{1}} = piyakpii
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{6} DEF:{plus} LOC:{1}} = jiyakjii
+BIG:{DIM:{minus} ANIM:{minus} NUM:{pl} CLASS:{1/2/3} DEF:{plus} LOC:{1}} = ciyakcii
+BIG:{DIM:{minus} ANIM:{minus} NUM:{pl} CLASS:{4/5/6} DEF:{plus} LOC:{1}} = tiyaktii
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{1} DEF:{plus} LOC:{2}} = wiyakwum
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{2} DEF:{plus} LOC:{2}} = fiyakfum
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{3} DEF:{plus} LOC:{2}} = miyakmum
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{4} DEF:{plus} LOC:{2}} = kiyakkum
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{5} DEF:{plus} LOC:{2}} = piyakpum
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{6} DEF:{plus} LOC:{2}} = jiyakjum
+BIG:{DIM:{minus} ANIM:{minus} NUM:{pl} CLASS:{1/2/3} DEF:{plus} LOC:{2}} = ciyakcum
+BIG:{DIM:{minus} ANIM:{minus} NUM:{pl} CLASS:{4/5/6} DEF:{plus} LOC:{2}} = tiyaktum
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{1} DEF:{plus} LOC:{3}} = wiyakwaa
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{2} DEF:{plus} LOC:{3}} = fiyakfaa
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{3} DEF:{plus} LOC:{3}} = miyakmaa
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{4} DEF:{plus} LOC:{3}} = kiyakkaa
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{5} DEF:{plus} LOC:{3}} = piyakpaa
+BIG:{DIM:{minus} ANIM:{minus} NUM:{sg} CLASS:{6} DEF:{plus} LOC:{3}} = jiyakjaa
+BIG:{DIM:{minus} ANIM:{minus} NUM:{pl} CLASS:{1/2/3} DEF:{plus} LOC:{3}} = ciyakcaa
+BIG:{DIM:{minus} ANIM:{minus} NUM:{pl} CLASS:{4/5/6} DEF:{plus} LOC:{3}} = tiyaktaa
+BIG:{DIM:{minus} ANIM:{plus} NUM:{sg} CLASS:{1/2/3/4/5/6} DEF:{minus} LOC:{noLoc}} = yiyak
+BIG:{DIM:{minus} ANIM:{plus} NUM:{pl} CLASS:{1/2/3/4/5/6} DEF:{minus} LOC:{noLoc}} = ɓiyak
+BIG:{DIM:{minus} ANIM:{plus} NUM:{sg} CLASS:{1/2/3/4/5/6} DEF:{plus} LOC:{1}} = yiyakyii
+BIG:{DIM:{minus} ANIM:{plus} NUM:{pl} CLASS:{1/2/3/4/5/6} DEF:{plus} LOC:{1}} = ɓiyakɓii
+BIG:{DIM:{minus} ANIM:{plus} NUM:{sg} CLASS:{1/2/3/4/5/6} DEF:{plus} LOC:{2}} = yiyakyum
+BIG:{DIM:{minus} ANIM:{plus} NUM:{pl} CLASS:{1/2/3/4/5/6} DEF:{plus} LOC:{2}} = ɓiyakɓum
+BIG:{DIM:{minus} ANIM:{plus} NUM:{sg} CLASS:{1/2/3/4/5/6} DEF:{plus} LOC:{3}} = yiyakyaa
+BIG:{DIM:{minus} ANIM:{plus} NUM:{pl} CLASS:{1/2/3/4/5/6} DEF:{plus} LOC:{3}} = ɓiyakɓaa
+BIG:{DIM:{plus} ANIM:{plus/minus} NUM:{sg} CLASS:{1/2/3/4/5/6} DEF:{minus} LOC:{noLoc}} = jiyak
+BIG:{DIM:{plus} ANIM:{plus/minus} NUM:{pl} CLASS:{1/2/3/4/5/6} DEF:{minus} LOC:{noLoc}} = tiyak
+BIG:{DIM:{plus} ANIM:{plus/minus} NUM:{sg} CLASS:{1/2/3/4/5/6} DEF:{plus} LOC:{1}} = jiyakjii
+BIG:{DIM:{plus} ANIM:{plus/minus} NUM:{pl} CLASS:{1/2/3/4/5/6} DEF:{plus} LOC:{1}} = tiyaktii
+BIG:{DIM:{plus} ANIM:{plus/minus} NUM:{sg} CLASS:{1/2/3/4/5/6} DEF:{plus} LOC:{2}} = jiyakjum
+BIG:{DIM:{plus} ANIM:{plus/minus} NUM:{pl} CLASS:{1/2/3/4/5/6} DEF:{plus} LOC:{2}} = tiyaktum
+BIG:{DIM:{plus} ANIM:{plus/minus} NUM:{sg} CLASS:{1/2/3/4/5/6} DEF:{plus} LOC:{3}} = jiyakjaa
+BIG:{DIM:{plus} ANIM:{plus/minus} NUM:{pl} CLASS:{1/2/3/4/5/6} DEF:{plus} LOC:{3}} = tiyaktaa
+}
+
+

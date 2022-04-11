@@ -1,0 +1,82 @@
+﻿Language: English verbs
+Author: Raphael Finkel & Greg Stump © 5/2011
+
+Notes: English verb forms.
+The purpose is to experiment with PFM syntax and semantics,
+not to provide a cogent explanation of these forms.
+
+Paradigm Function
+    PF(<L,σ>) = person(tense(I(Stem(<L,σ>))))
+
+Rules of referral
+
+Stem-selection rules
+	Stem(<EAT, S:{}>) = it
+	Stem(<EAT, S:{past}>) = eɪt
+	Stem(<EAT, S:{pastParticiple}>) = itən
+	Stem(<SEE, S:{}>) = si
+	Stem(<SEE, S:{past}>) = sɔ
+	Stem(<SEE, S:{pastParticiple}>) = sin
+	Stem(<CLIMB, S:{}>) = klaɪm
+	Stem(<SING, S:{}>) = sɪŋ
+	Stem(<SING, S:{past}>) = sæŋ
+	Stem(<SING, S:{pastParticiple}>) = sʌŋ
+	Stem(<MEAN, S:{}>) = min
+	Stem(<MEAN, S:{past}>) = mɛn
+
+Rules of exponence
+    Block I
+         I, XV[],S:{3 sg present} → Xz
+         I, XV[weak],S:{past} → Xd
+         I, XV[t],S:{past} → Xt
+    Block person
+         person, XV[],S:{1 sg} → aj X
+         person, XV[],S:{3 sg} → hi X
+         person, XV[],S:{2} → yu X
+         person, XV[],S:{1 pl} → wi X
+         person, XV[],S:{3 pl} → ðe X
+    Block tense
+         tense, XV[],S:{future} → wɪl X
+         tense, XV[],S:{futPerf} → wɪl hæv X
+         tense, XV[],S:{perfect 3 sg} → hæz X
+         tense, XV[],S:{perfect} → hæv X
+
+Lexeme: EAT
+Meaning: eat
+Syntactic category: V
+Inflection class: strong
+
+Lexeme: SEE
+Meaning: see
+Syntactic category: V
+Inflection class: strong
+
+Lexeme: CLIMB
+Meaning: climb
+Syntactic category: V
+Inflection class: weak
+
+Lexeme: SING
+Meaning: sing
+Syntactic category: V
+Inflection class: strong
+
+Lexeme: MEAN
+Meaning: mean
+Syntactic category: V
+Inflection class: t
+
+
+ParadigmSchema(V) = {present/past/perfect/future/futPerf sg/pl 1/2/3 }
+
+Truth = {
+EAT:{1 sg present} = aj it
+EAT:{3 sg present} = hi its
+EAT:{3 sg past} = hi eɪt
+EAT:{3 sg perfect} = hi hæz itn
+EAT:{1 pl perfect} = wi hæv itn
+EAT:{3 sg futPerf} = hi wɪl hæv itn
+CLIMB:{1 sg past} = aj klaɪmd
+CLIMB:{3 pl perfect} = ðe hæv klaɪmd
+}
+

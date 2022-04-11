@@ -1,0 +1,103 @@
+﻿Language: English verbs
+
+Author: Raphael Finkel & Greg Stump © 2/2012
+
+Notes: English verb + auxiliary combinations
+	Uses features of PFM not yet implemented (marked *)
+The purpose is to experiment with PFM syntax and semantics,
+not to provide a cogent explanation of these forms.
+
+ParadigmSchema(V) = {
+sentence past/present/future sg/pl 1/2/3 nonperfect/perfect
+	nonprogressive/progressive
+}
+
+Paradigm Function % * multiple paradigm functions
+PF(<L, S:{sentence}>) = Pron(<L, S>) PF(<L, S - {sentence}>); 
+otherwise, PF(<L, S:{future}>) = wɪl PF(<L, S:{infinitive}>); 
+otherwise, PF(<L, S:{perfect}>) = Main(Stem(<HAVE, S>)) PF(<L, S:{past_participle}>); 
+otherwise, PF(<L, S:{progressive}>) = Main(Stem(<BE, S>) PF(<L, S:{present_participle}>); 
+otherwise, PF(<L, S>) = Main(Stem(<L, S>)).
+
+%{infinitive}, {past_participle}, {present_participle}, and instances of {past/present/future sg/pl 1/2/3} are all mutually exclusive.
+%{infinitive} can coincide with instances of {nonperfect/perfect nonprogressive/progressive}.
+%{past_participle} can coincide with instances of {nonprogressive/progressive} but not with instances of {nonperfect/perfect}.
+%{present_participle} cannot coincide with instances of either {nonprogressive/progressive} or {nonperfect/perfect}.
+
+Stem(<EAT, S>) = it % missing pair -> second component is unchanged.
+Stem(<EAT, S:{past}>) = eɪt
+Stem(<SEE, S>) = si
+Stem(<SEE, S:{past}>) = sɔ
+Stem(<CLIMB, S>) = klaɪm
+Stem(<SING, S>) = sɪŋ
+Stem(<SING, S:{past}>) = sæŋ
+Stem(<SING, S:{past_participle}>) = sʌŋ
+Stem(<MEAN, S>) = min
+Stem(<MEAN, S:{past}>) = mɛn
+Stem(<BE, S>) = bi
+Stem(<BE, S:{past_participle}>) = bɪn
+Stem(<BE, S:{past sg}>) = wʌz
+% Stem(<BE, S:{past 2 sg}>) = Stem(<BE, S:{pl}>) % *
+Stem(<BE, S:{past}>) = wɝ
+Stem(<HAVE, S>) = hæv
+Stem(<HAVE, S:{present 3 sg}>) = hæ
+Stem(<HAVE, S:{past}>) = hæ
+
+Rules of exponence
+
+Block Pron
+Pron, XV, S:{1 sg} → aɪ 
+Pron, XV, S:{2} → ju 
+Pron, XV, S:{3 sg} → hi  
+Pron, XV, S:{1 pl} → wi 
+Pron, XV, S:{3 pl} → ðeɪ 
+
+Block Main
+Main, XV[],S:{3 sg present} → Xz
+Main, XV[weak],S:{past} → Xd
+Main, XV[],S:{past_participle} → (Main(Stem(<X,{past}>)))
+Main, XV[t],S:{past} → Xt
+Main, XV[n],S:{past_participle} → Xən
+Main, XV[],S:{present_participle} → Xɪŋ
+
+
+Sandhi {
+	X:[voiceless]z → Xs 
+}
+
+Lexical entries
+
+Lexeme: EAT
+Meaning: eat
+Syntactic category: V
+Inflection class: n
+
+Lexeme: SEE
+Meaning: see
+Syntactic category: V
+Inflection class: n
+
+Lexeme: CLIMB
+Meaning: climb
+Syntactic category: V
+Inflection class: weak
+
+Lexeme: SING
+Meaning: sing
+Syntactic category: V
+Inflection class: strong
+
+Lexeme: MEAN
+Meaning: mean
+Syntactic category: V
+Inflection class: t
+
+Lexeme: BE
+Meaning: be
+Syntactic category: V
+Inflection class: be
+
+Lexeme: HAVE
+Meaning: have
+Syntactic category: V
+Inflection class: weak

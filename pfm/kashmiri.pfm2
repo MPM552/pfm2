@@ -1,0 +1,159 @@
+﻿Language: Kashmiri verbs
+Author: Gregory Stump 6/2013
+
+Past tense verb inflection in Kashmiri (Indo-Aryan; Kashmir)
+based on George A. Grierson. 1911. A manual of the Kāshmīrī language.
+	Oxford: Clarendon Press.
+We use the characters I, U, Ü to represent the overshort (mātrā)
+	counterparts of /i u ü/.
+
+
+Content paradigm schema = {
+	AGR:{fem/masc sg/pl 1/2/3}
+	TNS:{past recent/indefinite/remote}
+}
+
+
+Lexical specifications:
+
+Lexeme: FLY
+Meaning: fly
+Syntactic category: V
+Inflection class: three
+
+Lexeme: BURN_INSIDE
+Meaning: burn inside
+Syntactic category: V
+Inflection class: two
+
+Root(FLY) = wuph
+Root(BURN_INSIDE) = wup
+
+Corr: 
+Corr(<L[two], σ>) = <Stem(L), pm2(σ)>
+Corr(<L[three], σ>) = <Stem(L), pm3(σ)>
+
+Property mapping pm2 = {
+	(TNS:{recent}) → (TNS:{a})
+	(TNS:{indefinite}) → (TNS:{b})
+	(TNS:{remote}) → (TNS:{c})
+}
+
+Property mapping pm3 = {
+	(TNS:{recent}) → (TNS:{b})
+	(TNS:{indefinite}) → (TNS:{c})
+	(TNS:{remote}) → (TNS:{d})
+}
+
+Paradigm function % Form Paradigm to Realized Paradigm
+
+	PF(<X, σ>) = [ v : [ iv-ii : [ i : <X, σ> ]]]
+
+Word-realization rules: 
+	Block i	
+		i, X [V], S:{TNS:{past d}} → Xi
+
+	Block iv-ii
+		iv-ii, X [V], S:{AGR:{masc sg} TNS:{past a}} → Xu 
+		iv-ii, X [V], S:{AGR:{masc 3 sg} TNS:{past a}} → XU
+		iv-ii, X [V], S:{AGR:{fem sg} TNS:{past a}} → XÜ
+		iv-ii, X [V], S:{AGR:{masc pl} TNS:{past a}} → XI
+		iv-ii, X [V], S:{AGR:{fem pl} TNS:{past a}} → Xɛ 
+		iv-ii, X [], S:{} → [ iv : [ iii : [ ii : <X, S> ] ] ] % default
+
+	Block ii
+		ii, X [V], S:{TNS:{past}} → Xy
+		ii, X [V], S:{TNS:{past a}} → X
+
+	Block iii
+		iii, X [V], S:{AGR:{masc sg} TNS:{past b}} → Xō
+		iii, X [V], S:{AGR:{masc pl} TNS:{past b}} → Xē
+		iii, X [V], S:{AGR:{masc} TNS:{past}} → Xā
+		iii, X [V], S:{AGR:{fem} TNS:{past}} → Xēyɛ
+
+	Block iv
+		iv, X [V], S:{AGR:{3 sg masc}} → Xv
+		iv, X [V], S:{AGR:{masc 1/3 pl}} → Xy
+
+	Block v
+		v, X [V], S:{AGR:{1 sg}} → Xs
+		v, X [V], S:{AGR:{2 sg}} → Xkh
+		v, X [V], S:{AGR:{2 pl}} → Xwa
+
+ShowOnlyTruth
+
+Truth = {
+	BURN_INSIDE:{AGR:{1 sg masc} TNS:{past recent}} = wupus
+	BURN_INSIDE:{AGR:{2 sg masc} TNS:{past recent}} = wupukh
+	BURN_INSIDE:{AGR:{3 sg masc} TNS:{past recent}} = wupU
+	BURN_INSIDE:{AGR:{1 pl masc} TNS:{past recent}} = wupI
+	BURN_INSIDE:{AGR:{2 pl masc} TNS:{past recent}} = wupIwa
+	BURN_INSIDE:{AGR:{3 pl masc} TNS:{past recent}} = wupI
+	BURN_INSIDE:{AGR:{1 sg masc} TNS:{past indefinite}} = wupyōs
+	BURN_INSIDE:{AGR:{2 sg masc} TNS:{past indefinite}} = wupyōkh
+	BURN_INSIDE:{AGR:{3 sg masc} TNS:{past indefinite}} = wupyōv
+	BURN_INSIDE:{AGR:{1 pl masc} TNS:{past indefinite}} = wupyēy
+	BURN_INSIDE:{AGR:{2 pl masc} TNS:{past indefinite}} = wupyēwa
+	BURN_INSIDE:{AGR:{3 pl masc} TNS:{past indefinite}} = wupyēy
+	BURN_INSIDE:{AGR:{1 sg masc} TNS:{past remote}} = wupyās
+	BURN_INSIDE:{AGR:{2 sg masc} TNS:{past remote}} = wupyākh
+	BURN_INSIDE:{AGR:{3 sg masc} TNS:{past remote}} = wupyāv
+	BURN_INSIDE:{AGR:{1 pl masc} TNS:{past remote}} = wupyāy
+	BURN_INSIDE:{AGR:{2 pl masc} TNS:{past remote}} = wupyāwa
+	BURN_INSIDE:{AGR:{3 pl masc} TNS:{past remote}} = wupyāy
+	BURN_INSIDE:{AGR:{1 sg fem} TNS:{past recent}} = wupÜs
+	BURN_INSIDE:{AGR:{2 sg fem} TNS:{past recent}} = wupÜkh
+	BURN_INSIDE:{AGR:{3 sg fem} TNS:{past recent}} = wupÜ
+	BURN_INSIDE:{AGR:{1 pl fem} TNS:{past recent}} = wupɛ
+	BURN_INSIDE:{AGR:{2 pl fem} TNS:{past recent}} = wupɛwa
+	BURN_INSIDE:{AGR:{3 pl fem} TNS:{past recent}} = wupɛ
+	BURN_INSIDE:{AGR:{1 sg fem} TNS:{past indefinite}} = wupyēyɛs
+	BURN_INSIDE:{AGR:{2 sg fem} TNS:{past indefinite}} = wupyēyɛkh
+	BURN_INSIDE:{AGR:{3 sg fem} TNS:{past indefinite}} = wupyēyɛ
+	BURN_INSIDE:{AGR:{1 pl fem} TNS:{past indefinite}} = wupyēyɛ
+	BURN_INSIDE:{AGR:{2 pl fem} TNS:{past indefinite}} = wupyēyɛwa
+	BURN_INSIDE:{AGR:{3 pl fem} TNS:{past indefinite}} = wupyēyɛ
+	BURN_INSIDE:{AGR:{1 sg fem} TNS:{past remote}} = wupyēyɛs
+	BURN_INSIDE:{AGR:{2 sg fem} TNS:{past remote}} = wupyēyɛkh
+	BURN_INSIDE:{AGR:{3 sg fem} TNS:{past remote}} = wupyēyɛ
+	BURN_INSIDE:{AGR:{1 pl fem} TNS:{past remote}} = wupyēyɛ
+	BURN_INSIDE:{AGR:{2 pl fem} TNS:{past remote}} = wupyēyɛwa
+	BURN_INSIDE:{AGR:{3 pl fem} TNS:{past remote}} = wupyēyɛ
+
+	FLY:{AGR:{1 sg masc} TNS:{past recent}} = wuphyōs
+	FLY:{AGR:{2 sg masc} TNS:{past recent}} = wuphyōkh
+	FLY:{AGR:{3 sg masc} TNS:{past recent}} = wuphyōv
+	FLY:{AGR:{1 pl masc} TNS:{past recent}} = wuphyēy
+	FLY:{AGR:{2 pl masc} TNS:{past recent}} = wuphyēwa
+	FLY:{AGR:{3 pl masc} TNS:{past recent}} = wuphyēy
+	FLY:{AGR:{1 sg masc} TNS:{past indefinite}} = wuphyās
+	FLY:{AGR:{2 sg masc} TNS:{past indefinite}} = wuphyākh
+	FLY:{AGR:{3 sg masc} TNS:{past indefinite}} = wuphyāv
+	FLY:{AGR:{1 pl masc} TNS:{past indefinite}} = wuphyāy
+	FLY:{AGR:{2 pl masc} TNS:{past indefinite}} = wuphyāwa
+	FLY:{AGR:{3 pl masc} TNS:{past indefinite}} = wuphyāy
+	FLY:{AGR:{1 sg masc} TNS:{past remote}} = wuphiyās
+	FLY:{AGR:{2 sg masc} TNS:{past remote}} = wuphiyākh
+	FLY:{AGR:{3 sg masc} TNS:{past remote}} = wuphiyāv
+	FLY:{AGR:{1 pl masc} TNS:{past remote}} = wuphiyāy
+	FLY:{AGR:{2 pl masc} TNS:{past remote}} = wuphiyāwa
+	FLY:{AGR:{3 pl masc} TNS:{past remote}} = wuphiyāy
+	FLY:{AGR:{1 sg fem} TNS:{past recent}} = wuphyēyɛs
+	FLY:{AGR:{2 sg fem} TNS:{past recent}} = wuphyēyɛkh
+	FLY:{AGR:{3 sg fem} TNS:{past recent}} = wuphyēyɛ
+	FLY:{AGR:{1 pl fem} TNS:{past recent}} = wuphyēyɛ
+	FLY:{AGR:{2 pl fem} TNS:{past recent}} = wuphyēyɛwa
+	FLY:{AGR:{3 pl fem} TNS:{past recent}} = wuphyēyɛ
+	FLY:{AGR:{1 sg fem} TNS:{past indefinite}} = wuphyēyɛs
+	FLY:{AGR:{2 sg fem} TNS:{past indefinite}} = wuphyēyɛkh
+	FLY:{AGR:{3 sg fem} TNS:{past indefinite}} = wuphyēyɛ
+	FLY:{AGR:{1 pl fem} TNS:{past indefinite}} = wuphyēyɛ
+	FLY:{AGR:{2 pl fem} TNS:{past indefinite}} = wuphyēyɛwa
+	FLY:{AGR:{3 pl fem} TNS:{past indefinite}} = wuphyēyɛ
+	FLY:{AGR:{1 sg fem} TNS:{past remote}} = wuphiyēyɛs
+	FLY:{AGR:{2 sg fem} TNS:{past remote}} = wuphiyēyɛkh
+	FLY:{AGR:{3 sg fem} TNS:{past remote}} = wuphiyēyɛ
+	FLY:{AGR:{1 pl fem} TNS:{past remote}} = wuphiyēyɛ
+	FLY:{AGR:{2 pl fem} TNS:{past remote}} = wuphiyēyɛwa
+	FLY:{AGR:{3 pl fem} TNS:{past remote}} = wuphiyēyɛ
+}

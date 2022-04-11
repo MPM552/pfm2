@@ -1,0 +1,73 @@
+Language: Persian verbs
+
+Author: Olivier Bonami and Pollet Samvelian,
+    "Degrees of periphrasis in Persian conjugation",
+    Sixièmes Décembrettes, 4 décembre 2008
+Transcribed by Raphael Finkel 5/2011
+The purpose of this file is to experiment with PFM syntax and semantics.
+I am not sure I have transcribed the rules correctly.
+
+Paradigm Function
+    PF(<L,σ>) = V(IV(III(II(Stem(<L,σ>)))))
+
+Rules of referral
+
+Stem-selection rules
+     Stem(<XAR, S:{finite}>) = xar
+     Stem(<XAR, S:{finite past}>) = xarid
+     Stem(<XAR, S:{participle past}>) = xarid
+     Stem(<XAR, S:{participle}>) = xar
+
+Rules of exponence
+    Block II % aspect, form
+         II, X[],S:{realis unbounded} → miX
+    Block III % TAM polarity
+         III, X[],S:{neg} → naX
+         III, X[],S:{realis unbounded neg} → neX
+         III, X[],S:{finite irrealis pos} → beX
+    Block IV % form, aspect
+         IV, X[],S:{participle perfect} → Xe
+         IV, X[],S:{participle imperfect} → Xande
+         IV, X[],S:{infinitive} → an
+    Block V % subject agreement
+         V, X[],S:{finite 1 sg} → Xam
+         V, X[],S:{finite 1 pl} → Xim
+         V, X[],S:{finite 2 sg} → Xi
+         V, X[],S:{finite 2 pl} → Xid
+         V, X[],S:{finite 3 sg indirect} → Xast
+         V, X[],S:{finite 3 sg past} → X
+         V, X[],S:{finite 3 sg} → Xad
+         V, X[],S:{finite 3 pl} → Xand
+         V, X[],S:{imperative 2 sg} → X
+
+Lexeme: XAR
+Meaning: buy
+Syntactic category: V
+Inflection class:
+
+ParadigmSchema(V) = {
+ (declarative finite direct pos/neg sg/pl 1/2/3
+ 	(imperfect unbounded present realis) / % simplePresent
+ 	(imperfect unbounded present irrealis) / % simpleSubjunctive
+ 	(imperfect bounded past realis) / % simpleBoundedPast
+ 	(imperfect unbounded past realis) / % simpleUnboundedPast
+	(imperfect bounded future realis) / % future
+	(perfect bounded present realis) / % complexPresent
+	(perfect bounded present irrealis) / % complexSubjunctive
+	(perfect bounded past realis) / % complexBoundedPast
+	(perfect unbounded past realis)  % complexUnboundedPast
+  ) /
+ (imperative 2 sg finite irrealis)/ % imperative
+ (present imperfect participle pos)/ % present participle
+ (past perfect participle) % past participle
+}
+
+% ShowOnlyTruth 
+
+Truth = {
+XAR:{finite realis   declarative present unbounded direct imperfect pos pl 2} = mixarid
+XAR:{finite irrealis declarative present unbounded direct imperfect pos pl 3} = bexarand
+XAR:{finite realis   declarative past    bounded   direct imperfect neg sg 2} = naxaridi
+XAR:{finite realis   declarative past    unbounded direct imperfect neg sg 1} = nemixaridam
+}
+% vim:nospell tw=1000:

@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Garifuna Verb Morphology</title>
+	<link href="../../generalstyle.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+	// <!--
+
+	function validatePart(part) {
+		var formPart = document.forms["myForm"].elements[part];
+		// make sure at least one option in formPart is selected
+		var index;
+		for (index = 0; index < formPart.length; index += 1) {
+			if (formPart[index].checked) {
+				return true;
+			}
+		}
+		alert("You need at least one " + part + ".");
+		return false;
+	} // validatePart
+
+	function validateForm() {
+		if (! validatePart('tense')) return(false);
+		if (! validatePart('polarity')) return(false);
+		if (! validatePart('transitivity')) return(false);
+		if (! validatePart('s_person')) return(false);
+		if (! validatePart('s_number')) return(false);
+		if (! validatePart('s_gender')) return(false);
+		if (document.getElementById('object').style.display == 'inline') {
+			if (! validatePart('o_person')) return(false);
+			if (! validatePart('o_number')) return(false);
+			if (! validatePart('o_gender')) return(false);
+		}
+		return true;
+	} // validateForm
+
+	function establishVisibility() {
+		if (document.forms["myForm"].hasObject[0].checked) {
+			document.getElementById('object').style.display='none';
+			document.getElementById('transitive').checked=false;
+			document.getElementById('transitiveq').style.display='none';
+		} else {
+			document.getElementById('object').style.display='inline';
+			document.getElementById('transitiveq').style.display='inline';
+		}
+	} // establishVisibility
+
+	// -->
+</script>
+
+</head>
+
+<body onload="establishVisibility();">
+<center><h1>Garifuna verb morphology generator</h1></center>
+<h2>Verb</h2>
+<form
+	name="myForm"
+	action="garifunaMorphology.cgi"
+	onsubmit="return validateForm();"
+	method="post" >
+	Basic information
+	<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;Root
+		<input type="text" size="5" name="root" value="hou"/> 
+	<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;Prefixed root, if any, such as
+	<span style="color:green">aigi</span> in
+	<span style="color:green">m-eigi</span>.
+		<input type="text" size="5" name="prefixedRoot" value="aigi"/>
+	<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;Gloss
+		<input type="text" size="5" name="gloss" value="eat"/>
+	<br/>
+	This verb can take an object
+		<input type="radio" name="hasObject" value="no"
+		onclick="establishVisibility();" />
+		no |
+		<input type="radio" name="hasObject" value="yes" checked="checked"
+		onclick="establishVisibility();" />
+		yes
+		
+
+	<br /
+	<br />
+	Output these forms (check all that you want)
+	<br /> Tense
+		<input type="checkbox" name="tense" value="aorist" checked="checked" />
+			aorist |
+		<input type="checkbox" name="tense" value="perfect" />
+			perfect |
+		<input type="checkbox" name="tense" value="continuative" />
+			continuative |
+		<input type="checkbox" name="tense" value="future" />
+			future |
+		<input type="checkbox" name="tense" value="progressive" />
+			progressive |
+		<input type="checkbox" name="tense" value="recentPerfect" />
+			recent perfect
+
+	<br /> Polarity
+		<input type="checkbox" name="polarity" value="positive"
+		checked="checked" />
+			positive |
+		<input type="checkbox" name="polarity" value="negative" />
+			negative
+
+	<br /> Transitivity
+		<span id='transitiveq'>
+		<input type="checkbox" name="transitivity" value="transitive"
+		id="transitive" />
+			transitive | </span>
+		<input type="checkbox" name="transitivity" value="intransitive" 
+		checked="checked" />
+			intransitive
+
+	<br /> Subject
+		<br/>&nbsp;&nbsp;&nbsp;&nbsp;Person
+		<input type="checkbox" name="s_person" value="1" checked="checked" />
+			1st |
+		<input type="checkbox" name="s_person" value="2" />
+			2nd |
+		<input type="checkbox" name="s_person" value="3" />
+			3rd
+		<br/>&nbsp;&nbsp;&nbsp;&nbsp;Number
+		<input type="checkbox" name="s_number" value="sg" checked="checked" />
+			singular |
+		<input type="checkbox" name="s_number" value="pl"/>
+			plural
+		<br/>&nbsp;&nbsp;&nbsp;&nbsp;Gender
+		<input type="checkbox" name="s_gender" value="masc" checked="checked" />
+			masculine |
+		<input type="checkbox" name="s_gender" value="fem"/>
+			feminine
+
+	<div id="object" name="object" style="display:inline;">
+	<br /> Object
+		<br/>&nbsp;&nbsp;&nbsp;&nbsp;Person
+		<input type="checkbox" name="o_person" value="1" checked="checked" />
+			1st |
+		<input type="checkbox" name="o_person" value="2" />
+			2nd |
+		<input type="checkbox" name="o_person" value="3" />
+			3rd
+		<br/>&nbsp;&nbsp;&nbsp;&nbsp;Number
+		<input type="checkbox" name="o_number" value="sg" checked="checked" />
+			singular |
+		<input type="checkbox" name="o_number" value="pl"/>
+			plural
+		<br/>&nbsp;&nbsp;&nbsp;&nbsp;Gender
+		<input type="checkbox" name="o_gender" value="masc" checked="checked" />
+			masculine |
+		<input type="checkbox" name="o_gender" value="fem"/>
+			feminine
+	</div>
+	<br/>
+	<input type="submit" value="submit"/>
+</form>
+
+</body>
+</html>

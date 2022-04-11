@@ -1,0 +1,135 @@
+﻿Language: Luganda verbs
+Author: Greg Stump © 5/2011.
+
+Notes: In progress; not all forms are correct.
+The purpose is to experiment with PFM syntax and semantics,
+not to provide a cogent explanation of these forms.
+
+Paradigm Function
+PF(<L, σ>) = V(IV-II(I(Stem(<L, σ>))))
+
+Stem-selection rules
+Stem(<GENDA, S:{}>) = genda
+Stem(<LABA, S:{}>) = laba
+
+Rules of exponence
+
+Block I
+I, X, S:{AGR(ob):{2 sg}} → kuX
+I, X, S:{AGR(ob):{2 pl}} → baX
+I, X, S:{AGR(ob):{3 sg mu_ba}}  → muX
+I, X, S:{AGR(ob):{τ}} → (III (<X,τ>))   
+
+Block II
+II, X, S:{AGR(su):{2 sg}} → oX
+II, X, S:{AGR(su):{2 pl}} → muX
+II, X, S:{AGR(su):{3 sg mu_ba}} → aX
+II, X, S:{AGR(su):{τ}} → (III (<X,τ>))    
+
+Block III
+III, X, S:{1 sg} → nX
+III, X, S:{1 pl} → tuX
+III, X, S:{3 pl mu_ba} → baX
+III, X, S:{3 sg mu_mi} → guX
+III, X, S:{3 pl mu_mi} → giX
+III, X, S:{3 sg ki_bi} → kiX
+III, X, S:{3 pl ki_bi} → biX
+
+Block IV
+IV, X, S:{neg} → teX
+IV, X, S:{neg ne} → taX
+
+Block IV-II
+IV-II, X, S:{neg AGR(su):{1 sg}} → siX
+IV-II, X, S:{ne} → (II (IV (<X, S>)))    
+IV-II, X, S:{} → (IV (II (<X,S>)))    % Function Composition Default
+
+Block V
+V, X, S:{ne} → ne X
+
+Lexical entries:
+
+Lexeme: GENDA
+Meaning:  go
+Syntactic category: V
+Inflection class: i % intransitive
+
+Lexeme: LABA
+Meaning:  see
+Syntactic category: V
+Inflection class: t % transitive
+
+ParadigmSchema(V i)=
+{
+neg/pos pres/ne AGR(su):{sg/pl 1/2/(3 mu_ba/mu_mi/ki_bi/n_n/lu_n/li_ma/ka_bu/gu_ga/ku_ma)}
+}
+
+ParadigmSchema(V t)=
+{
+neg/pos pres/ne AGR(su):{sg/pl 1/2/(3 mu_ba/mu_mi/ki_bi/n_n/lu_n/li_ma/ka_bu/gu_ga/ku_ma)}
+	            AGR(ob):{sg/pl 1/2/(3 mu_ba/mu_mi/ki_bi/n_n/lu_n/li_ma/ka_bu/gu_ga/ku_ma)} 
+}
+
+ShowOnlyTruth
+
+Truth = {
+GENDA:{AGR(su):{sg 1} pres	 neg} = sigenda 
+GENDA:{AGR(su):{sg 1} pres	 pos} = ngenda 
+GENDA:{AGR(su):{sg 1} ne	 neg} = ne sigenda 
+GENDA:{AGR(su):{sg 1} ne	 pos} = ne ngenda 
+GENDA:{AGR(su):{sg 2} ne	 neg} = ne otagenda 
+GENDA:{AGR(su):{sg 2} pres	 neg} = teogenda 
+GENDA:{AGR(su):{sg 2} ne	 pos} = ne ogenda 
+GENDA:{AGR(su):{sg 2} pres	 pos} = ogenda 
+GENDA:{AGR(su):{sg 3 ki_bi} neg ne	} = ne kitagenda 
+GENDA:{AGR(su):{sg 3 ki_bi} neg pres}	=  tekigenda 
+GENDA:{AGR(su):{sg 3 ki_bi} pos ne	} = ne kigenda 
+GENDA:{AGR(su):{sg 3 ki_bi} pos pres}= 	 kigenda 
+GENDA:{AGR(su):{sg 3 mu_ba} neg ne	} = ne atagenda 
+GENDA:{AGR(su):{sg 3 mu_ba} neg pres}= 	 teagenda 
+GENDA:{AGR(su):{sg 3 mu_ba} pos ne	} = ne agenda 
+GENDA:{AGR(su):{sg 3 mu_ba} pos pres}= 	 agenda 
+GENDA:{AGR(su):{sg 3 mu_mi} neg ne	} = ne gutagenda 
+GENDA:{AGR(su):{sg 3 mu_mi} neg pres}= 	 tegugenda 
+GENDA:{AGR(su):{sg 3 mu_mi} pos ne	} = ne gugenda 
+GENDA:{AGR(su):{sg 3 mu_mi} pos pres}= 	 gugenda 
+GENDA:{AGR(su):{pl 1} ne	neg } = ne tutagenda 
+GENDA:{AGR(su):{pl 1} pres	neg } = tetugenda 
+GENDA:{AGR(su):{pl 1} ne	pos } = ne tugenda 
+GENDA:{AGR(su):{pl 1} pres	pos } = tugenda 
+GENDA:{AGR(su):{pl 2} ne	neg } = ne mutagenda 
+GENDA:{AGR(su):{pl 2} pres	neg } = temugenda 
+GENDA:{AGR(su):{pl 2} ne	pos } = ne mugenda 
+GENDA:{AGR(su):{pl 2} pres	pos } = mugenda 
+GENDA:{AGR(su):{pl 3 ki_bi} neg ne	}=  ne bitagenda 
+GENDA:{AGR(su):{pl 3 ki_bi} neg pres }=     tebigenda 
+GENDA:{AGR(su):{pl 3 ki_bi} pos ne	}=  ne bigenda 
+GENDA:{AGR(su):{pl 3 ki_bi} pos pres }=     bigenda 
+GENDA:{AGR(su):{pl 3 mu_ba} neg ne	}=  ne batagenda 
+GENDA:{AGR(su):{pl 3 mu_ba} neg pres }=     tebagenda 
+GENDA:{AGR(su):{pl 3 mu_ba} pos ne	}=  ne bagenda 
+GENDA:{AGR(su):{pl 3 mu_ba} pos pres }=     bagenda 
+GENDA:{AGR(su):{pl 3 mu_mi} neg ne	}=  ne gitagenda 
+GENDA:{AGR(su):{pl 3 mu_mi} neg pres }=     tegigenda 
+GENDA:{AGR(su):{pl 3 mu_mi} pos ne	}=  ne gigenda 
+GENDA:{AGR(su):{pl 3 mu_mi} pos pres }=     gigenda 
+
+LABA:{pos AGR(su):{pl 1} AGR(ob):{sg 3 mu_ba} pres} = tumulaba % we see him
+LABA:{AGR(su):{pl 1} AGR(ob):{sg 3 mu_ba} neg pres} = tetumulaba  % we do not see him
+LABA:{AGR(su):{pl 1} AGR(ob):{sg 3 mu_ba} pos ne } = ne tumulaba % and we saw him
+LABA:{AGR(su):{pl 1} AGR(ob):{sg 3 mu_ba} neg ne } = ne tutamulaba % and we did not see him
+LABA:{AGR(su):{pl 3 mu_ba} AGR(ob):{sg 3 mu_ba} pos pres } = bamulaba % they see him
+LABA:{AGR(su):{pl 3 mu_ba} AGR(ob):{sg 3 mu_ba} neg pres } = tebamulaba % they do not see him
+LABA:{AGR(su):{pl 3 mu_ba} AGR(ob):{sg 3 mu_ba} pos ne } = ne bamulaba % and they saw him
+LABA:{AGR(su):{pl 3 mu_ba} AGR(ob):{sg 3 mu_ba} neg ne } = ne batamulaba % and they did not see him
+LABA:{AGR(su):{pl 1} AGR(ob):{sg 2} pos pres } = tukulaba % we see you (sg.)
+LABA:{AGR(su):{pl 1} AGR(ob):{sg 2} neg pres } = tetukulaba % we do not see you (sg.)
+LABA:{AGR(su):{pl 1} AGR(ob):{sg 2} pos ne } = ne tukulaba % and we saw you (sg.)
+LABA:{AGR(su):{pl 1} AGR(ob):{sg 2} neg ne } = ne tutakulaba % and we did not see you (sg.)
+LABA:{AGR(su):{pl 3 mu_ba} AGR(ob):{sg 2} pos pres } = bakulaba % they see you (sg.)
+LABA:{AGR(su):{pl 3 mu_ba} AGR(ob):{sg 2} neg pres } = tebakulaba % they do not see you (sg.)
+LABA:{AGR(su):{pl 3 mu_ba} AGR(ob):{sg 2} pos ne } = ne bakulaba % and they saw you (sg.)
+LABA:{AGR(su):{pl 3 mu_ba} AGR(ob):{sg 2} neg ne } = ne batakulaba % and they did not see you (sg.)
+
+}
+% vim:nospell tw=1000:

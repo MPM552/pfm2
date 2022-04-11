@@ -1,0 +1,253 @@
+Language: Bhojpuri verbs
+Author: Darin Arrick Fall 2012
+
+Verbs
+	Indo-European; India
+	authority: Shulka 1981
+	for LIN 617 Advanced Morphology midterm, Fall 2012, Dr. Gregory Stump
+
+	TNS		tense (past, present, future, none)
+	MOOD	mood (indic, opt)
+	PERS	person (1, 2, 3)
+	NUM		number (singular, plural)
+	GEND	gender (feminine, masculine)
+
+Paradigm Function
+	PF(<L,σ>) = II(I(Stem(<L,σ>)))
+
+ParadigmSchema(V) = {
+	TNS:{past/pres/fut/noTense}
+	MOOD:{indic/opt}
+	PERS:{1/2/3}
+	NUM:{sg/pl}
+	GEND:{fem/masc}
+}
+
+Disallow = {
+	(MOOD:{opt} TNS:{past/pres/fut}) /	% property co-occurence restriction - opt has no tense marker
+	(MOOD:{indic} TNS:{noTense})			% indicative mood must be tense marked
+}
+
+Stem operations
+	Stem(<SEE, σ:{}>) = dekh		% default stem is short
+	Stem(<SEE, σ:{TNS:{pres}}>) = dēkh
+	Stem(<SEE, σ:{MOOD:{opt}}>) = dēkh
+	Stem(<SEE, σ:{TNS:{past} PERS:{3} NUM:{sg}}>) = dēkh
+	Stem(<SEE, σ:{TNS:{fut} PERS:{1/3} NUM:{sg}}>) = dēkh
+
+% Old rules, when I assumed the default stem for KHĀ was long
+%	Stem(<EAT, σ:{}>) = khā		% default stem is long?
+%	Stem(<EAT, σ:{TNS:{past}}>) = kha
+%	Stem(<EAT, σ:{TNS:{past} PERS:{3} NUM:{sg}}>) = khā
+%	Stem(<EAT, σ:{TNS:{fut} PERS:{3} NUM:{pl}}>) = kha
+%	Stem(<EAT, σ:{MOOD:{opt} PERS:{3} NUM:{sg}}>) = kha
+% End of old KHĀ rules
+
+	Stem(<EAT, σ:{}>) = kha		% default stem is short, per assignment
+	Stem(<EAT, σ:{TNS:{pres}}>) = khā
+	Stem(<EAT, σ:{TNS:{past} PERS:{3} NUM:{sg}}>) = khā
+	Stem(<EAT, σ:{TNS:{fut} PERS:{1/2}}>) = khā
+	Stem(<EAT, σ:{TNS:{fut} PERS:{3} NUM:{sg}}>) = khā
+	Stem(<EAT, σ:{MOOD:{opt} PERS:{1/2}}>) = khā
+	Stem(<EAT, σ:{MOOD:{opt} PERS:{3} NUM:{pl}}>) = khā
+
+Rules of exponence
+	Block I		% chooses first suffix
+		I, X[1], σ:{TNS:{past}} → Xal
+		I, X[2], σ:{TNS:{past}} → Xil
+		I, X[1/2], σ:{TNS:{pres} PERS:{1}} → Xīl
+		I, X[1/2], σ:{TNS:{pres} PERS:{2/3}} → Xāl
+		I, X[1/2], σ:{TNS:{pres} PERS:{2} GEND:{fem}} → Xæl
+		I, X[1/2], σ:{TNS:{pres} PERS:{3} NUM:{pl}} → Xæl
+		I, X[1/2], σ:{TNS:{pres} PERS:{3} NUM:{sg} GEND:{fem}} → Xēl
+		I, X[1/2], σ:{TNS:{fut} PERS:{1/2}} → Xab
+		I, X[1/2], σ:{TNS:{fut} PERS:{3} NUM:{pl}} → Xih
+		I, X[1/2], σ:{} → X
+
+	Block II		% chooses second suffix; both sets of rules work
+% begin first attempt at rules
+%		II, X[1/2], σ:{TNS:{pres} PERS:{1}} → Xā
+%		II, X[1/2], σ:{TNS:{past/noTense} PERS:{1}} → Xī̃
+%		II, X[1/2], σ:{PERS:{2} GEND:{masc}} → Xā
+%		II, X[1/2], σ:{MOOD:{indic} PERS:{2} GEND:{fem}} → Xiu
+%		II, X[1/2], σ:{TNS:{fut} PERS:{3} NUM:{sg}} → Xī
+%		II, X[1/2], σ:{TNS:{fut} PERS:{1/3} NUM:{pl}} → Xæ̃
+%		II, X[1/2], σ:{TNS:{fut} PERS:{1} NUM:{sg}} → X
+%		II, X[1/2], σ:{PERS:{3} NUM:{pl} GEND:{masc}} → Xæ̃
+%		II, X[1/2], σ:{TNS:{pres/past} PERS:{3} NUM:{pl} GEND:{fem}} → Xini
+%		II, X[1/2], σ:{MOOD:{opt} PERS:{2}} → Xā
+%		II, X[1/2], σ:{MOOD:{opt} PERS:{3} NUM:{sg}} → Xæ
+%		II, X[1/2], σ:{MOOD:{opt} PERS:{3} NUM:{pl}} → Xæ̃
+%		II, X[1/2], σ:{TNS:{pres} PERS:{3} NUM:{sg} GEND:{masc}} → Xā
+%		II, X[1/2], σ:{TNS:{past} PERS:{3} NUM:{sg} GEND:{masc}} → X
+%		II, X[1/2], σ:{TNS:{pres} PERS:{3} NUM:{sg} GEND:{fem}} → Xē
+%		II, X[1/2], σ:{TNS:{past} PERS:{3} NUM:{sg} GEND:{fem}} → Xi
+% end first attempt at rules
+
+		II, X[1/2], σ:{TNS:{past/fut/noTense} NUM:{pl}} → Xæ̃
+		II, X[1/2], σ:{TNS:{past/noTense} PERS:{1} NUM:{sg/pl}} → Xī̃
+		II, X[1/2], σ:{PERS:{2}} → Xā
+		II, X[1/2], σ:{TNS:{pres} PERS:{1}} → Xā
+		II, X[1/2], σ:{MOOD:{indic} PERS:{2} GEND:{fem}} → Xiu
+		II, X[1/2], σ:{MOOD:{opt} PERS:{3} NUM:{sg}} → Xæ
+		II, X[1/2], σ:{TNS:{pres} PERS:{3} NUM:{sg} GEND:{fem}} → Xē
+		II, X[1/2], σ:{TNS:{past} PERS:{3} NUM:{sg} GEND:{fem}} → Xi
+		II, X[1/2], σ:{TNS:{pres/past} PERS:{3} NUM:{pl} GEND:{fem}} → Xini
+		II, X[1/2], σ:{TNS:{past/fut} PERS:{2} NUM:{pl} GEND:{masc}} → Xā
+		II, X[1/2], σ:{TNS:{pres} PERS:{3} NUM:{sg} GEND:{masc}} → Xā
+		II, X[1/2], σ:{TNS:{pres} PERS:{3} NUM:{pl} GEND:{masc}} → Xæ̃
+		II, X[1/2], σ:{TNS:{fut} PERS:{3} NUM:{sg}} → Xī
+		II, X[1/2], σ:{MOOD:{opt} PERS:{1} NUM:{pl}} → Xī̃
+		II, X[1/2], σ:{MOOD:{opt} PERS:{2} NUM:{pl}} → Xā
+		II, X[1/2], σ:{} → X
+
+% This isn't needed
+% PhonologicalClass vowel = i ī ī̃ e ē æ æ̃ a ā ā̃ u 
+
+Sandhi {
+	aa → ai / _
+	āa → ā / _
+	āā → ā / _
+	āē → ā / _	
+	āæ̃ → ā̃y / _
+	āæ → ā / _
+	aæ → ay / _
+}
+
+Lexeme: SEE % see
+Meaning: see
+Syntactic category: V
+Inflection class: 1		% maybe consonant-final stems?
+
+Lexeme: EAT % eat
+Meaning: eat
+Syntactic category: V
+Inflection class: 2		% maybe vowel-final stems?
+
+ShowOnlyTruth
+
+%
+% Truth tables for SEE and EAT
+%
+Truth = {
+
+%
+% SEE
+%
+
+% present indicative
+SEE:{TNS:{pres} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{masc}} = dēkhīlā
+SEE:{TNS:{pres} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{masc}} = dēkhālā
+SEE:{TNS:{pres} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{masc}} = dēkhālā
+SEE:{TNS:{pres} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{fem}} = dēkhīlā
+SEE:{TNS:{pres} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{fem}} = dēkhæliu
+SEE:{TNS:{pres} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{fem}} = dēkhēlē
+SEE:{TNS:{pres} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{masc}} = dēkhīlā
+SEE:{TNS:{pres} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{masc}} = dēkhālā
+SEE:{TNS:{pres} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{masc}} = dēkhælæ̃
+SEE:{TNS:{pres} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{fem}} = dēkhīlā
+SEE:{TNS:{pres} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{fem}} = dēkhæliu
+SEE:{TNS:{pres} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{fem}} = dēkhælini
+
+% past indicative
+SEE:{TNS:{past} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{masc}} = dekhalī̃
+SEE:{TNS:{past} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{masc}} = dekhalā
+SEE:{TNS:{past} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{masc}} = dēkhal
+SEE:{TNS:{past} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{fem}} = dekhalī̃
+SEE:{TNS:{past} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{fem}} = dekhaliu
+SEE:{TNS:{past} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{fem}} = dēkhali
+SEE:{TNS:{past} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{masc}} = dekhalī̃
+SEE:{TNS:{past} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{masc}} = dekhalā
+SEE:{TNS:{past} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{masc}} = dekhalæ̃
+SEE:{TNS:{past} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{fem}} = dekhalī̃
+SEE:{TNS:{past} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{fem}} = dekhaliu
+SEE:{TNS:{past} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{fem}} = dekhalini
+
+% future indicative
+SEE:{TNS:{fut} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{masc}} = dēkhab
+SEE:{TNS:{fut} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{masc}} = dekhabā
+SEE:{TNS:{fut} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{masc}} = dēkhī
+SEE:{TNS:{fut} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{fem}} = dēkhab
+SEE:{TNS:{fut} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{fem}} = dekhabiu
+SEE:{TNS:{fut} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{fem}} = dēkhī
+SEE:{TNS:{fut} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{masc}} = dekhabæ̃
+SEE:{TNS:{fut} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{masc}} = dekhabā
+SEE:{TNS:{fut} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{masc}} = dekhihæ̃
+SEE:{TNS:{fut} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{fem}} = dekhabæ̃
+SEE:{TNS:{fut} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{fem}} = dekhabiu
+SEE:{TNS:{fut} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{fem}} = dekhihæ̃
+
+% optative
+SEE:{TNS:{noTense} MOOD:{opt} PERS:{1} NUM:{sg} GEND:{masc}} = dēkhī̃
+SEE:{TNS:{noTense} MOOD:{opt} PERS:{2} NUM:{sg} GEND:{masc}} = dēkhā
+SEE:{TNS:{noTense} MOOD:{opt} PERS:{3} NUM:{sg} GEND:{masc}} = dēkhæ
+SEE:{TNS:{noTense} MOOD:{opt} PERS:{1} NUM:{sg} GEND:{fem}} = dēkhī̃
+SEE:{TNS:{noTense} MOOD:{opt} PERS:{2} NUM:{sg} GEND:{fem}} = dēkhā
+SEE:{TNS:{noTense} MOOD:{opt} PERS:{3} NUM:{sg} GEND:{fem}} = dēkhæ
+SEE:{TNS:{noTense} MOOD:{opt} PERS:{1} NUM:{pl} GEND:{masc}} = dēkhī̃
+SEE:{TNS:{noTense} MOOD:{opt} PERS:{2} NUM:{pl} GEND:{masc}} = dēkhā
+SEE:{TNS:{noTense} MOOD:{opt} PERS:{3} NUM:{pl} GEND:{masc}} = dēkhæ̃
+SEE:{TNS:{noTense} MOOD:{opt} PERS:{1} NUM:{pl} GEND:{fem}} = dēkhī̃
+SEE:{TNS:{noTense} MOOD:{opt} PERS:{2} NUM:{pl} GEND:{fem}} = dēkhā
+SEE:{TNS:{noTense} MOOD:{opt} PERS:{3} NUM:{pl} GEND:{fem}} = dēkhæ̃
+
+%
+% EAT
+%
+
+% present indicative
+EAT:{TNS:{pres} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{masc}} = khāīlā
+EAT:{TNS:{pres} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{masc}} = khālā
+EAT:{TNS:{pres} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{masc}} = khālā
+EAT:{TNS:{pres} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{fem}} = khāīlā
+EAT:{TNS:{pres} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{fem}} = khāliu
+EAT:{TNS:{pres} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{fem}} = khālē
+EAT:{TNS:{pres} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{masc}} = khāīlā
+EAT:{TNS:{pres} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{masc}} = khālā
+EAT:{TNS:{pres} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{masc}} = khālæ̃
+EAT:{TNS:{pres} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{fem}} = khāīlā
+EAT:{TNS:{pres} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{fem}} = khāliu
+EAT:{TNS:{pres} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{fem}} = khālini
+
+% past indicative
+EAT:{TNS:{past} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{masc}} = khailī̃
+EAT:{TNS:{past} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{masc}} = khailā
+EAT:{TNS:{past} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{masc}} = khāil
+EAT:{TNS:{past} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{fem}} = khailī̃
+EAT:{TNS:{past} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{fem}} = khailiu
+EAT:{TNS:{past} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{fem}} = khāili
+EAT:{TNS:{past} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{masc}} = khailī̃
+EAT:{TNS:{past} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{masc}} = khailā
+EAT:{TNS:{past} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{masc}} = khailæ̃
+EAT:{TNS:{past} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{fem}} = khailī̃
+EAT:{TNS:{past} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{fem}} = khailiu
+EAT:{TNS:{past} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{fem}} = khailini
+
+% future indicative
+EAT:{TNS:{fut} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{masc}} = khāb
+EAT:{TNS:{fut} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{masc}} = khābā
+EAT:{TNS:{fut} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{masc}} = khāī
+EAT:{TNS:{fut} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{fem}} = khāb
+EAT:{TNS:{fut} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{fem}} = khābiu
+EAT:{TNS:{fut} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{fem}} = khāī
+EAT:{TNS:{fut} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{masc}} = khābæ̃
+EAT:{TNS:{fut} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{masc}} = khābā
+EAT:{TNS:{fut} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{masc}} = khaihæ̃
+EAT:{TNS:{fut} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{fem}} = khābæ̃
+EAT:{TNS:{fut} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{fem}} = khābiu
+EAT:{TNS:{fut} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{fem}} = khaihæ̃
+
+% optative
+EAT:{TNS:{noTense} MOOD:{opt} PERS:{1} NUM:{sg} GEND:{masc}} = khāī̃
+EAT:{TNS:{noTense} MOOD:{opt} PERS:{2} NUM:{sg} GEND:{masc}} = khā
+EAT:{TNS:{noTense} MOOD:{opt} PERS:{3} NUM:{sg} GEND:{masc}} = khay
+EAT:{TNS:{noTense} MOOD:{opt} PERS:{1} NUM:{sg} GEND:{fem}} = khāī̃
+EAT:{TNS:{noTense} MOOD:{opt} PERS:{2} NUM:{sg} GEND:{fem}} = khā
+EAT:{TNS:{noTense} MOOD:{opt} PERS:{3} NUM:{sg} GEND:{fem}} = khay
+EAT:{TNS:{noTense} MOOD:{opt} PERS:{1} NUM:{pl} GEND:{masc}} = khāī̃
+EAT:{TNS:{noTense} MOOD:{opt} PERS:{2} NUM:{pl} GEND:{masc}} = khā
+EAT:{TNS:{noTense} MOOD:{opt} PERS:{3} NUM:{pl} GEND:{masc}} = khā̃y
+EAT:{TNS:{noTense} MOOD:{opt} PERS:{1} NUM:{pl} GEND:{fem}} = khāī̃
+EAT:{TNS:{noTense} MOOD:{opt} PERS:{2} NUM:{pl} GEND:{fem}} = khā
+EAT:{TNS:{noTense} MOOD:{opt} PERS:{3} NUM:{pl} GEND:{fem}} = khā̃y
+}

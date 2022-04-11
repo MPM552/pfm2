@@ -1,0 +1,116 @@
+﻿Language: English verbs
+
+Author: Raphael Finkel & Greg Stump © 2/2012
+
+Notes: English verb + auxiliary combinations
+The purpose is to experiment with PFM syntax and semantics,
+not to provide a cogent explanation of these forms.
+
+ParadigmSchema(V) = {
+nonperfect/perfect nonprogressive/progressive past/present/future sg/pl 1/2/3
+}
+
+Paradigm Function
+PF(<L, σ>) = Pron(Mod(Perf(Prog(Main(Stem(<L, σ>))))))
+
+Stem(<EAT, S:{}>) = it
+Stem(<EAT, S:{past nonperfect nonprogressive}>) = eɪt
+Stem(<SEE, S:{}>) = si
+Stem(<SEE, S:{past nonperfect nonprogressive}>) = sɔ
+Stem(<CLIMB, S:{}>) = klaɪm
+Stem(<SING, S:{}>) = sɪŋ
+Stem(<SING, S:{past nonperfect nonprogressive}>) = sæŋ
+Stem(<SING, S:{perfect nonprogressive}>) = sʌŋ
+Stem(<MEAN, S:{}>) = min
+Stem(<MEAN, S:{past nonperfect nonprogressive}>) = mɛn
+Stem(<MEAN, S:{perfect nonprogressive}>) = mɛn
+Stem(<BE, S:{}>) = bi
+Stem(<BE, S:{perfect nonprogressive}>) = bɪn
+Stem(<BE, S:{past nonperfect nonprogressive 1 sg}>) = wʌz
+Stem(<BE, S:{past nonperfect nonprogressive 3 sg}>) = wʌz
+Stem(<BE, S:{past nonperfect nonprogressive}>) = wɝ
+Stem(<HAVE, S:{}>) = hæv
+Stem(<HAVE, S:{present nonperfect nonprogressive 3 sg}>) = hæ
+Stem(<HAVE, S:{past nonperfect nonprogressive}>) = hæ
+Stem(<HAVE, S:{perfect nonprogressive}>) = hæ
+
+Rules of exponence
+
+Block Pron
+Pron, XV, S:{1 sg} → aɪ X
+Pron, XV, S:{2} → ju X
+Pron, XV, S:{3 sg} → hi X 
+Pron, XV, S:{1 pl} → wi X
+Pron, XV, S:{3 pl} → ðeɪ X
+
+Block Mod
+Mod, XV, S:{future} → wɪl X 
+
+Block Perf
+Perf, XV, S:{perfect} → hæv X
+Perf, XV, S:{past perfect} → hæd X
+Perf, XV, S:{present perfect 3 sg} → hæz X
+
+Block Prog
+Prog, XV, S:{perfect progressive} → bɪn X
+Prog, XV, S:{future nonperfect progressive} → bi X
+Prog, XV, S:{present nonperfect progressive} → ar X
+Prog, XV, S:{present nonperfect progressive 1 sg} → æm X
+Prog, XV, S:{present nonperfect progressive 3 sg} → ɪz X
+Prog, XV, S:{past nonperfect progressive 1 sg} → wʌz X
+Prog, XV, S:{past nonperfect progressive 3 sg} → wʌz X
+Prog, XV, S:{past nonperfect progressive} → wɝ X
+
+Block Main
+Main, XV[],S:{nonperfect nonprogressive 3 sg present} → Xz
+Main, XV[weak],S:{nonperfect nonprogressive past} → Xd
+Main, XV[weak],S:{perfect nonprogressive} → Xd
+Main, XV[t],S:{nonperfect nonprogressive past} → Xt
+Main, XV[t],S:{perfect nonprogressive} → Xt
+Main, XV[n],S:{perfect nonprogressive} → Xən
+Main, XV[],S:{progressive} → Xɪŋ
+
+Sandhi {
+	X:[voiceless]z → Xs 
+}
+
+Lexical entries
+
+Lexeme: EAT
+Meaning: eat
+Syntactic category: V
+Inflection class: n
+
+Lexeme: SEE
+Meaning: see
+Syntactic category: V
+Inflection class: n
+
+Lexeme: CLIMB
+Meaning: climb
+Syntactic category: V
+Inflection class: weak
+
+Lexeme: SING
+Meaning: sing
+Syntactic category: V
+Inflection class: strong
+
+Lexeme: MEAN
+Meaning: mean
+Syntactic category: V
+Inflection class: t
+
+Lexeme: BE
+Meaning: be
+Syntactic category: V
+Inflection class: be
+
+Lexeme: HAVE
+Meaning: have
+Syntactic category: V
+Inflection class: weak
+
+
+
+

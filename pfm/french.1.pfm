@@ -1,0 +1,87 @@
+﻿Language: French personal clitics
+Author: Raphael Finkel 2013
+Authority: Greg Stump 5/2012, Defaults in morphological theory
+
+Notes: French personal clitics; not yet working.
+The purpose is to experiment with PFM syntax and semantics.
+
+ParadigmSchema(V) = {
+AGR(ACC):{1/2/3 sg/pl masc/fem refl/nonrefl} AGR(DAT):{1/2/3 masc/fem refl/nonrefl} affirmative
+}
+% for now, leave off the affirmative/imperative distinction
+
+Paradigm Function
+PF(<L, σ>) = IV(III(S2(Stem(<L, σ>))))
+
+Stem(<PRESENT, S>) = présentez
+
+Rules of exponence
+
+Block I
+I, XV, S:{AGR(ACC):{3 sg masc nonrefl} → (S1le(<X, S>))
+I, XV, S:{AGR(ACC):{3 sg fem nonrefl} → (S1la(<X, S>))
+I, XV, S:{AGR(ACC):{3 pl nonrefl} → (S1les(<X, S>))
+
+Block II
+II, XV, S:{AGR(ACC):{1 sg}} → (S1me(<X, S>))
+II, XV, S:{AGR(ACC):{2 sg}} → (S1te(<X, S>))
+II, XV, S:{AGR(ACC):{3 refl}} → (S1se(<X, S>))
+II, XV, S:{AGR(ACC):{1 pl}} → (Snous(<X, S>))
+II, XV, S:{AGR(ACC):{2 pl}} → (S1vous(<X, S>))
+II, XV, S:{AGR(DAT):{1 sg}} → (S1me(<X, S>))
+II, XV, S:{AGR(DAT):{2 sg}} → (S1te(<X, S>))
+II, XV, S:{AGR(DAT):{3 refl}} → (S1se(<X, S>))
+II, XV, S:{AGR(DAT):{1 pl}} → (S1nous(<X, S>))
+II, XV, S:{AGR(DAT):{2 pl}} → (S1vous(<X, S>))
+II, XV, S:{AGR(DAT):{3 sg nonrefl}} → (S1luí(<X, S>))
+II, XV, S:{AGR(DAT):{3 pl nonrefl}} → (S1leur(<X, S>))
+
+Block III
+% I don't understand this one.
+
+Block IV
+IV, XV, S:{neg} → ne X
+
+Block S1me
+S1me, XV[], S:{affirmative imperative} → Xme
+S1me, XV[], S:{} → me X
+
+Block S1te
+S1te, XV, S:{affirmative imperative} → Xte
+S1te, XV, S:{} → te X
+
+Block S1se
+S1se, XV, S:{affirmative imperative} → Xse
+S1se, XV, S:{} → se X
+
+Block S1nous
+S1nous, XV, S:{affirmative imperative} → Xnous
+S1nous, XV, S:{} → nous X
+
+Block S1vous
+S1vous, XV, S:{affirmative imperative} → Xvous
+S1vous, XV, S:{} → vous X
+
+Block S1luí
+S1luí, XV, S:{affirmative imperative} → Xluí
+S1luí, XV, S:{} → luí X
+
+Block S1leur
+S1leur, XV, S:{affirmative imperative} → Xleur
+S1leur, XV, S:{} → leur X
+
+Block S1me
+S1me, XV, S:{affirmative imperative} → Xme
+S1me, XV, S:{} → me X
+
+Block S2
+S2, XV, S:{AGR(ACC):{3 nonrefl} AGR(DAT):{3 nonrefl}} → (II(I(<X, X>)))
+S2, XV, S:{affirmative imperative} → (II(I(<X, X>)))
+S2, XV, S:{} → (I(II(<X, X>)))
+
+Lexical entries
+
+Lexeme: PRESENT
+Meaning: present
+Syntactic category: V
+Inflection class: n

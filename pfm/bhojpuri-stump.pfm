@@ -1,0 +1,189 @@
+﻿Language: Bhojpuri verbs
+Author: Gregory Stump 2012
+Verbs
+	Indo-European; India
+	authority: Shaligram Shukla
+
+Paradigm Function
+
+	PF(<L,σ>) = II(I(Stem(<L,σ>)))
+
+ParadigmSchema(V) = {
+	TNS:{past/pres/fut/none}
+	MOOD:{indic/opt}
+	PERS:{1/2/3}
+	NUM:{sg/pl} 
+	GEND:{masc/fem}
+}
+
+Disallow = {
+	(TNS:{none}  MOOD:{indic})  / 
+	(TNS:{past/pres/fut}   MOOD:{opt}) 
+}
+
+Lexeme: SEE
+Meaning: see
+Syntactic category: V
+Inflection class: E
+
+Lexeme: EAT
+Meaning: eat
+Syntactic category: V
+Inflection class: A
+
+Stem-selection rules
+
+	Stem(<SEE, σ:{PERS:{3} NUM:{sg}}>) = dēkh
+	Stem(<SEE, σ:{TNS:{pres}}>) = dēkh
+	Stem(<SEE, σ:{TNS:{fut} PERS:{1} NUM:{sg}}>) = dēkh
+	Stem(<SEE, σ:{MOOD:{opt}}>) = dēkh
+	Stem(<SEE, σ:{}>) = dekh
+	
+	Stem(<EAT, σ:{PERS:{3} NUM:{sg}}>) = khā
+	Stem(<EAT, σ:{TNS:{pres}}>) = khā
+	Stem(<EAT, σ:{TNS:{fut} PERS:{1} NUM:{sg}}>) = khā
+	Stem(<EAT, σ:{MOOD:{opt}}>) = khā
+	Stem(<EAT, σ:{PERS:{3} NUM:{sg} MOOD:{opt}}>) = kha
+	Stem(<EAT, σ:{}>) = kha
+	
+Rules of exponence
+
+Block I
+	I, X[], σ:{PERS:{1} TNS:{pres}} → Xīl
+	I, X[], σ:{TNS:{pres}} → Xāl
+	I, X[], σ:{PERS:{2} GEND:{fem} TNS:{pres}} → Xæl
+	I, X[], σ:{PERS:{3} NUM:{pl} TNS:{pres}} → Xæl
+	I, X[], σ:{PERS:{3} NUM:{sg} GEND:{fem} TNS:{pres}} → Xēl
+	I, X[], σ:{TNS:{past}} → Xal
+	I, X[A], σ:{TNS:{past}} → Xil
+	I, X[], σ:{TNS:{fut}} → Xab
+	I, X[], σ:{PERS:{3} TNS:{fut}} → X
+	I, X[], σ:{PERS:{3} NUM:{pl} TNS:{fut}} → Xih
+	I, X[A], σ:{PERS:{3} NUM:{pl} MOOD:{opt}} → XN
+
+Block II
+	II, X[], σ:{PERS:{1} TNS:{pres}} → Xā
+	II, X[], σ:{PERS:{1}} → Xī̃ 
+	II, X[], σ:{PERS:{1} TNS:{fut}} → X
+	II, X[], σ:{PERS:{1} NUM:{pl} TNS:{fut}} → Xæ̃
+	II, X[A], σ:{PERS:{1} NUM:{sg} MOOD:{opt}} → Xĩ
+	II, X[], σ:{PERS:{2}} → Xā
+	II, X[], σ:{PERS:{2} GEND:{fem} MOOD:{indic}} → Xiu
+	II, X[], σ:{PERS:{3} NUM:{sg} GEND:{masc} TNS:{pres}} → Xā
+	II, X[], σ:{PERS:{3} NUM:{sg} GEND:{fem} TNS:{pres}} → Xē
+	II, X[], σ:{PERS:{3} NUM:{pl}} → Xæ̃
+	II, X[], σ:{PERS:{3} NUM:{pl} GEND:{fem} TNS:{pres/past}} → Xini 
+	II, X[], σ:{PERS:{3} NUM:{sg} GEND:{fem} TNS:{past}} → Xi
+	II, X[], σ:{PERS:{3} NUM:{sg} TNS:{fut}} → Xī
+	II, X[], σ:{PERS:{3} NUM:{sg} MOOD:{opt}} → Xæ
+	II, X[A], σ:{PERS:{3} MOOD:{opt}} → Xy
+
+PhonologicalClass 
+	nonHighVowel = e ē æ æ̃ a ā ā̃  
+
+Sandhi {
+	āN → ā̃ / _  % might be generalized to any vowel
+	[nonHighVowel] → Ø / ā_
+	aa → ā / _
+}
+
+Sandhi
+
+Truth = {
+	SEE:{TNS:{pres} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{masc}} = dēkhīlā
+	SEE:{TNS:{pres} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{fem}} = dēkhīlā
+	SEE:{TNS:{pres} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{masc}} = dēkhālā
+	SEE:{TNS:{pres} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{fem}} = dēkhæliu
+	SEE:{TNS:{pres} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{masc}} = dēkhālā
+	SEE:{TNS:{pres} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{fem}} = dēkhēlē
+	SEE:{TNS:{pres} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{masc}} = dēkhīlā
+	SEE:{TNS:{pres} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{fem}} = dēkhīlā
+	SEE:{TNS:{pres} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{masc}} = dēkhālā
+	SEE:{TNS:{pres} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{fem}} = dēkhæliu
+	SEE:{TNS:{pres} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{masc}} = dēkhælæ̃
+	SEE:{TNS:{pres} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{fem}} = dēkhælini
+	SEE:{TNS:{past} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{masc}} = dekhalī̃
+	SEE:{TNS:{past} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{fem}} = dekhalī̃
+	SEE:{TNS:{past} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{masc}} = dekhalā
+	SEE:{TNS:{past} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{fem}} = dekhaliu
+	SEE:{TNS:{past} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{masc}} = dēkhal
+	SEE:{TNS:{past} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{fem}} = dēkhali
+	SEE:{TNS:{past} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{masc}} = dekhalī̃
+	SEE:{TNS:{past} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{fem}} = dekhalī̃
+	SEE:{TNS:{past} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{masc}} = dekhalā
+	SEE:{TNS:{past} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{fem}} = dekhaliu
+	SEE:{TNS:{past} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{masc}} = dekhalæ̃
+	SEE:{TNS:{past} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{fem}} = dekhalini
+	SEE:{TNS:{fut} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{masc}} = dēkhab
+	SEE:{TNS:{fut} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{fem}} = dēkhab
+	SEE:{TNS:{fut} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{masc}} = dekhabā
+	SEE:{TNS:{fut} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{fem}} = dekhabiu
+	SEE:{TNS:{fut} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{masc}} = dēkhī
+	SEE:{TNS:{fut} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{fem}} = dēkhī
+	SEE:{TNS:{fut} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{masc}} = dekhabæ̃
+	SEE:{TNS:{fut} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{fem}} = dekhabæ̃
+	SEE:{TNS:{fut} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{masc}} = dekhabā
+	SEE:{TNS:{fut} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{fem}} = dekhabiu
+	SEE:{TNS:{fut} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{masc}} = dekhihæ̃
+	SEE:{TNS:{fut} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{fem}} = dekhihæ̃
+	SEE:{TNS:{none} MOOD:{opt} PERS:{1} NUM:{sg} GEND:{masc}} = dēkhī̃
+	SEE:{TNS:{none} MOOD:{opt} PERS:{1} NUM:{sg} GEND:{fem}} = dēkhī̃
+	SEE:{TNS:{none} MOOD:{opt} PERS:{2} NUM:{sg} GEND:{masc}} = dēkhā
+	SEE:{TNS:{none} MOOD:{opt} PERS:{2} NUM:{sg} GEND:{fem}} = dēkhā
+	SEE:{TNS:{none} MOOD:{opt} PERS:{3} NUM:{sg} GEND:{masc}} = dēkhæ
+	SEE:{TNS:{none} MOOD:{opt} PERS:{3} NUM:{sg} GEND:{fem}} = dēkhæ
+	SEE:{TNS:{none} MOOD:{opt} PERS:{1} NUM:{pl} GEND:{masc}} = dēkhī̃
+	SEE:{TNS:{none} MOOD:{opt} PERS:{1} NUM:{pl} GEND:{fem}} = dēkhī̃
+	SEE:{TNS:{none} MOOD:{opt} PERS:{2} NUM:{pl} GEND:{masc}} = dēkhā
+	SEE:{TNS:{none} MOOD:{opt} PERS:{2} NUM:{pl} GEND:{fem}} = dēkhā
+	SEE:{TNS:{none} MOOD:{opt} PERS:{3} NUM:{pl} GEND:{masc}} = dēkhæ̃
+	SEE:{TNS:{none} MOOD:{opt} PERS:{3} NUM:{pl} GEND:{fem}} = dēkhæ̃
+	EAT:{TNS:{pres} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{masc}} = khāīlā
+	EAT:{TNS:{pres} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{fem}} = khāīlā
+	EAT:{TNS:{pres} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{masc}} = khālā
+	EAT:{TNS:{pres} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{fem}} = khāliu
+	EAT:{TNS:{pres} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{masc}} = khālā
+	EAT:{TNS:{pres} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{fem}} = khālē
+	EAT:{TNS:{pres} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{masc}} = khāīlā
+	EAT:{TNS:{pres} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{fem}} = khāīlā
+	EAT:{TNS:{pres} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{masc}} = khālā
+	EAT:{TNS:{pres} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{fem}} = khāliu
+	EAT:{TNS:{pres} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{masc}} = khālæ̃
+	EAT:{TNS:{pres} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{fem}} = khālini
+	EAT:{TNS:{past} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{masc}} = khailī̃
+	EAT:{TNS:{past} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{fem}} = khailī̃
+	EAT:{TNS:{past} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{masc}} = khailā
+	EAT:{TNS:{past} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{fem}} = khailiu
+	EAT:{TNS:{past} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{masc}} = khāil
+	EAT:{TNS:{past} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{fem}} = khāili
+	EAT:{TNS:{past} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{masc}} = khailī̃
+	EAT:{TNS:{past} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{fem}} = khailī̃
+	EAT:{TNS:{past} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{masc}} = khailā
+	EAT:{TNS:{past} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{fem}} = khailiu
+	EAT:{TNS:{past} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{masc}} = khailæ̃
+	EAT:{TNS:{past} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{fem}} = khailini
+	EAT:{TNS:{fut} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{masc}} = khāb
+	EAT:{TNS:{fut} MOOD:{indic} PERS:{1} NUM:{sg} GEND:{fem}} = khāb
+	EAT:{TNS:{fut} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{masc}} = khābā
+	EAT:{TNS:{fut} MOOD:{indic} PERS:{2} NUM:{sg} GEND:{fem}} = khābiu
+	EAT:{TNS:{fut} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{masc}} = khāī
+	EAT:{TNS:{fut} MOOD:{indic} PERS:{3} NUM:{sg} GEND:{fem}} = khāī
+	EAT:{TNS:{fut} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{masc}} = khābæ̃
+	EAT:{TNS:{fut} MOOD:{indic} PERS:{1} NUM:{pl} GEND:{fem}} = khābæ̃
+	EAT:{TNS:{fut} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{masc}} = khābā
+	EAT:{TNS:{fut} MOOD:{indic} PERS:{2} NUM:{pl} GEND:{fem}} = khābiu
+	EAT:{TNS:{fut} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{masc}} = khaihæ̃
+	EAT:{TNS:{fut} MOOD:{indic} PERS:{3} NUM:{pl} GEND:{fem}} = khaihæ̃
+	EAT:{TNS:{none} MOOD:{opt} PERS:{1} NUM:{sg} GEND:{masc}} = khāĩ
+	EAT:{TNS:{none} MOOD:{opt} PERS:{1} NUM:{sg} GEND:{fem}} = khāĩ
+	EAT:{TNS:{none} MOOD:{opt} PERS:{2} NUM:{sg} GEND:{masc}} = khā
+	EAT:{TNS:{none} MOOD:{opt} PERS:{2} NUM:{sg} GEND:{fem}} = khā
+	EAT:{TNS:{none} MOOD:{opt} PERS:{3} NUM:{sg} GEND:{masc}} = khay
+	EAT:{TNS:{none} MOOD:{opt} PERS:{3} NUM:{sg} GEND:{fem}} = khay
+	EAT:{TNS:{none} MOOD:{opt} PERS:{1} NUM:{pl} GEND:{masc}} = khāī̃
+	EAT:{TNS:{none} MOOD:{opt} PERS:{1} NUM:{pl} GEND:{fem}} = khāī̃
+	EAT:{TNS:{none} MOOD:{opt} PERS:{2} NUM:{pl} GEND:{masc}} = khā
+	EAT:{TNS:{none} MOOD:{opt} PERS:{2} NUM:{pl} GEND:{fem}} = khā
+	EAT:{TNS:{none} MOOD:{opt} PERS:{3} NUM:{pl} GEND:{masc}} = khā̃y
+	EAT:{TNS:{none} MOOD:{opt} PERS:{3} NUM:{pl} GEND:{fem}} = khā̃y
+} 

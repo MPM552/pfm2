@@ -1,0 +1,110 @@
+﻿Language: English verbs
+
+Author: Raphael Finkel & Greg Stump © 2/2012
+
+Notes: English verb + auxiliary combinations
+	Instead of multiple paradigm functions, uses a block called "First" to
+	select one.
+The purpose is to experiment with PFM syntax and semantics,
+not to provide a cogent explanation of these forms.
+
+ParadigmSchema(V) = {
+(sentence past/present/future sg/pl 1/2/3 nonperfect/perfect nonprogressive/progressive) /
+ (infinitive nonperfect/perfect nonprogressive/progressive) /
+ (past_participle nonprogressive/progressive) /
+ present_participle
+}
+
+Paradigm Function
+PF(<L, σ>) = First(Stem(<L, σ>))
+
+Stem(<EAT, S>) = it % missing pair -> second component is unchanged.
+Stem(<EAT, S:{past}>) = eɪt
+Stem(<SEE, S>) = si
+Stem(<SEE, S:{past}>) = sɔ
+Stem(<CLIMB, S>) = klaɪm
+Stem(<SING, S>) = sɪŋ
+Stem(<SING, S:{past}>) = sæŋ
+Stem(<SING, S:{past_participle}>) = sʌŋ
+Stem(<MEAN, S>) = min
+Stem(<MEAN, S:{past}>) = mɛn
+Stem(<BE, S>) = bi
+Stem(<BE, S:{past_participle}>) = bɪn
+Stem(<BE, S:{past sg}>) = wʌz
+% Stem(<BE, S:{past 2 sg}>) = Stem(<BE, S:{sg\pl}>)
+Stem(<BE, S:{past}>) = wɝ
+Stem(<HAVE, S>) = hæv
+Stem(<HAVE, S:{present 3 sg}>) = hæ
+Stem(<HAVE, S:{past}>) = hæ
+
+Rules of exponence
+
+Block First
+First, XV, S:{sentence} → (Pron()) (First(<X, S:{sentence\predicate1}>))
+First, XV, S:{predicate1 future} → wɪl (First(<X, S:{predicate1\predicate2 future\infinitive}>))
+First, XV, S:{predicate1} → (First(<X, S:{predicate1\predicate2}>))
+First, XV, S:{predicate2 perfect} → (Main(Stem(<HAVE, S>))) (First(<X, S:{predicate2\predicate3 perfect\past_participle}>))
+First, XV, S:{predicate2} → (First(<X, S:{predicate2\predicate3}>))
+First, XV, S:{predicate3 progressive} → (Main(Stem(<BE, S>))) (First(<X, S:{predicate3\predicate4 progressive\present_participle}>))
+First, XV, S:{predicate3} → (First(<X, S:{predicate3\predicate4}>))
+First, XV, S:{predicate4} → (Main())
+
+Block Pron
+Pron, XV, S:{1 sg} → aɪ 
+Pron, XV, S:{2} → ju 
+Pron, XV, S:{3 sg} → hi  
+Pron, XV, S:{1 pl} → wi 
+Pron, XV, S:{3 pl} → ðeɪ 
+
+Block Main
+Main, XV[],S:{3 sg present} → Xz
+Main, XV[weak],S:{past} → Xd
+% Main, XV[],S:{past_participle} → (Main(Stem(<X,{past}>)))
+Main, XV[],S:{past_participle} → (Main(<X, S:{past}>))
+Main, XV[],S:{past_participle} → pastPart
+Main, XV[t],S:{past} → Xt
+Main, XV[n],S:{past_participle} → Xən
+Main, XV[],S:{present_participle} → Xɪŋ
+
+PhonologicalClass voiceless = f k p t 
+Sandhi {
+	z → s / [voiceless]_ 
+}
+
+Lexical entries
+
+Lexeme: EAT
+Meaning: eat
+Syntactic category: V
+Inflection class: n
+
+% Lexeme: SEE
+% Meaning: see
+% Syntactic category: V
+% Inflection class: n
+% 
+% Lexeme: CLIMB
+% Meaning: climb
+% Syntactic category: V
+% Inflection class: weak
+% 
+% Lexeme: SING
+% Meaning: sing
+% Syntactic category: V
+% Inflection class: strong
+% 
+% Lexeme: MEAN
+% Meaning: mean
+% Syntactic category: V
+% Inflection class: t
+% 
+
+Lexeme: BE
+Meaning: be
+Syntactic category: V
+Inflection class: be
+
+Lexeme: HAVE
+Meaning: have
+Syntactic category: V
+Inflection class: weak

@@ -1,0 +1,82 @@
+Language: Esperanto verbs
+Author: Darin Arrick, 16 October 2012
+Verbs
+	Constructed; creator from Poland
+	Authority: L. L. Zamenhof, 1887
+	version 1.0 
+
+Paradigm Function
+	PF(<L,σ>) = MoodS(POSS(VoiceS(TenseS(Stem(<L,σ>)))))
+
+ParadigmSchema(V) = {
+	MOOD:{indic/cond/imp/inf/part}
+	TENSE:{past/pres/fut/noTense}
+	VOICE:{act/pass/noVoice}
+}
+
+Disallow = {
+	(MOOD:{indic/part} TENSE:{noTense}) /			% indicatives and participles must be tensed
+	(MOOD:{cond/imp/inf} TENSE:{past/pres/fut}) /	% conditionals, imperatives, and infinitives cannot be tensed
+	(MOOD:{indic/cond/imp/inf} VOICE:{act/pass}) /	% only participles can have voice
+	(MOOD:{part} VOICE:{noVoice})					% participles MUST have voice
+}
+
+Stem operations
+	Stem(<SEE, σ:{}>) = vid
+	Stem(<SPEAK, σ:{}>) = parol
+
+Rules of exponence
+	Block TenseS		% tense suffix, only used in indicatives and participles
+		TenseS, XV[], σ:{TENSE:{past}} → Xi
+		TenseS, XV[], σ:{TENSE:{pres}} → Xa
+		TenseS, XV[], σ:{TENSE:{fut}} → Xo
+
+	Block VoiceS		% voice suffix, only used in participles
+		VoiceS, XV[], σ:{MOOD:{part} VOICE:{act}} → Xnt
+		VoiceS, XV[], σ:{MOOD:{part} VOICE:{pass}} → Xt
+
+	Block POSS		% part of speech suffix
+		POSS, XV[], σ:{MOOD:{indic}} → Xs
+		POSS, XV[], σ:{MOOD:{part}} → Xa		% adjectival participle ending
+
+	Block MoodS		% non-indicative mood suffix
+		MoodS, XV[], σ:{MOOD:{cond}} → Xus		% "could X"
+		MoodS, XV[], σ:{MOOD:{imp}} → Xu		% "X!"
+		MoodS, XV[], σ:{MOOD:{inf}} → Xi		% "to X"
+
+
+Lexeme: SEE % see
+Meaning: see
+Syntactic category: V
+
+Lexeme: SPEAK % speak
+Meaning: speak
+Syntactic category: V
+
+Truth = {
+SEE:{MOOD:{indic} TENSE:{past} VOICE:{noVoice}} = vidis 
+SEE:{MOOD:{indic} TENSE:{pres} VOICE:{noVoice}} = vidas 
+SEE:{MOOD:{indic} TENSE:{fut} VOICE:{noVoice}} = vidos 
+SEE:{MOOD:{part} TENSE:{past} VOICE:{act}} = vidinta
+SEE:{MOOD:{part} TENSE:{pres} VOICE:{act}} = vidanta
+SEE:{MOOD:{part} TENSE:{fut} VOICE:{act}} = vidonta
+SEE:{MOOD:{part} TENSE:{past} VOICE:{pass}} = vidita
+SEE:{MOOD:{part} TENSE:{pres} VOICE:{pass}} = vidata
+SEE:{MOOD:{part} TENSE:{fut} VOICE:{pass}} = vidota
+SEE:{MOOD:{cond} TENSE:{noTense} VOICE:{noVoice}} = vidus
+SEE:{MOOD:{imp} TENSE:{noTense} VOICE:{noVoice}} = vidu
+SEE:{MOOD:{inf} TENSE:{noTense} VOICE:{noVoice}} = vidi
+
+SPEAK:{MOOD:{indic} TENSE:{past} VOICE:{noVoice}} = parolis 
+SPEAK:{MOOD:{indic} TENSE:{pres} VOICE:{noVoice}} = parolas 
+SPEAK:{MOOD:{indic} TENSE:{fut} VOICE:{noVoice}} = parolos 
+SPEAK:{MOOD:{part} TENSE:{past} VOICE:{act}} = parolinta
+SPEAK:{MOOD:{part} TENSE:{pres} VOICE:{act}} = parolanta
+SPEAK:{MOOD:{part} TENSE:{fut} VOICE:{act}} = parolonta
+SPEAK:{MOOD:{part} TENSE:{past} VOICE:{pass}} = parolita
+SPEAK:{MOOD:{part} TENSE:{pres} VOICE:{pass}} = parolata
+SPEAK:{MOOD:{part} TENSE:{fut} VOICE:{pass}} = parolota
+SPEAK:{MOOD:{cond} TENSE:{noTense} VOICE:{noVoice}} = parolus
+SPEAK:{MOOD:{imp} TENSE:{noTense} VOICE:{noVoice}} = parolu
+SPEAK:{MOOD:{inf} TENSE:{noTense} VOICE:{noVoice}} = paroli
+}

@@ -1,0 +1,133 @@
+﻿Language: Conservative Pāli nominals
+
+Content paradigm schema(Nom) = { 
+      masc sg/pl nom/voc/acc/ins/dat/abl/gen/loc
+}
+
+Lexeme: LAW
+Meaning: law
+Syntactic category: Nom
+Inflection class: a 
+
+Stem(LAW) = dhamma
+
+Lexeme: VIRTUOUS
+Meaning: virtuous
+Syntactic category: Nom
+Inflection class: nt
+
+Stem(VIRTUOUS) = sīlavant
+Stem(<VIRTUOUS, σ:{ins/abl/loc pl}>) = <sīlavanta [a], σ>
+
+Morphophonological operations = { % default is identity
+      zero(Pant) = Pat
+      lengthened(Pant) = Pā
+      lengthened(Pa) = Pā
+      estem(Pa) = Pe
+      nstem(Pa) = Pān
+      astem(P) = Pa
+}
+
+Corr(<L, σ>) = <Stem(L:def), pm(σ)>
+Corr(<L[nt], σ:{ins/abl/loc pl}>) = <Stem(L:a), pm(σ)>
+
+Property mapping pm = {
+	(dat) → (gen)
+	(abl) → (ins)
+}
+
+Paradigm function
+	PF(<X, σ:{voc}>) = PF(<X, σ:{voc\nom}>)  
+	PF(<X[a], σ:{voc sg}>) = Stem(<X, σ>)  
+	PF(<X, σ>) = [ iii : [ ii : [ i : <X, σ> ]]]  
+
+PhonologicalClass vowel      = a e i o u ā ī ū
+PhonologicalClass frontVowel = e i ī
+PhonologicalClass graveConsonant = p ph b bh m v k kh g gh ṅ
+PhonologicalClass segment = a e i o u ā ī ū k kh g gh ṅ c ch j jh ñ ṭ ṭh ḍ ḍh ṇ t th d dh n p ph b bh m y r l v s ṣ s h
+Sandhi {
+      t → d /_-b
+      a-i → e /_
+      a → Ø /_-ai
+      a → Ø /_-o
+      a-a → ā /_
+      a-ā → ā /_
+      - → Ø/_
+      t → Ø/n_#
+      # → Ø/_
+} % Sandhi
+
+Block i
+      i, X [nt], {} → (!zero(X))
+      i, X [nt], {nom/acc} → X
+      i, X [nt], {nom sg} → (!lengthened(X))
+      i, X [a], {ins sg} → (!estem(X))
+      i, X [a], {pl} → (!estem(X))
+      i, X [a], {nom pl} → (!lengthened(X))
+      i, X [a], {gen pl} → (!nstem(X))
+Block ii
+      ii, X [], {loc sg} → X-i
+      ii, X [], {nom pl} → X-o
+      ii, X [], {voc pl} → X-o
+      ii, X [], {ins pl} → X-hi
+      ii, X [], {gen pl} → X-aṃ
+      ii, X [], {loc pl} → X-su
+      ii, X [a], {nom sg} → X-o
+      ii, X [a], {acc sg} → X-ṃ
+      ii, X [a], {ins sg} → X-na
+      ii, X [a], {dat sg} → X-āya
+      ii, X [a], {abl sg}  → X-ā
+      ii, X [a], {gen sg} → X-ssa
+      ii, X [a], {nom pl} → X
+      ii, X [a], {ins pl} → X-hi
+      ii, X [nt], {acc sg} → X-aṃ
+      ii, X [nt], {ins sg} → X-ā
+      ii, X [nt], {dat sg} → X-o
+      ii, X [nt], {abl sg} → X-ā
+      ii, X [nt], {gen sg} → X-o
+      ii, X [nt], {acc pl} → X-o
+Block iii
+      iii, X [], {} → X#
+
+% Random 1
+
+ShowOnlyTruth
+
+Truth = {
+LAW:{masc nom sg} = dhammo
+LAW:{masc voc sg} = dhamma
+LAW:{masc acc sg} = dhammaṃ
+LAW:{masc ins sg} = dhammena
+LAW:{masc dat sg} = dhammāya
+LAW:{masc abl sg} = dhammā
+LAW:{masc gen sg} = dhammassa
+LAW:{masc loc sg} = dhamme
+LAW:{masc nom pl} = dhammā
+LAW:{masc voc pl} = dhammā
+LAW:{masc acc pl} = dhamme
+LAW:{masc ins pl} = dhammehi
+LAW:{masc dat pl} = dhammānaṃ
+LAW:{masc abl pl} = dhammehi
+LAW:{masc gen pl} = dhammānaṃ
+LAW:{masc loc pl} = dhammesu
+
+VIRTUOUS:{masc nom sg} = sīlavā 
+VIRTUOUS:{masc voc sg} = sīlavā
+VIRTUOUS:{masc acc sg} = sīlavantaṃ
+VIRTUOUS:{masc ins sg} = sīlavatā
+VIRTUOUS:{masc dat sg} = sīlavato 
+VIRTUOUS:{masc abl sg} = sīlavatā
+VIRTUOUS:{masc gen sg} = sīlavato
+VIRTUOUS:{masc loc sg} = sīlavati
+VIRTUOUS:{masc nom pl} = sīlavanto
+VIRTUOUS:{masc voc pl} = sīlavanto
+VIRTUOUS:{masc acc pl} = sīlavanto
+VIRTUOUS:{masc ins pl} = sīlavantehi
+VIRTUOUS:{masc dat pl} = sīlavataṃ
+VIRTUOUS:{masc abl pl} = sīlavantehi
+VIRTUOUS:{masc gen pl} = sīlavataṃ
+VIRTUOUS:{masc loc pl} = sīlavantesu
+}
+
+% vim:nospell tw=1000 filetype=PFM2:
+

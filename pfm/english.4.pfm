@@ -1,0 +1,141 @@
+﻿Language: English verbs
+Author: Raphael Finkel & Greg Stump © 2/2012
+
+Notes: English verb + auxiliary combinations
+The purpose is to experiment with PFM syntax and semantics,
+not to provide a cogent explanation of these forms.
+
+ParadigmSchema(V) = {
+(nonPerfect/perfect nonProgressive/progressive past/present/future sg/pl 1/2/3)/
+infinitive
+}
+
+Paradigm Function
+PF(<L, σ>) = Pron(Mod(Perf(Prog(Main(Stem(<L, σ>))))))
+
+% old syntax: Stem(EAT, S:{}) = <it, S>
+Stem(EAT) = it % missing pair -> second component is unchanged.
+Stem(<EAT, S:{past nonPerfect nonProgressive}>) = eɪt
+Stem(SEE) = si
+Stem(<SEE, S:{past nonPerfect nonProgressive}>) = sɔ
+Stem(CLIMB) = klaɪm
+Stem(SING) = sɪŋ
+Stem(<SING, S:{past nonPerfect nonProgressive}>) = sæŋ
+Stem(<SING, S:{perfect nonProgressive}>) = sʌŋ
+Stem(MEAN) = min
+Stem(<MEAN, S:{past nonPerfect nonProgressive}>) = mɛn
+Stem(<MEAN, S:{perfect nonProgressive}>) = mɛn
+Stem(BE) = bi
+Stem(<BE, S:{perfect nonProgressive}>) = bɪn
+Stem(<BE, S:{past nonPerfect nonProgressive 1 sg}>) = wʌz
+Stem(<BE, S:{past nonPerfect nonProgressive 3 sg}>) = wʌz
+Stem(<BE, S:{past nonPerfect nonProgressive}>) = wɝ
+Stem(HAVE) = hæv
+Stem(<HAVE, S:{present nonPerfect nonProgressive 3 sg}>) = hæ
+Stem(<HAVE, S:{past nonPerfect nonProgressive}>) = hæ
+Stem(<HAVE, S:{perfect nonProgressive}>) = <hæ, S>
+
+
+Rules of exponence
+
+Block Pron
+Pron, XV, S:{1 sg} → aɪ X
+Pron, XV, S:{2} → ju X
+Pron, XV, S:{3 sg} → hi X 
+Pron, XV, S:{1 pl} → wi X
+Pron, XV, S:{3 pl} → ðeɪ X
+
+Block Mod
+Mod, XV, S:{future} → wɪl X 
+
+Block Perf
+Perf, XV, S:{perfect} → (Main(Stem(<HAVE,S:{infinitive}>))) X
+Perf, XV, S:{past perfect} → (Main(Stem(<HAVE,S:{past\present perfect\nonPerfect}>))) X % hæd 
+Perf, XV, S:{present perfect 3 sg} → (Main(Stem(<HAVE,S:{}>))) X % hæz
+
+Block Prog
+Prog, XV, S:{perfect progressive} → bɪn X
+Prog, XV, S:{future nonPerfect progressive} → bi X
+Prog, XV, S:{present nonPerfect progressive} → ar X
+Prog, XV, S:{present nonPerfect progressive 1 sg} → æm X
+Prog, XV, S:{present nonPerfect progressive 3 sg} → ɪz X
+Prog, XV, S:{past nonPerfect progressive 1 sg} → wʌz X
+Prog, XV, S:{past nonPerfect progressive 3 sg} → wʌz X
+Prog, XV, S:{past nonPerfect progressive} → wɝ X
+
+Block Main
+Main, XV[],S:{nonPerfect nonProgressive 3 sg present} → Xz
+Main, XV[w],S:{nonPerfect nonProgressive past} → Xd
+Main, XV[w],S:{perfect nonProgressive} → Xd
+Main, XV[t],S:{nonPerfect nonProgressive past} → Xt
+Main, XV[t],S:{perfect nonProgressive} → Xt
+Main, XV[n],S:{perfect nonProgressive} → Xn̩
+Main, XV[],S:{progressive} → Xɪŋ
+
+PhonologicalClass voiceless = f k p t 
+
+Sandhi {
+	z → s / [voiceless]_ 
+}
+
+Lexical entries
+
+Lexeme: EAT
+Meaning: eat
+Syntactic category: V
+Inflection class: n
+
+Lexeme: SEE
+Meaning: see
+Syntactic category: V
+Inflection class: n
+
+Lexeme: CLIMB
+Meaning: climb
+Syntactic category: V
+Inflection class: w
+
+Lexeme: SING
+Meaning: sing
+Syntactic category: V
+Inflection class: s
+
+Lexeme: MEAN
+Meaning: mean
+Syntactic category: V
+Inflection class: t
+
+Lexeme: BE
+Meaning: be
+Syntactic category: V
+Inflection class: b
+
+Lexeme: HAVE
+Meaning: have
+Syntactic category: V
+Inflection class: w
+
+ShowOnlyTruth
+
+Truth = {
+EAT:{nonPerfect nonProgressive past sg} = aɪ eɪt
+EAT:{2 future nonPerfect nonProgressive sg} = ju wɪl it
+EAT:{3 nonPerfect past progressive sg} = hi wʌz itɪŋ
+EAT:{1 nonPerfect present progressive sg} = aɪ æm itɪŋ
+EAT:{1 nonPerfect pl present progressive} = wi ar itɪŋ
+EAT:{3 future nonPerfect pl progressive} = ðeɪ wɪl bi itɪŋ
+EAT:{2 nonProgressive past perfect pl} = ju hæv itn̩
+EAT:{3 future nonProgressive perfect sg} = hi wɪl hæv itn̩
+EAT:{3 past perfect progressive sg} = hi hæz bɪn itɪŋ
+EAT:{3 future perfect progressive sg} = hi wɪl hæv bɪn itɪŋ
+SEE:{2 nonPerfect nonProgressive past sg} = ju sɔ
+SEE:{2 future nonPerfect nonProgressive sg} = ju wɪl si
+SEE:{2 nonPerfect past progressive sg} = ju wɝ siɪŋ
+CLIMB:{3 nonPerfect nonProgressive past sg} = hi klaɪmd
+CLIMB:{3 nonPerfect nonProgressive present sg} = hi klaɪmz
+CLIMB:{3 nonPerfect past progressive sg} = hi wʌz klaɪmɪŋ
+CLIMB:{3 nonProgressive past perfect sg} = hi hæd klaɪmd
+SING:{1 nonProgressive past perfect sg} = aɪ hæv sʌŋ
+}
+
+

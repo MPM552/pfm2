@@ -1,0 +1,293 @@
+Language: Noon nouns and adjectives
+Nouns
+	Niger-Congo; Senegal
+	authority: Maria Soukka
+	This file built by Raphael Finkel and Gregory Stump 2012
+
+	CLASS:  noun class (comparable to a gender)
+	NUM: number (like "4 chairs")
+	DEF: definiteness (like "the chair")
+	LOC: location (like "near me", specified if and only if definite)
+	POSS: possessor (like "our chair" specified only if definite)
+	REL: relation (inalienable possessor, like "our father",
+		specified optionally for singular definite nouns of subclass B)
+
+The purpose of this file is to experiment with PFM syntax and semantics.
+
+Paradigm Function
+
+	PF(<L,σ>) = V(IV(III(II(I(Stem(<L,σ>))))))
+
+ParadigmSchema(N <\d>A) = {
+	CLASS:{$1}
+	NUM:{sg/pl}
+	DEF:{plus/minus}
+	LOC:{1/2/3/noLoc} 
+	POSS:{(1 sg)/(1 pl incl/excl)/(2/3 sg/pl)/noPoss}
+	REL:{noRel}
+}
+
+ParadigmSchema(N <\d>B) = {
+	CLASS:{$1}
+	NUM:{sg/pl}
+	DEF:{plus/minus}
+	LOC:{1/2/3/noLoc} 
+	POSS:{(1 sg)/(1 pl incl/excl)/(2/3 sg/pl)/noPoss}
+	REL:{(1 sg)/(1 pl incl/excl)/(2/3 sg/pl)/noRel}
+}
+
+Disallow = {
+	(POSS:{sg/pl} DEF:{minus})  / % possession requires definiteness
+	(REL:{sg/pl}  DEF:{minus})  / % inalienable possessor requires definiteness
+	(LOC:{1/2/3}  DEF:{minus})  / % location requires definiteness
+	(POSS:{sg/pl} REL:{sg/pl})  / % can't have both regular and inalienable possessor
+	(DEF:{plus} LOC:{noLoc} REL:{noRel}) /
+					% definite requires place or inalienable possessor
+	(POSS:{sg/pl}  LOC:{noLoc})   / % possessor needs a location
+	(REL:{sg/pl}  NUM:{pl})  /     % inalienable possession only distinguished in sg
+	(REL:{sg/pl}  LOC:{1/2/3})    % inalienable possession
+}
+
+Disallow(N-(1/2/3/4/5/6)B) = {
+	NUM:{sg} POSS:{sg/pl}
+}
+
+Disallow(N-(1/2/3/4/5/6)Bmun) = {
+	NUM:{sg} POSS:{sg/pl}
+}
+
+Rules of referral
+
+Stem selection rules
+
+	Stem(<FIELD,σ>) = yoon 
+	Stem(<HORSE,σ>) = pënís
+	Stem(<MILK,σ>) = miis
+	Stem(<TREE,σ>) = edik
+	Stem(<THREAD,σ>) = ëlkít
+	Stem(<SMALL_CALABASH,σ>) = ataa
+	Stem(<MAN,σ>) = ƴaal
+	Stem(<WOMAN,σ>) = ɓeti
+	Stem(<COMPOUND,σ>) = kaan
+	Stem(<GROUP_HOUSE,σ>) = hal
+	Stem(<ROOM_HUT,σ>) = túuƴ
+	Stem(<OLDER_SIBLING,σ>) = yaak
+	Stem(<YOUNGER_SIBLING,σ>) = këmëŋkí
+	Stem(<PEER,σ>) = moorom
+	Stem(<FRIEND,σ>) = húnís
+	Stem(<UNCLE,σ>) = taanam
+
+Rules of exponence
+
+	Block I
+		I, X[],σ:{CLASS:{4} NUM:{sg}} → kX	
+		I, X[],σ:{CLASS:{5} NUM:{sg}} → pX	
+		I, X[],σ:{CLASS:{6} NUM:{sg}} → jX	
+		I, X[],σ:{CLASS:{4/5/6} NUM:{pl}} → tX	
+	Block II
+		II, X[],σ:{REL:{1 sg}} → Xroo
+		II, X[],σ:{REL:{2 sg}} → Xfu
+		II, X[],σ:{REL:{3 sg}} → Xci
+		II, X[],σ:{REL:{1 pl excl}} → Xríi
+		II, X[],σ:{REL:{1 pl incl}} → Xruu
+		II, X[],σ:{REL:{2 pl}} → Xrúu
+		II, X[],σ:{REL:{3 pl}} → Xɓa
+		II, X[1Bmun],σ:{REL:{noRel}} → Xmun
+	Block III
+		III, X[],σ:{CLASS:{2} NUM:{sg} DEF:{plus} REL:{noRel}} → Xf
+		III, X[],σ:{CLASS:{3} NUM:{sg} DEF:{plus} REL:{noRel}} → Xm
+		III, X[],σ:{CLASS:{4} NUM:{sg} DEF:{plus} REL:{noRel}} → Xk
+		III, X[],σ:{CLASS:{5} NUM:{sg} DEF:{plus} REL:{noRel}} → Xp
+		III, X[],σ:{CLASS:{6} NUM:{sg} DEF:{plus} REL:{noRel}} → Xj
+		III, X[],σ:{CLASS:{1/2/3} NUM:{pl} DEF:{plus} REL:{noRel}} → Xc
+		III, X[],σ:{CLASS:{4/5/6} NUM:{pl} DEF:{plus} REL:{noRel}} → Xt
+	Block IV
+		IV, X[],σ:{LOC:{1}} →  Xii
+		IV, X[],σ:{LOC:{2}} →  Xum
+		IV, X[],σ:{LOC:{3}} →  Xaa
+	Block V
+		V, X[],σ:{POSS:{1 sg}} → Xgoo
+		V, X[],σ:{POSS:{2 sg}} → Xgaraa
+		V, X[],σ:{POSS:{3 sg}} → Xgari
+		V, X[],σ:{POSS:{1 pl excl}} → Xgëríi
+		V, X[],σ:{POSS:{1 pl incl}} → Xgaruu
+		V, X[],σ:{POSS:{2 pl}} → Xgërúu
+		V, X[],σ:{POSS:{3 pl}} → Xgaɓa
+
+Sandhi {
+	m → Ø / m_ % taanammuniigoo	→ taanamuniigoo
+} % Sandhi
+
+Lexeme: FIELD %yoon
+Meaning: field
+Syntactic category: N
+Inflection class: 1A
+% Syntactic category: N % N / A
+% Inflection class: A % A / (B Bmun) (only for some syntactic categories)
+% Morphosyntactic class: 1 % (1/2/3/4/5/6 animate/inanimate/diminutive)
+
+Lexeme: HORSE % pënís
+Meaning: horse
+Syntactic category: N
+Inflection class: 2A
+
+Lexeme: MILK % miis
+Meaning: milk
+Syntactic category: N
+Inflection class: 3A
+
+Lexeme: TREE % kedik
+Meaning: tree
+Syntactic category: N
+Inflection class: 4A
+
+Lexeme: THREAD % pëlkít
+Meaning: thread
+Syntactic category: N
+Inflection class: 5A
+
+Lexeme: SMALL_CALABASH % pataa
+Meaning: small_calabash
+Syntactic category: N
+Inflection class: 6A
+
+Lexeme: MAN % ƴaal
+Meaning: man
+Syntactic category: N
+Inflection class: 1B
+
+Lexeme: WOMAN % ɓeti
+Meaning: woman
+Syntactic category: N
+Inflection class: 2B
+
+Lexeme: COMPOUND % kaan
+Meaning: compound
+Syntactic category: N
+Inflection class: 2B
+
+Lexeme: GROUP_HOUSE % hal
+Meaning: group_house
+Syntactic category: N
+Inflection class: 1B
+
+Lexeme: ROOM_HUT % túuƴ
+Meaning: room-hut
+Syntactic category: N
+Inflection class: 1B
+
+Lexeme: OLDER_SIBLING % yaak
+Meaning: older-sibling
+Syntactic category: N
+Inflection class: 1Bmun
+
+Lexeme: YOUNGER_SIBLING % këmëŋkí
+Meaning: younger-sibling
+Syntactic category: N
+Inflection class: 1Bmun
+
+Lexeme: PEER % moorom
+Meaning: peer
+Syntactic category: N
+Inflection class: 1Bmun
+
+Lexeme: FRIEND & húnís
+Meaning: friend
+Syntactic category: N
+Inflection class: 1Bmun
+
+Lexeme: UNCLE % taanam
+Meaning: uncle
+Syntactic category: N
+Inflection class: 1Bmun
+
+% ShowOnlyTruth
+
+Truth = {
+TREE:{CLASS:{4} NUM:{sg} DEF:{minus} LOC:{noLoc} POSS:{noPoss} REL:{noRel}} = kedik
+TREE:{CLASS:{4} NUM:{pl} DEF:{minus} LOC:{noLoc} POSS:{noPoss} REL:{noRel}} = tedik
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{1} POSS:{noPoss} REL:{noRel}} =  kedikkii
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{1} POSS:{1 sg} REL:{noRel}} = kedikkiigoo
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{1} POSS:{2 sg} REL:{noRel}} = kedikkiigaraa
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{1} POSS:{3 sg} REL:{noRel}} = kedikkiigari
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{1} POSS:{1 pl excl} REL:{noRel}} = kedikkiigëríi
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{1} POSS:{1 pl incl} REL:{noRel}} = kedikkiigaruu
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{1} POSS:{2 pl} REL:{noRel}} = kedikkiigërúu
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{1} POSS:{3 pl} REL:{noRel}} = kedikkiigaɓa
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{1} POSS:{noPoss} REL:{noRel}} =  tediktii
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{1} POSS:{1 sg} REL:{noRel}} = tediktiigoo
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{1} POSS:{2 sg} REL:{noRel}} = tediktiigaraa
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{1} POSS:{3 sg} REL:{noRel}} = tediktiigari
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{1} POSS:{1 pl excl} REL:{noRel}} = tediktiigëríi
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{1} POSS:{1 pl incl} REL:{noRel}} = tediktiigaruu
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{1} POSS:{2 pl} REL:{noRel}} = tediktiigërúu
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{1} POSS:{3 pl} REL:{noRel}} = tediktiigaɓa
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{2} POSS:{noPoss} REL:{noRel}} =  kedikkum
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{2} POSS:{1 sg} REL:{noRel}} = kedikkumgoo
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{2} POSS:{2 sg} REL:{noRel}} = kedikkumgaraa
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{2} POSS:{3 sg} REL:{noRel}} = kedikkumgari
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{2} POSS:{1 pl excl} REL:{noRel}} = kedikkumgëríi
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{2} POSS:{1 pl incl} REL:{noRel}} = kedikkumgaruu
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{2} POSS:{2 pl} REL:{noRel}} = kedikkumgërúu
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{2} POSS:{3 pl} REL:{noRel}} = kedikkumgaɓa
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{2} POSS:{noPoss} REL:{noRel}} =  tediktum
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{2} POSS:{1 sg} REL:{noRel}} = tediktumgoo
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{2} POSS:{2 sg} REL:{noRel}} = tediktumgaraa
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{2} POSS:{3 sg} REL:{noRel}} = tediktumgari
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{2} POSS:{1 pl excl} REL:{noRel}} = tediktumgëríi
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{2} POSS:{1 pl incl} REL:{noRel}} = tediktumgaruu
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{2} POSS:{2 pl} REL:{noRel}} = tediktumgërúu
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{2} POSS:{3 pl} REL:{noRel}} = tediktumgaɓa
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{3} POSS:{noPoss} REL:{noRel}} =  kedikkaa
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{3} POSS:{1 sg} REL:{noRel}} = kedikkaagoo
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{3} POSS:{2 sg} REL:{noRel}} = kedikkaagaraa
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{3} POSS:{3 sg} REL:{noRel}} = kedikkaagari
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{3} POSS:{1 pl excl} REL:{noRel}} = kedikkaagëríi
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{3} POSS:{1 pl incl} REL:{noRel}} = kedikkaagaruu
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{3} POSS:{2 pl} REL:{noRel}} = kedikkaagërúu
+TREE:{CLASS:{4} NUM:{sg} DEF:{plus} LOC:{3} POSS:{3 pl} REL:{noRel}} = kedikkaagaɓa
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{3} POSS:{noPoss} REL:{noRel}} =  tediktaa
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{3} POSS:{1 sg} REL:{noRel}} = tediktaagoo
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{3} POSS:{2 sg} REL:{noRel}} = tediktaagaraa
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{3} POSS:{3 sg} REL:{noRel}} = tediktaagari
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{3} POSS:{1 pl excl} REL:{noRel}} = tediktaagëríi
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{3} POSS:{1 pl incl} REL:{noRel}} = tediktaagaruu
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{3} POSS:{2 pl} REL:{noRel}} = tediktaagërúu
+TREE:{CLASS:{4} NUM:{pl} DEF:{plus} LOC:{3} POSS:{3 pl} REL:{noRel}} = tediktaagaɓa
+UNCLE:{CLASS:{1} NUM:{sg} DEF:{minus} LOC:{noLoc} POSS:{noPoss} REL:{noRel}} = taanamun
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{minus} LOC:{noLoc} POSS:{noPoss} REL:{noRel}} = taanamun
+UNCLE:{CLASS:{1} NUM:{sg} DEF:{plus} LOC:{noLoc} POSS:{noPoss} REL:{1 sg}} = taanamroo
+UNCLE:{CLASS:{1} NUM:{sg} DEF:{plus} LOC:{noLoc} POSS:{noPoss} REL:{2 sg}} = taanamfu
+UNCLE:{CLASS:{1} NUM:{sg} DEF:{plus} LOC:{noLoc} POSS:{noPoss} REL:{3 sg}} = taanamci
+UNCLE:{CLASS:{1} NUM:{sg} DEF:{plus} LOC:{noLoc} POSS:{noPoss} REL:{1 pl excl}} = taanamríi
+UNCLE:{CLASS:{1} NUM:{sg} DEF:{plus} LOC:{noLoc} POSS:{noPoss} REL:{1 pl incl}} = taanamruu
+UNCLE:{CLASS:{1} NUM:{sg} DEF:{plus} LOC:{noLoc} POSS:{noPoss} REL:{2 pl}} = taanamrúu
+UNCLE:{CLASS:{1} NUM:{sg} DEF:{plus} LOC:{noLoc} POSS:{noPoss} REL:{3 pl}} = taanamɓa
+UNCLE:{CLASS:{1} NUM:{sg} DEF:{plus} LOC:{1} POSS:{noPoss} REL:{noRel}} = taanamunii
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{1} POSS:{noPoss} REL:{noRel}} = taanamuncii
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{1} POSS:{1 sg} REL:{noRel}} = taanamunciigoo
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{1} POSS:{2 sg} REL:{noRel}} = taanamunciigaraa
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{1} POSS:{3 sg} REL:{noRel}} = taanamunciigari
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{1} POSS:{1 pl excl} REL:{noRel}} = taanamunciigëríi
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{1} POSS:{1 pl incl} REL:{noRel}} = taanamunciigaruu
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{1} POSS:{2 pl} REL:{noRel}} = taanamunciigërúu
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{1} POSS:{3 pl} REL:{noRel}} = taanamunciigaɓa
+UNCLE:{CLASS:{1} NUM:{sg} DEF:{plus} LOC:{2} POSS:{noPoss} REL:{noRel}} = taanamunum
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{2} POSS:{noPoss} REL:{noRel}} = taanamuncum
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{2} POSS:{1 sg} REL:{noRel}} = taanamuncumgoo
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{2} POSS:{2 sg} REL:{noRel}} = taanamuncumgaraa
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{2} POSS:{3 sg} REL:{noRel}} = taanamuncumgari
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{2} POSS:{1 pl excl} REL:{noRel}} = taanamuncumgëríi
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{2} POSS:{1 pl incl} REL:{noRel}} = taanamuncumgaruu
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{2} POSS:{2 pl} REL:{noRel}} = taanamuncumgërúu
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{2} POSS:{3 pl} REL:{noRel}} = taanamuncumgaɓa
+UNCLE:{CLASS:{1} NUM:{sg} DEF:{plus} LOC:{3} POSS:{noPoss} REL:{noRel}} = taanamunaa
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{3} POSS:{noPoss} REL:{noRel}} = taanamuncaa
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{3} POSS:{1 sg} REL:{noRel}} = taanamuncaagoo
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{3} POSS:{2 sg} REL:{noRel}} = taanamuncaagaraa
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{3} POSS:{3 sg} REL:{noRel}} = taanamuncaagari
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{3} POSS:{1 pl excl} REL:{noRel}} = taanamuncaagëríi
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{3} POSS:{1 pl incl} REL:{noRel}} = taanamuncaagaruu
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{3} POSS:{2 pl} REL:{noRel}} = taanamuncaagërúu
+UNCLE:{CLASS:{1} NUM:{pl} DEF:{plus} LOC:{3} POSS:{3 pl} REL:{noRel}} = taanamuncaagaɓa
+}

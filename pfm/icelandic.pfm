@@ -1,0 +1,298 @@
+﻿Language: Icelandic verbs
+Author: Greg Stump © 5/2011.
+
+Notes: In progress; not all forms are correct.
+The purpose is to experiment with PFM syntax and semantics,
+not to provide a cogent explanation of these forms.
+
+Paradigm function
+PF(<L, σ>) = III(II(I(Stem(<L, σ>))))
+
+Rules of referral
+% PF(L, σ:{3 sg pres indic}) = (Y, σ), where PF(<L, σ>)=<Y, τ> and  τ = σ/{2}
+
+Stem-selection rules
+
+	Stem(<ÆTLA, S:{}>) = ætla 
+	Stem(<KALLA, S:{}>) = kall
+	Stem(<DEILA, S:{}>) = deil
+	Stem(<GRÍPA, S:{sg past indic}>) = greip
+	Stem(<GRÍPA, S:{past}>) = grip
+	Stem(<GRÍPA, S:{}>) = gríp
+	Stem(<FLJÚGA, S:{sg past indic}>) = flaug
+	Stem(<FLJÚGA, S:{past indic}>) = flug
+	Stem(<FLJÚGA, S:{past}>) = flyg
+	Stem(<FLJÚGA, S:{sg pres indic}>) = flýg
+	Stem(<FLJÚGA, S:{}>) = fljúg
+	Stem(<BRJÓTA, S:{sg past indic}>) = braut
+	Stem(<BRJÓTA, S:{past indic}>) = brut
+	Stem(<BRJÓTA, S:{past}>) = bryt
+	Stem(<BRJÓTA, S:{sg pres indic}>) = brýt
+	Stem(<BRJÓTA, S:{}>) = brjót
+
+Rules of exponence
+
+Block I
+I,  XV[V 4], S:{pl past} → Xu
+I,  XV, S:{pres subj} → Xi
+I,  XV[V 2], S:{sg pres indic} → Xi
+I,  XV[V 4], S:{} → Xa
+I,  XV, S:{} → X
+
+Block II
+II,  XV, S:{sg past} → Xði
+II,  XV, S:{pl past} → Xðu
+II,  XV, S:{} → X
+
+Block III
+III, XV[V 4 b], S:{2 sg impv} → Xðu
+III, XV, S:{2 sg impv} → X
+III, XV, S:{2 sg} → Xr
+III, XV, S:{1 pl} → Xum
+III, XV, S:{2 pl} → Xið
+III, XV, S:{3 pl pres indic} → Xa
+III, XV[S], S:{2 sg past indic} → Xst
+III, XV, S:{} → X
+
+PhonologicalClass vowel = a e i o u y æ ö á é í ó ú ý
+PhonologicalClass C = ll
+PhonologicalClass stop = g p
+
+Sandhi {
+	a → Ø /_[vowel] % ætla-um ætli-um  ætlum; ætla-ið  ætlið
+	i → Ø /_u, u_ % ætluðu-ið  ætluðuð; ætli-um  ætlum
+	i → Ø /_i % grípiið → grípið
+	a → ö /_[C]u % kall-um → köllum
+	ð → d /l_ % deil-ði → deildi
+	u → Ø /u_ % kölluðuum → kölluðum
+	ð → Ø /[stop]_ % gripðum → gripum
+}
+
+Lexical entries:
+
+Lexeme: ÆTLA
+Meaning:  intend
+Syntactic category: V
+Inflection class: V 4 b
+
+Lexeme: KALLA
+Meaning:  call
+Syntactic category: V
+Inflection class: V 4 a
+
+Lexeme: DEILA 
+Meaning:  dispute
+Syntactic category: V
+Inflection class: V 2 a
+
+Lexeme: GRÍPA 
+Meaning:  grasp
+Syntactic category: V
+Inflection class: S 1 a
+
+Lexeme: FLJÚGA 
+Meaning:  fly
+Syntactic category: V
+Inflection class: S 2 b
+
+Lexeme: BRJÓTA 
+Meaning:  break
+Syntactic category: V
+Inflection class: S 2 a
+
+ParadigmSchema(V) =
+{
+	(indic/subj pres/past sg/pl 1/2/3) /
+	(impv (sg 2)/(pl 1/2))
+}
+
+ShowOnlyTruth
+
+Truth = {
+ÆTLA:{infinitive} = ætla
+ÆTLA:{impv sg 2} = ætlaðu
+ÆTLA:{impv pl 1} = ætlum
+ÆTLA:{impv pl 2} = ætlið
+ÆTLA:{first participle} = ætlandi
+ÆTLA:{second participle} = ætlað
+ÆTLA:{indic pres sg 1} = ætla
+ÆTLA:{indic pres sg 2} = ætlar
+ÆTLA:{indic pres sg 3} = ætlar
+ÆTLA:{indic pres pl 1} = ætlum
+ÆTLA:{indic pres pl 2} = ætlið
+ÆTLA:{indic pres pl 3} = ætla
+ÆTLA:{indic past sg 1} = ætlaði
+ÆTLA:{indic past sg 2} = ætlaðir
+ÆTLA:{indic past sg 3} = ætlaði
+ÆTLA:{indic past pl 1} = ætluðum
+ÆTLA:{indic past pl 2} = ætluðuð
+ÆTLA:{indic past pl 3} = ætluðu
+ÆTLA:{subj pres sg 1} = ætli
+ÆTLA:{subj pres sg 2} = ætlir
+ÆTLA:{subj pres sg 3} = ætli
+ÆTLA:{subj pres pl 1} = ætlum
+ÆTLA:{subj pres pl 2} = ætlið
+ÆTLA:{subj pres pl 3} = ætli
+ÆTLA:{subj past sg 1} = ætlaði
+ÆTLA:{subj past sg 2} = ætlaðir
+ÆTLA:{subj past sg 3} = ætlaði
+ÆTLA:{subj past pl 1} = ætluðum
+ÆTLA:{subj past pl 2} = ætluðuð
+ÆTLA:{subj past pl 3} = ætluðu
+
+KALLA:{infinitive} = kalla
+KALLA:{impv sg 2} = kalla
+KALLA:{impv pl 1} = köllum
+KALLA:{impv pl 2} = kallið 
+KALLA:{first participle} = kallandi
+KALLA:{second participle} = kallað
+KALLA:{indic pres sg 1} = kalla
+KALLA:{indic pres sg 2} = kallar
+KALLA:{indic pres sg 3} = kallar
+KALLA:{indic pres pl 1} = köllum
+KALLA:{indic pres pl 2} = kallið
+KALLA:{indic pres pl 3} = kalla
+KALLA:{indic past sg 1} = kallaði
+KALLA:{indic past sg 2} = kallaðir
+KALLA:{indic past sg 3} = kallaði
+KALLA:{indic past pl 1} = kölluðum
+KALLA:{indic past pl 2} = kölluðuð
+KALLA:{indic past pl 3} = kölluðu
+KALLA:{subj pres sg 1} = kalli
+KALLA:{subj pres sg 2} = kallir
+KALLA:{subj pres sg 3} = kalli
+KALLA:{subj pres pl 1} = köllum
+KALLA:{subj pres pl 2} = kallið
+KALLA:{subj pres pl 3} = kalli
+KALLA:{subj past sg 1} = kallaði
+KALLA:{subj past sg 2} = kallaðir
+KALLA:{subj past sg 3} = kallaði
+KALLA:{subj past pl 1} = kölluðum
+KALLA:{subj past pl 2} = kölluðuð
+KALLA:{subj past pl 3} = kölluðu
+
+DEILA:{infinitive} = deila
+DEILA:{impv sg 2} = deil
+DEILA:{impv pl 1} = deilum
+DEILA:{impv pl 2} = deilið 
+DEILA:{first participle} = deilandi
+DEILA:{second participle} = deilt
+DEILA:{indic pres sg 1} = deili
+DEILA:{indic pres sg 2} = deilir
+DEILA:{indic pres sg 3} = deilir
+DEILA:{indic pres pl 1} = deilum
+DEILA:{indic pres pl 2} = deilið
+DEILA:{indic pres pl 3} = deila
+DEILA:{indic past sg 1} = deildi
+DEILA:{indic past sg 2} = deildir
+DEILA:{indic past sg 3} = deildi
+DEILA:{indic past pl 1} = deildum
+DEILA:{indic past pl 2} = deilduð
+DEILA:{indic past pl 3} = deildu
+DEILA:{subj pres sg 1} = deili
+DEILA:{subj pres sg 2} = deilir
+DEILA:{subj pres sg 3} = deili
+DEILA:{subj pres pl 1} = deilum
+DEILA:{subj pres pl 2} = deilið
+DEILA:{subj pres pl 3} = deili
+DEILA:{subj past sg 1} = deildi
+DEILA:{subj past sg 2} = deildir
+DEILA:{subj past sg 3} = deildi
+DEILA:{subj past pl 1} = deildum
+DEILA:{subj past pl 2} = deilduð
+DEILA:{subj past pl 3} = deildu
+
+GRÍPA:{infinitive} = grípa 
+GRÍPA:{impv sg 2} = gríp 
+GRÍPA:{impv pl 1} = grípum 
+GRÍPA:{impv pl 2} = grípið 
+GRÍPA:{first participle} = grípandi 
+GRÍPA:{second participle} = gripið 
+GRÍPA:{indic pres sg 1} = gríp 
+GRÍPA:{indic pres sg 2} = grípur 
+GRÍPA:{indic pres sg 3} = grípur 
+GRÍPA:{indic pres pl 1} = grípum 
+GRÍPA:{indic pres pl 2} = grípið 
+GRÍPA:{indic pres pl 3} = grípa 
+GRÍPA:{indic past sg 1} = greip 
+GRÍPA:{indic past sg 2} = greipst 
+GRÍPA:{indic past sg 3} = greip 
+GRÍPA:{indic past pl 1} = gripum 
+GRÍPA:{indic past pl 2} = gripuð 
+GRÍPA:{indic past pl 3} = gripu 
+GRÍPA:{subj pres sg 1} = grípi 
+GRÍPA:{subj pres sg 2} = grípir 
+GRÍPA:{subj pres sg 3} = grípi 
+GRÍPA:{subj pres pl 1} = grípum 
+GRÍPA:{subj pres pl 2} = grípið 
+GRÍPA:{subj pres pl 3} = grípi 
+GRÍPA:{subj past sg 1} = gripi 
+GRÍPA:{subj past sg 2} = gripir 
+GRÍPA:{subj past sg 3} = gripi 
+GRÍPA:{subj past pl 1} = gripum 
+GRÍPA:{subj past pl 2} = gripuð 
+GRÍPA:{subj past pl 3} = gripu 
+
+FLJÚGA:{infinitive} = fljúga
+FLJÚGA:{impv sg 2} = fljúg
+FLJÚGA:{impv pl 1} = fljúgum
+FLJÚGA:{impv pl 2} = fljúgið
+FLJÚGA:{first participle} = fljúgandi 
+FLJÚGA:{second participle} = flogið
+FLJÚGA:{indic pres sg 1} = flýg
+FLJÚGA:{indic pres sg 2} = flýgur
+FLJÚGA:{indic pres sg 3} = flýgur
+FLJÚGA:{indic pres pl 1} = fljúgum
+FLJÚGA:{indic pres pl 2} = fljúgið
+FLJÚGA:{indic pres pl 3} = fljúga
+FLJÚGA:{indic past sg 1} = flaug
+FLJÚGA:{indic past sg 2} = flaugst
+FLJÚGA:{indic past sg 3} = flaug
+FLJÚGA:{indic past pl 1} = flugum
+FLJÚGA:{indic past pl 2} = fluguð
+FLJÚGA:{indic past pl 3} = flugu
+FLJÚGA:{subj pres sg 1} = fljúgi
+FLJÚGA:{subj pres sg 2} = fljúgir
+FLJÚGA:{subj pres sg 3} = fljúgi
+FLJÚGA:{subj pres pl 1} = fljúgum
+FLJÚGA:{subj pres pl 2} = fljúgið
+FLJÚGA:{subj pres pl 3} = fljúgi
+FLJÚGA:{subj past sg 1} = flygi
+FLJÚGA:{subj past sg 2} = flygir
+FLJÚGA:{subj past sg 3} = flygi
+FLJÚGA:{subj past pl 1} = flygjum
+FLJÚGA:{subj past pl 2} = flygjuð
+FLJÚGA:{subj past pl 3} = flygju
+
+BRJÓTA:{infinitive} = brjóta
+BRJÓTA:{impv sg 2} = brjót
+BRJÓTA:{impv pl 1} = brjótum
+BRJÓTA:{impv pl 2} = brjótið
+BRJÓTA:{first participle} = brjótandi
+BRJÓTA:{second participle} = brotið
+BRJÓTA:{indic pres sg 1} = brýt
+BRJÓTA:{indic pres sg 2} = brýtur
+BRJÓTA:{indic pres sg 3} = brýtur
+BRJÓTA:{indic pres pl 1} = brjótum
+BRJÓTA:{indic pres pl 2} = brjótið
+BRJÓTA:{indic pres pl 3} = brjóta
+BRJÓTA:{indic past sg 1} = braut
+BRJÓTA:{indic past sg 2} = braust
+BRJÓTA:{indic past sg 3} = braut
+BRJÓTA:{indic past pl 1} = brutum
+BRJÓTA:{indic past pl 2} = brutuð
+BRJÓTA:{indic past pl 3} = brutu
+BRJÓTA:{subj pres sg 1} = brjóti
+BRJÓTA:{subj pres sg 2} = brjótir
+BRJÓTA:{subj pres sg 3} = brjóti
+BRJÓTA:{subj pres pl 1} = brjótum
+BRJÓTA:{subj pres pl 2} = brjótið
+BRJÓTA:{subj pres pl 3} = brjóti
+BRJÓTA:{subj past sg 1} = bryti
+BRJÓTA:{subj past sg 2} = brytir
+BRJÓTA:{subj past sg 3} = bryti
+BRJÓTA:{subj past pl 1} = brytum
+BRJÓTA:{subj past pl 2} = brytuð
+BRJÓTA:{subj past pl 3} = brytu
+}
+% vim:nospell tw=1000:

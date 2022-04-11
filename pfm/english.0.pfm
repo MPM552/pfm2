@@ -1,0 +1,67 @@
+Language: English verbs
+Author: Raphael Finkel © 5/2011
+
+Notes: Verb forms, most likely not complete or correct.
+The purpose is to experiment with PFM syntax and semantics,
+not to provide a cogent explanation of these forms.
+
+Paradigm Function
+    PF(<L,σ>) = person(tense(I(Stem(<L,σ>)))>)
+
+Rules of referral
+
+Stem-selection rules
+     Stem(<EAT, S:{}>) = eat
+     Stem(<EAT, S:{past}>) = <ate, S>
+     Stem(<EAT, S:{perfect/futPerf}>) = eaten
+     % Stem(<EAT, S:{futPerf}>) = eaten
+     Stem(<SEE, S:{}>) = see
+     Stem(<SEE, S:{past}>) = saw
+     Stem(<SEE, S:{perfect}>) = seen
+     Stem(<SEE, S:{futPerf}>) = seen
+	 Stem(CLIMB) = climb
+
+Rules of exponence
+    Block I
+         I, X,S:{3 sg present} → Xs
+         I, X[weak],S:{perfect/past/futPerf} → Xed
+    Block person
+         person, X[],S:{1 sg} → I X
+         person, X[],S:{3 sg} → he X
+         person, X[],S:{2} → you X
+         person, X[],S:{1 pl} → we X
+         person, X[],S:{3 pl} → they X
+    Block tense
+         tense, X[],S:{future} → will X
+         tense, X[],S:{futPerf} → will have X
+         tense, X[],S:{perfect 3 sg} → has X
+         tense, X[],S:{perfect} → have X
+
+Lexeme: EAT
+Meaning: eat
+Syntactic category: V
+Inflection class: strong
+
+Lexeme: SEE
+Meaning: see
+Syntactic category: V
+Inflection class: strong
+
+Lexeme: CLIMB
+Meaning: climb
+Syntactic category: V
+Inflection class: weak
+
+
+ParadigmSchema(V) = {present/past/perfect/future/futPerf sg/pl 1/2/3 }
+
+Truth = {
+EAT:{1 sg present} = I eat
+EAT:{3 sg present} = he eats
+EAT:{3 sg past} = he ate
+EAT:{3 sg perfect} = he has eaten
+EAT:{1 pl perfect} = we have eaten
+EAT:{3 sg futPerf} = he will have eaten
+CLIMB:{1 sg past} = I climbed
+CLIMB:{3 pl perfect} = they have climbed
+}

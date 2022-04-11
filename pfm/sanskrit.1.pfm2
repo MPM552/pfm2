@@ -1,0 +1,94 @@
+Language: Sanskrit nominals
+Author: Gregory Stump, Raphael Finkel 5/2013
+
+Content paradigm schema(Nom) = { % nouns and adjectives
+      masc sg/pl nom/voc/acc/ins/dat/abl/gen/loc
+}
+
+Root(LAW) = dharma
+Root(VIRTUOUS) = śīlavant
+
+Stem(L[nt]:weak) = zero(Root(L))
+Stem(L[a]:n) = nstem(Root(L))
+Stem(L[a]:e) = estem(Root(L))
+Stem(L[nt]:n) = zero(Root(L))
+Stem(L[nt]:e) = zero(Root(L))
+
+Morphophonological operations = { % default is the identity
+      zero(Pant) = Pat
+      estem(Pa) = Pe
+      nstem(Pa) = Pān
+}
+
+Corr(<L[Nom a], σ:{dat pl}>) = <Stem(L:e), σ>
+Corr(<L[Nom a], σ:{abl pl}>) = <Stem(L:e), σ>
+Corr(<L[Nom a], σ:{loc pl}>) = <Stem(L:e), σ>
+Corr(<L[Nom a], σ:{ins sg}>) = <Stem(L:e), σ>
+Corr(<L[Nom a], σ:{acc pl}>) = <Stem(L:n), σ>
+Corr(<L[Nom a], σ:{gen pl}>) = <Stem(L:n), σ>
+Corr(<L[nt Nom], σ:{ins}>) = <Stem(L:weak), σ>
+Corr(<L[nt Nom], σ:{dat}>) = <Stem(L:weak), σ>
+Corr(<L[nt Nom], σ:{abl}>) = <Stem(L:weak), σ>
+Corr(<L[nt Nom], σ:{gen}>) = <Stem(L:weak), σ>
+Corr(<L[nt Nom], σ:{loc}>) = <Stem(L:weak), σ>
+Corr(<L[nt Nom], σ:{acc pl}>) = <Stem(L:weak), σ>
+Corr(<L[Nom], σ>) = <Stem(L), σ>
+
+Lexeme: LAW
+Meaning: law
+Syntactic category: Nom
+Inflection class: a
+
+Lexeme: VIRTUOUS
+Meaning: virtuous
+Syntactic category: Nom
+Inflection class: nt
+
+Paradigm function
+PF(<X, σ>) = [ i : <X, σ> ] % Form paradigm to realized paradigm
+
+Sandhi {
+      t → d /_-b
+      a-i → e /_
+      a-a → ā /_
+      a-ā → ā /_
+      - → Ø/_
+} % Sandhi
+
+Block i
+      i, X [], S:{voc sg} → X
+      i, X [], S:{loc sg} → X-i
+      i, X [], S:{nom pl} → X-as
+      i, X [], S:{voc pl} → X-as
+      i, X [], S:{dat pl} → X-bhyas
+      i, X [], S:{abl pl} → X-bhyas
+      i, X [], S:{gen pl} → X-ām
+      i, X [], S:{loc pl} → X-su
+      i, X [a], S:{nom sg} → X-s
+      i, X [a], S:{acc sg} → X-m
+      i, X [a], S:{ins sg} → X-na
+      i, X [a], S:{dat sg} → X-āya
+      i, X [a], S:{abl sg}  → X-āt
+      i, X [a], S:{gen sg} → X-sya
+      i, X [a], S:{acc pl} → X
+      i, X [a], S:{ins pl} → X-ais
+      i, X [nt], S:{nom sg} → X
+      i, X [nt], S:{acc sg} → X-am
+      i, X [nt], S:{ins sg} → X-ā
+      i, X [nt], S:{dat sg} → X-e
+      i, X [nt], S:{abl sg} → X-as
+      i, X [nt], S:{gen sg} → X-as
+      i, X [nt], S:{acc pl} → X-as
+      i, X [nt], S:{ins pl} → X-bhis
+
+% Random 1
+
+ShowOnlyTruth
+
+Truth = {
+	LAW:{masc nom sg} = dharmas
+	LAW:{masc acc sg} = dharmam
+	LAW:{masc gen sg} = dharmasya
+	LAW:{masc ins sg} = dharmena
+	VIRTUOUS:{masc ins sg} = śīlavatā
+}

@@ -1,0 +1,648 @@
+Language: Garifuna verbs
+Author: Raphael Finkel
+Authority: Daniel Kaufman 2012
+The purpose is to experiment with PFM syntax and semantics,
+not to provide a cogent explanation of these forms.
+
+ParadigmSchema(V t) = {
+
+(aorist/perfect/continuative/future/progressive/recentPerfect transitive positive/negative 
+	((AGR(SUBJ):{sg/pl 1/2/3 masc} AGR(OBJ):{sg/pl 1/2/3 masc}) /
+	(AGR(SUBJ):{sg 3 fem} AGR(OBJ):{sg 3 fem}))) /
+(aorist/perfect/continuative/future/progressive/recentPerfect intransitive positive/negative 
+	((AGR(SUBJ):{sg/pl 1/2/3 masc}) /
+	(AGR(SUBJ):{sg 3 fem})))
+}
+
+ParadigmSchema(V i) = {
+aorist/perfect/continuative/future/progressive/recentPerfect intransitive positive/negative 
+	AGR(SUBJ):{(sg/pl 1/2/3 masc)/(sg 3 fem)}
+}
+
+Paradigm Function
+PF(<L, σ>) = Main(Stem(<L, σ>))
+
+Stem(EAT) = hou
+Stem(<EAT, S:{prefixed}>) = aigi
+Stem(SEE) = ariha
+Stem(RUN) = aibagua
+
+Rules of exponence
+
+Block Main
+	Main, X, S:{aorist intransitive AGR(SUBJ):{τ}} → (Negator(<X,S>))-(TPerson(<X,τ>))
+	Main, X[t], S:{aorist transitive AGR(SUBJ):{τ} AGR(OBJ):{σ}} → (Negator(<X,S>)) (GPerson(<X,τ>))-mu-(TPerson(<X,σ>))
+	Main, X, S:{perfect intransitive AGR(SUBJ):{τ}} → (Negator(<X,S>))-ha-(DPerson(<X,τ>))
+	Main, X[t], S:{perfect transitive AGR(SUBJ):{τ} AGR(OBJ):{σ}} → (Negator(<X,S>)) (GPerson(<X,τ>))-a-(DPerson(<X,σ>))
+	Main, X, S:{continuative intransitive AGR(SUBJ):{τ}} → (Negator(<X,S>)) gi-(DPerson(<X,τ>))
+	Main, X[t], S:{continuative transitive AGR(SUBJ):{τ} AGR(OBJ):{σ}} → (Negator(<X,S>)) (GPerson(<X,τ>))-gi-(DPerson(<X,σ>))
+	Main, X, S:{future intransitive AGR(SUBJ):{τ}} → (GStem(<X,S>)) ba
+	Main, X, S:{future intransitive negative AGR(SUBJ):{τ}} → (Negator(<X,S>)) ba-(DPerson(<X,τ>))
+	Main, X[t], S:{future transitive AGR(SUBJ):{τ} AGR(OBJ):{σ}} → (GStem(<X,S>)) ba-(ShortDObject(<X,σ>))
+	Main, X[t], S:{future transitive negative AGR(SUBJ):{τ} AGR(OBJ):{σ}} → (Negator(<X,S>)) (GPerson(<X,τ>))-ba-(ShortDObject(<X,σ>))
+	Main, X, S:{progressive intransitive AGR(SUBJ):{τ}} → (GStem(<X,S>)) ña
+	Main, X[t], S:{progressive transitive AGR(SUBJ):{τ} AGR(OBJ):{σ}} → (GStem(<X,S>)) ña-(ShortDObject(<X,σ>))
+	Main, X, S:{recentPerfect intransitive} → ?
+	Main, X[t], S:{recentPerfect transitive AGR(SUBJ):{τ} AGR(OBJ):{σ}} → sun (DPerson(<X,σ>))-ña (GStem(<X,S>))-(NPerson(<X,σ>))
+	Main, X, S:{recentPerfect negative} → ?
+
+Block Negator
+	Negator, X, S:{negative} → m-(Stem(<X,S:{prefixed}>))
+
+Block TPerson
+	TPerson, X, S:{1 sg} → tina
+	TPerson, X, S:{2 sg} → tibu
+	TPerson, X, S:{3 sg masc} → ti
+	TPerson, X, S:{3 sg fem} → tu
+	TPerson, X, S:{1 pl} → tiwa
+	TPerson, X, S:{2 pl} → tü
+	TPerson, X, S:{3 pl} → tiña
+
+Block GPerson
+	GPerson, X, S:{1 sg} → n
+	GPerson, X, S:{2 sg} → b
+	GPerson, X, S:{3 sg masc} → l
+	GPerson, X, S:{3 sg fem} → t
+	GPerson, X, S:{1 pl} → wA
+	GPerson, X, S:{2 pl} → h
+	GPerson, X, S:{3 pl} → hA
+
+Block NPerson
+	NPerson, X, S:{1 sg} → nina
+	NPerson, X, S:{2 sg} → nibu
+	NPerson, X, S:{3 sg masc} → ni
+	NPerson, X, S:{3 sg fem} → nu
+	NPerson, X, S:{1 pl} → niwA
+	NPerson, X, S:{2 pl} → nüü
+	NPerson, X, S:{3 pl} → niñA
+
+Block GStem
+	GStem, X, S:{AGR(SUBJ):{τ}} → (GPerson(<X,τ>))-(Stem(<X,S:{prefixed}>))
+	GStem, X, S:{negative AGR(SUBJ):{τ}} → mama (GPerson(<X,τ>))-X
+
+Block DPerson
+	DPerson, X, S:{1 sg} → dina
+	DPerson, X, S:{2 sg} → dibu
+	DPerson, X, S:{3 sg masc} → li
+	DPerson, X, S:{3 sg fem} → ru
+	DPerson, X, S:{1 pl} → diwa
+	DPerson, X, S:{2 pl} → dü
+	DPerson, X, S:{3 pl} → ña
+
+Block ShortDObject
+	ShortDObject, X, S:{3 sg masc} → i
+	ShortDObject, X, S:{3 sg fem} → u
+	ShortDObject, X, S:{} → (DPerson(<X,S>))
+
+Lexeme: EAT
+Meaning: eat
+Syntactic category: V
+Inflection class: t % transitive
+
+Lexeme: SEE
+Meaning: see
+Syntactic category: V
+Inflection class: t % transitive
+
+Lexeme: RUN
+Meaning: run
+Syntactic category: V
+Inflection class: i % intransitive
+
+PhonologicalClass vowel = a e i o u ü
+PhonologicalClass consonant = b ch d f g h k l m n p r s t v
+PhonologicalClass labial = b m p
+
+Sandhi {
+	- → u- / [consonant]_[labial] % epenthetic u: n-ba => nu-ba
+	- → a- / [consonant]_[consonant] % epenthetic a: n-gi => na-gi
+	[vowel] → G / A-_ % G means "gone"
+	A → a / _ 
+	G → Ø / _ % finished protecting the next vowel
+	a → o / _-u % nariha-u => narihou
+	a → o / _u % nariha-u => narihou
+	a → e / _-i % nariha-i => narihe-i
+	a → e / _i  
+}
+
+% notInteractive
+% noIntermediates
+
+ShowOnlyTruth
+
+Truth = {
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc sg} aorist positive transitive} = hou nu-mu-tina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc sg} aorist positive transitive} = hou nu-mu-tibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc sg} aorist positive transitive} = hou nu-mu-ti
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc sg} aorist positive transitive} = hou nu-mu-tiwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc sg} aorist positive transitive} = hou nu-mu-tü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc sg} aorist positive transitive} = hou nu-mu-tiña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc sg} aorist positive transitive} = hou bu-mu-tina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc sg} aorist positive transitive} = hou bu-mu-tibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc sg} aorist positive transitive} = hou bu-mu-ti
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc sg} aorist positive transitive} = hou bu-mu-tiwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc sg} aorist positive transitive} = hou bu-mu-tü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc sg} aorist positive transitive} = hou bu-mu-tiña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc sg} aorist positive transitive} = hou lu-mu-tina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc sg} aorist positive transitive} = hou lu-mu-tibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc sg} aorist positive transitive} = hou lu-mu-ti
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc sg} aorist positive transitive} = hou lu-mu-tiwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc sg} aorist positive transitive} = hou lu-mu-tü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc sg} aorist positive transitive} = hou lu-mu-tiña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc pl} aorist positive transitive} = hou wa-mu-tina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc pl} aorist positive transitive} = hou wa-mu-tibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc pl} aorist positive transitive} = hou wa-mu-ti
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc pl} aorist positive transitive} = hou wa-mu-tiwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc pl} aorist positive transitive} = hou wa-mu-tü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc pl} aorist positive transitive} = hou wa-mu-tiña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc pl} aorist positive transitive} = hou hu-mu-tina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc pl} aorist positive transitive} = hou hu-mu-tibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc pl} aorist positive transitive} = hou hu-mu-ti
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc pl} aorist positive transitive} = hou hu-mu-tiwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc pl} aorist positive transitive} = hou hu-mu-tü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc pl} aorist positive transitive} = hou hu-mu-tiña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc pl} aorist positive transitive} = hou ha-mu-tina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc pl} aorist positive transitive} = hou ha-mu-tibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc pl} aorist positive transitive} = hou ha-mu-ti
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc pl} aorist positive transitive} = hou ha-mu-tiwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc pl} aorist positive transitive} = hou ha-mu-tü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc pl} aorist positive transitive} = hou ha-mu-tiña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc sg} aorist negative transitive} = m-eigi nu-mu-tina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc sg} aorist negative transitive} = m-eigi nu-mu-tibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc sg} aorist negative transitive} = m-eigi nu-mu-ti
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc sg} aorist negative transitive} = m-eigi nu-mu-tiwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc sg} aorist negative transitive} = m-eigi nu-mu-tü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc sg} aorist negative transitive} = m-eigi nu-mu-tiña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc sg} aorist negative transitive} = m-eigi bu-mu-tina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc sg} aorist negative transitive} = m-eigi bu-mu-tibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc sg} aorist negative transitive} = m-eigi bu-mu-ti
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc sg} aorist negative transitive} = m-eigi bu-mu-tiwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc sg} aorist negative transitive} = m-eigi bu-mu-tü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc sg} aorist negative transitive} = m-eigi bu-mu-tiña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc sg} aorist negative transitive} = m-eigi lu-mu-tina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc sg} aorist negative transitive} = m-eigi lu-mu-tibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc sg} aorist negative transitive} = m-eigi lu-mu-ti
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc sg} aorist negative transitive} = m-eigi lu-mu-tiwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc sg} aorist negative transitive} = m-eigi lu-mu-tü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc sg} aorist negative transitive} = m-eigi lu-mu-tiña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc pl} aorist negative transitive} = m-eigi wa-mu-tina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc pl} aorist negative transitive} = m-eigi wa-mu-tibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc pl} aorist negative transitive} = m-eigi wa-mu-ti
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc pl} aorist negative transitive} = m-eigi wa-mu-tiwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc pl} aorist negative transitive} = m-eigi wa-mu-tü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc pl} aorist negative transitive} = m-eigi wa-mu-tiña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc pl} aorist negative transitive} = m-eigi hu-mu-tina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc pl} aorist negative transitive} = m-eigi hu-mu-tibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc pl} aorist negative transitive} = m-eigi hu-mu-ti
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc pl} aorist negative transitive} = m-eigi hu-mu-tiwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc pl} aorist negative transitive} = m-eigi hu-mu-tü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc pl} aorist negative transitive} = m-eigi hu-mu-tiña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc pl} aorist negative transitive} = m-eigi ha-mu-tina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc pl} aorist negative transitive} = m-eigi ha-mu-tibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc pl} aorist negative transitive} = m-eigi ha-mu-ti
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc pl} aorist negative transitive} = m-eigi ha-mu-tiwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc pl} aorist negative transitive} = m-eigi ha-mu-tü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc pl} aorist negative transitive} = m-eigi ha-mu-tiña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc sg} perfect positive transitive} = hou n-a-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc sg} perfect positive transitive} = hou n-a-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc sg} perfect positive transitive} = hou n-a-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc sg} perfect positive transitive} = hou n-a-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc sg} perfect positive transitive} = hou n-a-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc sg} perfect positive transitive} = hou n-a-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc sg} perfect positive transitive} = hou b-a-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc sg} perfect positive transitive} = hou b-a-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc sg} perfect positive transitive} = hou b-a-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc sg} perfect positive transitive} = hou b-a-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc sg} perfect positive transitive} = hou b-a-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc sg} perfect positive transitive} = hou b-a-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc sg} perfect positive transitive} = hou l-a-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc sg} perfect positive transitive} = hou l-a-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc sg} perfect positive transitive} = hou l-a-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc sg} perfect positive transitive} = hou l-a-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc sg} perfect positive transitive} = hou l-a-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc sg} perfect positive transitive} = hou l-a-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc pl} perfect positive transitive} = hou wa--dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc pl} perfect positive transitive} = hou wa--dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc pl} perfect positive transitive} = hou wa--li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc pl} perfect positive transitive} = hou wa--diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc pl} perfect positive transitive} = hou wa--dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc pl} perfect positive transitive} = hou wa--ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc pl} perfect positive transitive} = hou h-a-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc pl} perfect positive transitive} = hou h-a-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc pl} perfect positive transitive} = hou h-a-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc pl} perfect positive transitive} = hou h-a-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc pl} perfect positive transitive} = hou h-a-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc pl} perfect positive transitive} = hou h-a-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc pl} perfect positive transitive} = hou ha--dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc pl} perfect positive transitive} = hou ha--dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc pl} perfect positive transitive} = hou ha--li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc pl} perfect positive transitive} = hou ha--diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc pl} perfect positive transitive} = hou ha--dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc pl} perfect positive transitive} = hou ha--ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc sg} negative perfect transitive} = m-eigi n-a-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc sg} negative perfect transitive} = m-eigi n-a-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc sg} negative perfect transitive} = m-eigi n-a-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc sg} negative perfect transitive} = m-eigi n-a-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc sg} negative perfect transitive} = m-eigi n-a-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc sg} negative perfect transitive} = m-eigi n-a-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc sg} negative perfect transitive} = m-eigi b-a-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc sg} negative perfect transitive} = m-eigi b-a-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc sg} negative perfect transitive} = m-eigi b-a-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc sg} negative perfect transitive} = m-eigi b-a-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc sg} negative perfect transitive} = m-eigi b-a-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc sg} negative perfect transitive} = m-eigi b-a-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc sg} negative perfect transitive} = m-eigi l-a-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc sg} negative perfect transitive} = m-eigi l-a-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc sg} negative perfect transitive} = m-eigi l-a-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc sg} negative perfect transitive} = m-eigi l-a-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc sg} negative perfect transitive} = m-eigi l-a-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc sg} negative perfect transitive} = m-eigi l-a-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc pl} negative perfect transitive} = m-eigi wa--dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc pl} negative perfect transitive} = m-eigi wa--dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc pl} negative perfect transitive} = m-eigi wa--li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc pl} negative perfect transitive} = m-eigi wa--diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc pl} negative perfect transitive} = m-eigi wa--dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc pl} negative perfect transitive} = m-eigi wa--ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc pl} negative perfect transitive} = m-eigi h-a-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc pl} negative perfect transitive} = m-eigi h-a-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc pl} negative perfect transitive} = m-eigi h-a-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc pl} negative perfect transitive} = m-eigi h-a-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc pl} negative perfect transitive} = m-eigi h-a-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc pl} negative perfect transitive} = m-eigi h-a-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc pl} negative perfect transitive} = m-eigi ha--dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc pl} negative perfect transitive} = m-eigi ha--dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc pl} negative perfect transitive} = m-eigi ha--li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc pl} negative perfect transitive} = m-eigi ha--diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc pl} negative perfect transitive} = m-eigi ha--dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc pl} negative perfect transitive} = m-eigi ha--ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc sg} continuative positive transitive} = hou na-gi-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc sg} continuative positive transitive} = hou na-gi-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc sg} continuative positive transitive} = hou na-gi-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc sg} continuative positive transitive} = hou na-gi-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc sg} continuative positive transitive} = hou na-gi-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc sg} continuative positive transitive} = hou na-gi-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc sg} continuative positive transitive} = hou ba-gi-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc sg} continuative positive transitive} = hou ba-gi-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc sg} continuative positive transitive} = hou ba-gi-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc sg} continuative positive transitive} = hou ba-gi-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc sg} continuative positive transitive} = hou ba-gi-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc sg} continuative positive transitive} = hou ba-gi-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc sg} continuative positive transitive} = hou la-gi-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc sg} continuative positive transitive} = hou la-gi-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc sg} continuative positive transitive} = hou la-gi-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc sg} continuative positive transitive} = hou la-gi-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc sg} continuative positive transitive} = hou la-gi-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc sg} continuative positive transitive} = hou la-gi-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc pl} continuative positive transitive} = hou wa-gi-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc pl} continuative positive transitive} = hou wa-gi-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc pl} continuative positive transitive} = hou wa-gi-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc pl} continuative positive transitive} = hou wa-gi-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc pl} continuative positive transitive} = hou wa-gi-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc pl} continuative positive transitive} = hou wa-gi-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc pl} continuative positive transitive} = hou ha-gi-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc pl} continuative positive transitive} = hou ha-gi-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc pl} continuative positive transitive} = hou ha-gi-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc pl} continuative positive transitive} = hou ha-gi-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc pl} continuative positive transitive} = hou ha-gi-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc pl} continuative positive transitive} = hou ha-gi-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc pl} continuative positive transitive} = hou ha-gi-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc pl} continuative positive transitive} = hou ha-gi-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc pl} continuative positive transitive} = hou ha-gi-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc pl} continuative positive transitive} = hou ha-gi-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc pl} continuative positive transitive} = hou ha-gi-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc pl} continuative positive transitive} = hou ha-gi-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc sg} continuative negative transitive} = m-eigi na-gi-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc sg} continuative negative transitive} = m-eigi na-gi-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc sg} continuative negative transitive} = m-eigi na-gi-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc sg} continuative negative transitive} = m-eigi na-gi-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc sg} continuative negative transitive} = m-eigi na-gi-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc sg} continuative negative transitive} = m-eigi na-gi-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc sg} continuative negative transitive} = m-eigi ba-gi-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc sg} continuative negative transitive} = m-eigi ba-gi-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc sg} continuative negative transitive} = m-eigi ba-gi-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc sg} continuative negative transitive} = m-eigi ba-gi-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc sg} continuative negative transitive} = m-eigi ba-gi-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc sg} continuative negative transitive} = m-eigi ba-gi-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc sg} continuative negative transitive} = m-eigi la-gi-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc sg} continuative negative transitive} = m-eigi la-gi-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc sg} continuative negative transitive} = m-eigi la-gi-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc sg} continuative negative transitive} = m-eigi la-gi-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc sg} continuative negative transitive} = m-eigi la-gi-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc sg} continuative negative transitive} = m-eigi la-gi-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc pl} continuative negative transitive} = m-eigi wa-gi-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc pl} continuative negative transitive} = m-eigi wa-gi-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc pl} continuative negative transitive} = m-eigi wa-gi-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc pl} continuative negative transitive} = m-eigi wa-gi-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc pl} continuative negative transitive} = m-eigi wa-gi-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc pl} continuative negative transitive} = m-eigi wa-gi-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc pl} continuative negative transitive} = m-eigi ha-gi-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc pl} continuative negative transitive} = m-eigi ha-gi-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc pl} continuative negative transitive} = m-eigi ha-gi-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc pl} continuative negative transitive} = m-eigi ha-gi-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc pl} continuative negative transitive} = m-eigi ha-gi-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc pl} continuative negative transitive} = m-eigi ha-gi-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc pl} continuative negative transitive} = m-eigi ha-gi-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc pl} continuative negative transitive} = m-eigi ha-gi-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc pl} continuative negative transitive} = m-eigi ha-gi-li
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc pl} continuative negative transitive} = m-eigi ha-gi-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc pl} continuative negative transitive} = m-eigi ha-gi-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc pl} continuative negative transitive} = m-eigi ha-gi-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc sg} future positive transitive} = n-eigi ba-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc sg} future positive transitive} = n-eigi ba-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc sg} future positive transitive} = n-eigi be-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc sg} future positive transitive} = n-eigi ba-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc sg} future positive transitive} = n-eigi ba-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc sg} future positive transitive} = n-eigi ba-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc sg} future positive transitive} = b-eigi ba-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc sg} future positive transitive} = b-eigi ba-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc sg} future positive transitive} = b-eigi be-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc sg} future positive transitive} = b-eigi ba-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc sg} future positive transitive} = b-eigi ba-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc sg} future positive transitive} = b-eigi ba-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc sg} future positive transitive} = l-eigi ba-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc sg} future positive transitive} = l-eigi ba-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc sg} future positive transitive} = l-eigi be-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc sg} future positive transitive} = l-eigi ba-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc sg} future positive transitive} = l-eigi ba-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc sg} future positive transitive} = l-eigi ba-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc pl} future positive transitive} = we-igi ba-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc pl} future positive transitive} = we-igi ba-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc pl} future positive transitive} = we-igi be-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc pl} future positive transitive} = we-igi ba-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc pl} future positive transitive} = we-igi ba-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc pl} future positive transitive} = we-igi ba-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc pl} future positive transitive} = h-eigi ba-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc pl} future positive transitive} = h-eigi ba-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc pl} future positive transitive} = h-eigi be-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc pl} future positive transitive} = h-eigi ba-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc pl} future positive transitive} = h-eigi ba-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc pl} future positive transitive} = h-eigi ba-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc pl} future positive transitive} = he-igi ba-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc pl} future positive transitive} = he-igi ba-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc pl} future positive transitive} = he-igi be-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc pl} future positive transitive} = he-igi ba-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc pl} future positive transitive} = he-igi ba-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc pl} future positive transitive} = he-igi ba-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc sg} future negative transitive} = m-eigi nu-ba-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc sg} future negative transitive} = m-eigi nu-ba-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc sg} future negative transitive} = m-eigi nu-be-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc sg} future negative transitive} = m-eigi nu-ba-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc sg} future negative transitive} = m-eigi nu-ba-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc sg} future negative transitive} = m-eigi nu-ba-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc sg} future negative transitive} = m-eigi bu-ba-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc sg} future negative transitive} = m-eigi bu-ba-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc sg} future negative transitive} = m-eigi bu-be-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc sg} future negative transitive} = m-eigi bu-ba-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc sg} future negative transitive} = m-eigi bu-ba-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc sg} future negative transitive} = m-eigi bu-ba-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc sg} future negative transitive} = m-eigi lu-ba-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc sg} future negative transitive} = m-eigi lu-ba-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc sg} future negative transitive} = m-eigi lu-be-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc sg} future negative transitive} = m-eigi lu-ba-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc sg} future negative transitive} = m-eigi lu-ba-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc sg} future negative transitive} = m-eigi lu-ba-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc pl} future negative transitive} = m-eigi wa-ba-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc pl} future negative transitive} = m-eigi wa-ba-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc pl} future negative transitive} = m-eigi wa-be-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc pl} future negative transitive} = m-eigi wa-ba-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc pl} future negative transitive} = m-eigi wa-ba-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc pl} future negative transitive} = m-eigi wa-ba-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc pl} future negative transitive} = m-eigi hu-ba-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc pl} future negative transitive} = m-eigi hu-ba-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc pl} future negative transitive} = m-eigi hu-be-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc pl} future negative transitive} = m-eigi hu-ba-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc pl} future negative transitive} = m-eigi hu-ba-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc pl} future negative transitive} = m-eigi hu-ba-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc pl} future negative transitive} = m-eigi ha-ba-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc pl} future negative transitive} = m-eigi ha-ba-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc pl} future negative transitive} = m-eigi ha-be-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc pl} future negative transitive} = m-eigi ha-ba-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc pl} future negative transitive} = m-eigi ha-ba-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc pl} future negative transitive} = m-eigi ha-ba-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc sg} positive progressive transitive} = n-eigi ña-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc sg} positive progressive transitive} = n-eigi ña-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc sg} positive progressive transitive} = n-eigi ñe-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc sg} positive progressive transitive} = n-eigi ña-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc sg} positive progressive transitive} = n-eigi ña-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc sg} positive progressive transitive} = n-eigi ña-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc sg} positive progressive transitive} = b-eigi ña-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc sg} positive progressive transitive} = b-eigi ña-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc sg} positive progressive transitive} = b-eigi ñe-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc sg} positive progressive transitive} = b-eigi ña-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc sg} positive progressive transitive} = b-eigi ña-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc sg} positive progressive transitive} = b-eigi ña-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc sg} positive progressive transitive} = l-eigi ña-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc sg} positive progressive transitive} = l-eigi ña-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc sg} positive progressive transitive} = l-eigi ñe-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc sg} positive progressive transitive} = l-eigi ña-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc sg} positive progressive transitive} = l-eigi ña-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc sg} positive progressive transitive} = l-eigi ña-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc pl} positive progressive transitive} = we-igi ña-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc pl} positive progressive transitive} = we-igi ña-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc pl} positive progressive transitive} = we-igi ñe-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc pl} positive progressive transitive} = we-igi ña-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc pl} positive progressive transitive} = we-igi ña-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc pl} positive progressive transitive} = we-igi ña-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc pl} positive progressive transitive} = h-eigi ña-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc pl} positive progressive transitive} = h-eigi ña-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc pl} positive progressive transitive} = h-eigi ñe-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc pl} positive progressive transitive} = h-eigi ña-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc pl} positive progressive transitive} = h-eigi ña-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc pl} positive progressive transitive} = h-eigi ña-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc pl} positive progressive transitive} = he-igi ña-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc pl} positive progressive transitive} = he-igi ña-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc pl} positive progressive transitive} = he-igi ñe-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc pl} positive progressive transitive} = he-igi ña-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc pl} positive progressive transitive} = he-igi ña-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc pl} positive progressive transitive} = he-igi ña-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc sg} negative progressive transitive} = mama na-hou ña-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc sg} negative progressive transitive} = mama na-hou ña-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc sg} negative progressive transitive} = mama na-hou ñe-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc sg} negative progressive transitive} = mama na-hou ña-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc sg} negative progressive transitive} = mama na-hou ña-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc sg} negative progressive transitive} = mama na-hou ña-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc sg} negative progressive transitive} = mama ba-hou ña-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc sg} negative progressive transitive} = mama ba-hou ña-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc sg} negative progressive transitive} = mama ba-hou ñe-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc sg} negative progressive transitive} = mama ba-hou ña-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc sg} negative progressive transitive} = mama ba-hou ña-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc sg} negative progressive transitive} = mama ba-hou ña-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc sg} negative progressive transitive} = mama la-hou ña-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc sg} negative progressive transitive} = mama la-hou ña-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc sg} negative progressive transitive} = mama la-hou ñe-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc sg} negative progressive transitive} = mama la-hou ña-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc sg} negative progressive transitive} = mama la-hou ña-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc sg} negative progressive transitive} = mama la-hou ña-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc pl} negative progressive transitive} = mama wa-hou ña-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc pl} negative progressive transitive} = mama wa-hou ña-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc pl} negative progressive transitive} = mama wa-hou ñe-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc pl} negative progressive transitive} = mama wa-hou ña-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc pl} negative progressive transitive} = mama wa-hou ña-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc pl} negative progressive transitive} = mama wa-hou ña-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc pl} negative progressive transitive} = mama ha-hou ña-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc pl} negative progressive transitive} = mama ha-hou ña-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc pl} negative progressive transitive} = mama ha-hou ñe-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc pl} negative progressive transitive} = mama ha-hou ña-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc pl} negative progressive transitive} = mama ha-hou ña-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc pl} negative progressive transitive} = mama ha-hou ña-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc pl} negative progressive transitive} = mama ha-hou ña-dina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc pl} negative progressive transitive} = mama ha-hou ña-dibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc pl} negative progressive transitive} = mama ha-hou ñe-i
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc pl} negative progressive transitive} = mama ha-hou ña-diwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc pl} negative progressive transitive} = mama ha-hou ña-dü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc pl} negative progressive transitive} = mama ha-hou ña-ña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc sg} positive recentPerfect transitive} = sun dina-ña n-eigi-nina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc sg} positive recentPerfect transitive} = sun dibu-ña n-eigi-nibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc sg} positive recentPerfect transitive} = sun li-ña n-eigi-ni
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc sg} positive recentPerfect transitive} = sun diwa-ña n-eigi-niwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc sg} positive recentPerfect transitive} = sun dü-ña n-eigi-nüü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc sg} positive recentPerfect transitive} = sun ña-ña n-eigi-niña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc sg} positive recentPerfect transitive} = sun dina-ña b-eigi-nina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc sg} positive recentPerfect transitive} = sun dibu-ña b-eigi-nibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc sg} positive recentPerfect transitive} = sun li-ña b-eigi-ni
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc sg} positive recentPerfect transitive} = sun diwa-ña b-eigi-niwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc sg} positive recentPerfect transitive} = sun dü-ña b-eigi-nüü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc sg} positive recentPerfect transitive} = sun ña-ña b-eigi-niña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc sg} positive recentPerfect transitive} = sun dina-ña l-eigi-nina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc sg} positive recentPerfect transitive} = sun dibu-ña l-eigi-nibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc sg} positive recentPerfect transitive} = sun li-ña l-eigi-ni
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc sg} positive recentPerfect transitive} = sun diwa-ña l-eigi-niwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc sg} positive recentPerfect transitive} = sun dü-ña l-eigi-nüü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc sg} positive recentPerfect transitive} = sun ña-ña l-eigi-niña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc pl} positive recentPerfect transitive} = sun dina-ña we-igi-nina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc pl} positive recentPerfect transitive} = sun dibu-ña we-igi-nibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc pl} positive recentPerfect transitive} = sun li-ña we-igi-ni
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc pl} positive recentPerfect transitive} = sun diwa-ña we-igi-niwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc pl} positive recentPerfect transitive} = sun dü-ña we-igi-nüü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc pl} positive recentPerfect transitive} = sun ña-ña we-igi-niña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc pl} positive recentPerfect transitive} = sun dina-ña h-eigi-nina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc pl} positive recentPerfect transitive} = sun dibu-ña h-eigi-nibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc pl} positive recentPerfect transitive} = sun li-ña h-eigi-ni
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc pl} positive recentPerfect transitive} = sun diwa-ña h-eigi-niwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc pl} positive recentPerfect transitive} = sun dü-ña h-eigi-nüü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc pl} positive recentPerfect transitive} = sun ña-ña h-eigi-niña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc pl} positive recentPerfect transitive} = sun dina-ña he-igi-nina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc pl} positive recentPerfect transitive} = sun dibu-ña he-igi-nibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc pl} positive recentPerfect transitive} = sun li-ña he-igi-ni
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc pl} positive recentPerfect transitive} = sun diwa-ña he-igi-niwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc pl} positive recentPerfect transitive} = sun dü-ña he-igi-nüü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc pl} positive recentPerfect transitive} = sun ña-ña he-igi-niña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc sg} negative recentPerfect transitive} = sun dina-ña mama na-hou-nina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc sg} negative recentPerfect transitive} = sun dibu-ña mama na-hou-nibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc sg} negative recentPerfect transitive} = sun li-ña mama na-hou-ni
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc sg} negative recentPerfect transitive} = sun diwa-ña mama na-hou-niwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc sg} negative recentPerfect transitive} = sun dü-ña mama na-hou-nüü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc sg} negative recentPerfect transitive} = sun ña-ña mama na-hou-niña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc sg} negative recentPerfect transitive} = sun dina-ña mama ba-hou-nina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc sg} negative recentPerfect transitive} = sun dibu-ña mama ba-hou-nibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc sg} negative recentPerfect transitive} = sun li-ña mama ba-hou-ni
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc sg} negative recentPerfect transitive} = sun diwa-ña mama ba-hou-niwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc sg} negative recentPerfect transitive} = sun dü-ña mama ba-hou-nüü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc sg} negative recentPerfect transitive} = sun ña-ña mama ba-hou-niña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc sg} negative recentPerfect transitive} = sun dina-ña mama la-hou-nina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc sg} negative recentPerfect transitive} = sun dibu-ña mama la-hou-nibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc sg} negative recentPerfect transitive} = sun li-ña mama la-hou-ni
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc sg} negative recentPerfect transitive} = sun diwa-ña mama la-hou-niwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc sg} negative recentPerfect transitive} = sun dü-ña mama la-hou-nüü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc sg} negative recentPerfect transitive} = sun ña-ña mama la-hou-niña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{1 masc pl} negative recentPerfect transitive} = sun dina-ña mama wa-hou-nina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{1 masc pl} negative recentPerfect transitive} = sun dibu-ña mama wa-hou-nibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{1 masc pl} negative recentPerfect transitive} = sun li-ña mama wa-hou-ni
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{1 masc pl} negative recentPerfect transitive} = sun diwa-ña mama wa-hou-niwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{1 masc pl} negative recentPerfect transitive} = sun dü-ña mama wa-hou-nüü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{1 masc pl} negative recentPerfect transitive} = sun ña-ña mama wa-hou-niña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{2 masc pl} negative recentPerfect transitive} = sun dina-ña mama ha-hou-nina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{2 masc pl} negative recentPerfect transitive} = sun dibu-ña mama ha-hou-nibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{2 masc pl} negative recentPerfect transitive} = sun li-ña mama ha-hou-ni
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{2 masc pl} negative recentPerfect transitive} = sun diwa-ña mama ha-hou-niwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{2 masc pl} negative recentPerfect transitive} = sun dü-ña mama ha-hou-nüü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{2 masc pl} negative recentPerfect transitive} = sun ña-ña mama ha-hou-niña
+EAT:{AGR(OBJ):{1 masc sg} AGR(SUBJ):{3 masc pl} negative recentPerfect transitive} = sun dina-ña mama ha-hou-nina
+EAT:{AGR(OBJ):{2 masc sg} AGR(SUBJ):{3 masc pl} negative recentPerfect transitive} = sun dibu-ña mama ha-hou-nibu
+EAT:{AGR(OBJ):{3 masc sg} AGR(SUBJ):{3 masc pl} negative recentPerfect transitive} = sun li-ña mama ha-hou-ni
+EAT:{AGR(OBJ):{1 masc pl} AGR(SUBJ):{3 masc pl} negative recentPerfect transitive} = sun diwa-ña mama ha-hou-niwa
+EAT:{AGR(OBJ):{2 masc pl} AGR(SUBJ):{3 masc pl} negative recentPerfect transitive} = sun dü-ña mama ha-hou-nüü
+EAT:{AGR(OBJ):{3 masc pl} AGR(SUBJ):{3 masc pl} negative recentPerfect transitive} = sun ña-ña mama ha-hou-niña
+EAT:{AGR(OBJ):{3 fem sg} AGR(SUBJ):{3 fem sg} aorist positive transitive} = hou tu-mu-tu
+EAT:{AGR(OBJ):{3 fem sg} AGR(SUBJ):{3 fem sg} aorist negative transitive} = m-eigi tu-mu-tu
+EAT:{AGR(OBJ):{3 fem sg} AGR(SUBJ):{3 fem sg} perfect positive transitive} = hou t-a-ru
+EAT:{AGR(OBJ):{3 fem sg} AGR(SUBJ):{3 fem sg} negative perfect transitive} = m-eigi t-a-ru
+EAT:{AGR(OBJ):{3 fem sg} AGR(SUBJ):{3 fem sg} continuative positive transitive} = hou ta-gi-ru
+EAT:{AGR(OBJ):{3 fem sg} AGR(SUBJ):{3 fem sg} continuative negative transitive} = m-eigi ta-gi-ru
+EAT:{AGR(OBJ):{3 fem sg} AGR(SUBJ):{3 fem sg} future positive transitive} = t-eigi bo-u
+EAT:{AGR(OBJ):{3 fem sg} AGR(SUBJ):{3 fem sg} future negative transitive} = m-eigi tu-bo-u
+EAT:{AGR(OBJ):{3 fem sg} AGR(SUBJ):{3 fem sg} positive progressive transitive} = t-eigi ño-u
+EAT:{AGR(OBJ):{3 fem sg} AGR(SUBJ):{3 fem sg} negative progressive transitive} = mama ta-hou ño-u
+EAT:{AGR(OBJ):{3 fem sg} AGR(SUBJ):{3 fem sg} positive recentPerfect transitive} = sun ru-ña t-eigi-nu
+EAT:{AGR(OBJ):{3 fem sg} AGR(SUBJ):{3 fem sg} negative recentPerfect transitive} = sun ru-ña mama ta-hou-nu
+EAT:{AGR(SUBJ):{1 masc sg} aorist intransitive positive} = hou-tina
+EAT:{AGR(SUBJ):{2 masc sg} aorist intransitive positive} = hou-tibu
+EAT:{AGR(SUBJ):{3 masc sg} aorist intransitive positive} = hou-ti
+EAT:{AGR(SUBJ):{1 masc pl} aorist intransitive positive} = hou-tiwa
+EAT:{AGR(SUBJ):{2 masc pl} aorist intransitive positive} = hou-tü
+EAT:{AGR(SUBJ):{3 masc pl} aorist intransitive positive} = hou-tiña
+EAT:{AGR(SUBJ):{1 masc sg} aorist intransitive negative} = m-eigi-tina
+EAT:{AGR(SUBJ):{2 masc sg} aorist intransitive negative} = m-eigi-tibu
+EAT:{AGR(SUBJ):{3 masc sg} aorist intransitive negative} = m-eigi-ti
+EAT:{AGR(SUBJ):{1 masc pl} aorist intransitive negative} = m-eigi-tiwa
+EAT:{AGR(SUBJ):{2 masc pl} aorist intransitive negative} = m-eigi-tü
+EAT:{AGR(SUBJ):{3 masc pl} aorist intransitive negative} = m-eigi-tiña
+EAT:{AGR(SUBJ):{1 masc sg} intransitive perfect positive} = hou-ha-dina
+EAT:{AGR(SUBJ):{2 masc sg} intransitive perfect positive} = hou-ha-dibu
+EAT:{AGR(SUBJ):{3 masc sg} intransitive perfect positive} = hou-ha-li
+EAT:{AGR(SUBJ):{1 masc pl} intransitive perfect positive} = hou-ha-diwa
+EAT:{AGR(SUBJ):{2 masc pl} intransitive perfect positive} = hou-ha-dü
+EAT:{AGR(SUBJ):{3 masc pl} intransitive perfect positive} = hou-ha-ña
+EAT:{AGR(SUBJ):{1 masc sg} intransitive negative perfect} = m-eigi-ha-dina
+EAT:{AGR(SUBJ):{2 masc sg} intransitive negative perfect} = m-eigi-ha-dibu
+EAT:{AGR(SUBJ):{3 masc sg} intransitive negative perfect} = m-eigi-ha-li
+EAT:{AGR(SUBJ):{1 masc pl} intransitive negative perfect} = m-eigi-ha-diwa
+EAT:{AGR(SUBJ):{2 masc pl} intransitive negative perfect} = m-eigi-ha-dü
+EAT:{AGR(SUBJ):{3 masc pl} intransitive negative perfect} = m-eigi-ha-ña
+EAT:{AGR(SUBJ):{1 masc sg} continuative intransitive positive} = hou gi-dina
+EAT:{AGR(SUBJ):{2 masc sg} continuative intransitive positive} = hou gi-dibu
+EAT:{AGR(SUBJ):{3 masc sg} continuative intransitive positive} = hou gi-li
+EAT:{AGR(SUBJ):{1 masc pl} continuative intransitive positive} = hou gi-diwa
+EAT:{AGR(SUBJ):{2 masc pl} continuative intransitive positive} = hou gi-dü
+EAT:{AGR(SUBJ):{3 masc pl} continuative intransitive positive} = hou gi-ña
+EAT:{AGR(SUBJ):{1 masc sg} continuative intransitive negative} = m-eigi gi-dina
+EAT:{AGR(SUBJ):{2 masc sg} continuative intransitive negative} = m-eigi gi-dibu
+EAT:{AGR(SUBJ):{3 masc sg} continuative intransitive negative} = m-eigi gi-li
+EAT:{AGR(SUBJ):{1 masc pl} continuative intransitive negative} = m-eigi gi-diwa
+EAT:{AGR(SUBJ):{2 masc pl} continuative intransitive negative} = m-eigi gi-dü
+EAT:{AGR(SUBJ):{3 masc pl} continuative intransitive negative} = m-eigi gi-ña
+EAT:{AGR(SUBJ):{1 masc sg} future intransitive positive} = n-eigi ba
+EAT:{AGR(SUBJ):{2 masc sg} future intransitive positive} = b-eigi ba
+EAT:{AGR(SUBJ):{3 masc sg} future intransitive positive} = l-eigi ba
+EAT:{AGR(SUBJ):{1 masc pl} future intransitive positive} = we-igi ba
+EAT:{AGR(SUBJ):{2 masc pl} future intransitive positive} = h-eigi ba
+EAT:{AGR(SUBJ):{3 masc pl} future intransitive positive} = he-igi ba
+EAT:{AGR(SUBJ):{1 masc sg} future intransitive negative} = m-eigi ba-dina
+EAT:{AGR(SUBJ):{2 masc sg} future intransitive negative} = m-eigi ba-dibu
+EAT:{AGR(SUBJ):{3 masc sg} future intransitive negative} = m-eigi ba-li
+EAT:{AGR(SUBJ):{1 masc pl} future intransitive negative} = m-eigi ba-diwa
+EAT:{AGR(SUBJ):{2 masc pl} future intransitive negative} = m-eigi ba-dü
+EAT:{AGR(SUBJ):{3 masc pl} future intransitive negative} = m-eigi ba-ña
+EAT:{AGR(SUBJ):{1 masc sg} intransitive positive progressive }= n-eigi ña
+EAT:{AGR(SUBJ):{2 masc sg} intransitive positive progressive }= b-eigi ña
+EAT:{AGR(SUBJ):{3 masc sg} intransitive positive progressive }= l-eigi ña
+EAT:{AGR(SUBJ):{1 masc pl} intransitive positive progressive }= we-igi ña
+EAT:{AGR(SUBJ):{2 masc pl} intransitive positive progressive }= h-eigi ña
+EAT:{AGR(SUBJ):{3 masc pl} intransitive positive progressive }= he-igi ña
+EAT:{AGR(SUBJ):{1 masc sg} intransitive negative progressive} = mama na-hou ña
+EAT:{AGR(SUBJ):{2 masc sg} intransitive negative progressive} = mama ba-hou ña
+EAT:{AGR(SUBJ):{3 masc sg} intransitive negative progressive} = mama la-hou ña
+EAT:{AGR(SUBJ):{1 masc pl} intransitive negative progressive} = mama wa-hou ña
+EAT:{AGR(SUBJ):{2 masc pl} intransitive negative progressive} = mama ha-hou ña
+EAT:{AGR(SUBJ):{3 masc pl} intransitive negative progressive} = mama ha-hou ña
+EAT:{AGR(SUBJ):{3 fem sg} aorist intransitive positive} = hou-tu
+EAT:{AGR(SUBJ):{3 fem sg} aorist intransitive negative} = m-eigi-tu
+EAT:{AGR(SUBJ):{3 fem sg} intransitive perfect positive} = hou-ha-ru
+EAT:{AGR(SUBJ):{3 fem sg} intransitive negative perfect} = m-eigi-ha-ru
+EAT:{AGR(SUBJ):{3 fem sg} continuative intransitive positive} = hou gi-ru
+EAT:{AGR(SUBJ):{3 fem sg} continuative intransitive negative} = m-eigi gi-ru
+EAT:{AGR(SUBJ):{3 fem sg} future intransitive positive} = t-eigi ba
+EAT:{AGR(SUBJ):{3 fem sg} future intransitive negative} = m-eigi ba-ru
+EAT:{AGR(SUBJ):{3 fem sg} intransitive positive progressive} = t-eigi ña
+EAT:{AGR(SUBJ):{3 fem sg} intransitive negative progressive} = mama ta-hou ña
+}

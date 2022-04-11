@@ -1,0 +1,110 @@
+﻿Language: Bhojpuri verbs
+Author: Megan Dennis, Fall 2012
+
+For LIN 617 midterm exam
+Megan Dennis
+
+Paradigm Function
+    PF(<L,σ>) = II(I(Stem(<L, σ>)))
+
+Rules of referral
+
+Stem-selection rules
+     Stem(<SEE, σ:{3 sg}>) = <dēkh, σ>
+     Stem(<SEE, σ:{pres}>) = <dēkh, σ>
+     Stem(<SEE, σ:{opt}>) = <dēkh, σ>
+     Stem(<SEE, σ:{fut indic 1 sg}>) = <dēkh, σ>
+     Stem(<SEE, σ:{}>) = <dekh, σ>
+
+Rules of exponence
+    Block I
+         I, X[],σ:{1 pres indic} → Xīl 
+         I, X[],σ:{pres indic} → Xæl 
+         I, X[],σ:{pres indic masc 2} → Xāl 
+         I, X[],σ:{pres indic masc 3 sg} → Xāl 
+         I, X[],σ:{pres indic fem 3 sg} → Xēl 
+         I, X[],σ:{past indic} → Xal 
+         I, X[],σ:{fut indic} → Xab 
+         I, X[],σ:{fut indic 3 sg} → Xī 
+         I, X[],σ:{fut indic 3 pl} → Xih 
+
+    Block II
+         II, X[],σ:{2 fem indic} → Xiu 
+         II, X[],σ:{2} → Xā 
+         II, X[],σ:{3 pl} → Xæ̃ 
+         II, X[],σ:{3 pl fem pres indic} → Xini 
+         II, X[],σ:{3 pl fem past indic} → Xini 
+         II, X[],σ:{1 pl fut indic} → Xæ̃ 
+         II, X[],σ:{1 past indic} → Xī̃ 
+         II, X[],σ:{1 opt} → Xī̃ 
+         II, X[],σ:{3 sg fem pres indic} → Xē 
+         II, X[],σ:{3 sg fem past indic} → Xi
+         II, X[],σ:{3 sg opt} → Xæ 
+         II, X[],σ:{pres indic} → Xā 
+
+Sandhi
+
+Lexeme: SEE
+Meaning: grasp
+Syntactic category: V
+Inflection class:
+
+
+ParadigmSchema(V) = {
+	(indic pres/past/fut fem/masc sg/pl 1/2/3) /
+	(opt fem/masc sg/pl 1/2/3)
+}
+
+ShowOnlyTruth
+
+Truth = {
+SEE:{1 sg masc pres indic} = dēkhīlā
+SEE:{1 sg fem pres indic} = dēkhīlā
+SEE:{1 pl masc pres indic} = dēkhīlā
+SEE:{1 pl fem pres indic} = dēkhīlā
+SEE:{2 sg masc pres indic} = dēkhālā 
+SEE:{2 sg fem pres indic} = dēkhæliu
+SEE:{2 pl masc pres indic} = dēkhālā
+SEE:{2 pl fem pres indic} = dēkhæliu
+SEE:{3 sg masc pres indic} = dēkhālā
+SEE:{3 sg fem pres indic} = dēkhēlē
+SEE:{3 pl masc pres indic} = dēkhælæ̃
+SEE:{3 pl fem pres indic} = dēkhælini
+SEE:{1 sg masc past indic} = dekhalī̃
+SEE:{1 sg fem past indic} = dekhalī̃
+SEE:{1 pl masc past indic} = dekhalī̃
+SEE:{1 pl fem past indic} = dekhalī̃
+SEE:{2 sg masc past indic} = dekhalā
+SEE:{2 sg fem past indic} = dekhaliu
+SEE:{2 pl masc past indic} = dekhalā
+SEE:{2 pl fem past indic} = dekhaliu
+SEE:{3 sg masc past indic} = dēkhal
+SEE:{3 sg fem past indic} = dēkhali
+SEE:{3 pl masc past indic} = dekhalæ̃
+SEE:{3 pl fem past indic} = dekhalini
+SEE:{1 sg masc fut indic} = dēkhab
+SEE:{1 sg fem fut indic} = dēkhab
+SEE:{1 pl masc fut indic} = dekhabæ̃
+SEE:{1 pl fem fut indic} = dekhabæ̃
+SEE:{2 sg masc fut indic} = dekhabā
+SEE:{2 sg fem fut indic} = dekhabiu
+SEE:{2 pl masc fut indic} = dekhabā
+SEE:{2 pl fem fut indic} = dekhabiu
+SEE:{3 sg masc fut indic} = dēkhī
+SEE:{3 sg fem fut indic} = dēkhī
+SEE:{3 pl masc fut indic} = dekhihæ̃
+SEE:{3 pl fem fut indic} = dekhihæ̃
+SEE:{1 sg masc opt} = dēkhī̃
+SEE:{1 sg fem opt} = dēkhī̃
+SEE:{1 pl masc opt} = dēkhī̃
+SEE:{1 pl fem opt} = dēkhī̃
+SEE:{2 sg masc opt} = dēkhā
+SEE:{2 sg fem opt} = dēkhā
+SEE:{2 pl masc opt} = dēkhā
+SEE:{2 pl fem opt} = dēkhā
+SEE:{3 sg masc opt} = dēkhæ
+SEE:{3 sg fem opt} = dēkhæ
+SEE:{3 pl masc opt} = dēkhæ̃
+SEE:{3 pl fem opt} = dēkhæ̃
+}
+

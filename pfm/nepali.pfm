@@ -1,0 +1,276 @@
+Language: Nepali verbs
+Author: Raphael Finkel
+
+Authority: Olivier Bonami and Giles Boyé, WOTM 5 -- June 26, 2010
+Transcribed by: Raphael Finkel 5/2011
+The purpose is to experiment with PFM syntax and semantics.
+I am not sure that this transcription is accurate.
+
+Paradigm Function
+    PF(<L, σ>) = 1-10(Stem(<L, σ>))
+
+Rules of referral
+
+Stem-selection rules
+     Stem(<Birsanu, S:{}>) = birs
+
+Rules of exponence
+    Block 1
+         1, XV[],S:{fut} → Xu
+         1, XV[cc],S:{fut} → Xe▹
+         1, XV[cv],S:{fut} → Xe▹
+         1, XV[cc],S:{ipfv} → Xa
+         1, XV[vv],S:{ipfv} → Xu
+    Block 2
+         2, XV[],S:{ipfv} → X◃n
+    Block 3
+         3, XV[],S:{ipfv long} → Xd
+    Block 4
+         4, XV[],S:{neg long a} → Xi
+         4, XV[],S:{ipfv long neg b} → Xaj
+         4, XV[],S:{pst neg pfv b} → Xe 
+         4, XV[],S:{pst neg pfv 2 alpha b} → Xi
+         4, XV[],S:{ipfv long pos} → Xa
+         4, XV[],S:{neg short fut} → Xoj
+    Block 5
+         5, XV[],S:{neg} → Xna▹
+         5, XV[],S:{neg inj} → naX
+         5, XV[],S:{neg imp} → naX
+    Block 6
+         6, XV[],S:{pos prs} → Xʧʰa▹
+         6, XV[],S:{pst ipfv} → Xtʰ
+    Block 7
+         7, XV[],S:{pst ipfv} → Xi
+         7, XV[],S:{prs pos a beta} → Xi
+    Block 8
+         8, XV[],S:{prs pos a alpha} → Xε
+         8, XV[],S:{prs pos 1 a alpha} → Xu
+         8, XV[],S:{fut pos 1 a alpha} → Xũ % added by Raphael
+         8, XV[],S:{ind 1 a} → Xã
+         8, XV[],S:{fut 1 a} → Xũ
+         8, XV[],S:{inj 1 a} → Xũ
+         8, XV[],S:{1 beta b} → Xaũ
+         8, XV[],S:{ind 2 beta} → Xau
+         8, XV[],S:{inj 2} → Xe
+         8, XV[],S:{inj 3} → Xo
+    Block 9
+         9, XV[],S:{pos fut a} → Xli
+         9, XV[],S:{pos fut b} → Xlā
+         9, XV[],S:{pos fut 1 alpha a} → (9(<X,S:{a\b}>))
+	Block 10
+         10, XV[],S:{2 alpha} → Xs
+         10, XV[],S:{3 beta} → Xn
+         10, XV[],S:{inj 3 alpha} → Xs
+	Block 1-10
+         1-10, XV[],S:{neg fut long} → na(1-10(<X,S:{neg\pos}>))
+         1-10, XV[],S:{} → (7-10(6(5(4(3(2(1(<X,S>)))))))) % default
+	Block 7-10
+         7-10, XV[],S:{1 alpha pst ipfv} → Xẽ
+         7-10, XV[],S:{3 alpha b pst ipfv} → Xjo
+         7-10, XV[],S:{3 beta b pst ipfv} → Xe
+         7-10, XV[],S:{pos pst pfv} → (7-10(<X,S:{pfv\ipfv}>))
+         7-10, XV[],S:{} → (8-10(7(<X,S>)))
+	Block 8-10
+         8-10, XV[],S:{ind neg 1 alpha short} → X
+         8-10, XV[cv],S:{imp 2 beta} → Xu
+         8-10, XV[vv],S:{imp 2 beta} → Xu
+         8-10, XV[],S:{imp 2 beta} → Xa
+         8-10, XV[cc],S:{imp 2 alpha} → Xii
+         8-10, XV[],S:{imp 2 alpha} → X
+         8-10, XV[],S:{} → (10(9(8(<X,S>))))
+
+PhonologicalClass vow = i e a o u ε ā ã ũ ẽ
+PhonologicalClass cons = k kʰ g gʰ ŋ ʦ ʧʰ ǳ ǳʰ ɲ ʈ ʈʰ ɖ ɖʰ ɳ t tʰ d dʰ n p pʰ b bʰ m j r l w sʰ ʂ s h
+PhonologicalClass nasalCons = m n ɳ ɲ ŋ
+PhonologicalClass nonCont = k kʰ g gʰ ŋ ʦ ʧʰ ǳ ǳʰ ʈ ʈʰ ɖ ɖʰ t tʰ d dʰ p pʰ b bʰ
+PhonologicalClass abstract = ◃ ▹
+
+Sandhi {
+	[vow]▹ → Ø / _[vow] 
+	◃[nasalCons] →  ̃ / [vow]_[nonCont]
+	◃[cons] → Ø / [cons]_
+	[abstract] → Ø / _
+	o → u / _[nasalCons]
+	i → j / _a
+}
+
+Lexeme: Birsanu
+Meaning: forget
+Syntactic category: V
+Inflection class: cc
+
+ParadigmSchema(V) = {
+	(ind short/long prs ipfv pos/neg 1/2/3 alpha/beta a/b) /
+	(ind long pst pfv pos/neg 1/2/3 alpha/beta a/b) /
+	(ind short/long pst ipfv pos/neg 1/2/3 alpha/beta a/b) /
+	(ind short fut pos 1/2/3 alpha/beta a/b) /
+	(ind short/long fut neg 1/2/3 alpha/beta a/b) /
+	(inj pos/neg 1/2/3 alpha/beta a/b) /
+	(imp pos/neg 2 alpha/beta a/b)
+}
+
+Disallow = {
+	1 (alpha b) / (beta a)
+}
+
+Truth = {
+Birsanu:{ind short prs ipfv pos 1 alpha a} = birsãʧʰu  % present
+Birsanu:{ind short prs ipfv pos 1 beta b} = birsãʧʰaũ
+Birsanu:{ind short prs ipfv pos 2 alpha a} = birsãʧʰεs
+Birsanu:{ind short prs ipfv pos 2 alpha b} = birsãʧʰas
+Birsanu:{ind short prs ipfv pos 2 beta a} = birsãʧʰjau
+Birsanu:{ind short prs ipfv pos 2 beta b} = birsãʧʰau
+Birsanu:{ind short prs ipfv pos 3 alpha a} = birsãʧʰε
+Birsanu:{ind short prs ipfv pos 3 alpha b} = birsãʧʰa
+Birsanu:{ind short prs ipfv pos 3 beta a} = birsãʧʰin
+Birsanu:{ind short prs ipfv pos 3 beta b} = birsãʧʰan
+Birsanu:{ind short prs ipfv neg 1 alpha a} = birsanna % short negative present
+Birsanu:{ind short prs ipfv neg 1 beta b} = birsannaũ
+Birsanu:{ind short prs ipfv neg 2 alpha a} = birsannas
+Birsanu:{ind short prs ipfv neg 2 alpha b} = birsannas
+Birsanu:{ind short prs ipfv neg 2 beta a} = birsannau
+Birsanu:{ind short prs ipfv neg 2 beta b} = birsannau
+Birsanu:{ind short prs ipfv neg 3 alpha a} = birsanna
+Birsanu:{ind short prs ipfv neg 3 alpha b} = birsanna
+Birsanu:{ind short prs ipfv neg 3 beta a} = birsannan
+Birsanu:{ind short prs ipfv neg 3 beta b} = birsannan
+Birsanu:{ind long prs ipfv pos 1 alpha a } = birsãdaʧʰu % narrative present
+Birsanu:{ind long prs ipfv pos 1 beta b } = birsãdaʧʰaũ
+Birsanu:{ind long prs ipfv pos 2 alpha a } = birsãdaʧʰεs
+Birsanu:{ind long prs ipfv pos 2 alpha b } = birsãdaʧʰas
+Birsanu:{ind long prs ipfv pos 2 beta a } = birsãdaʧʰjau
+Birsanu:{ind long prs ipfv pos 2 beta b } = birsãdaʧʰau
+Birsanu:{ind long prs ipfv pos 3 alpha a } = birsãdaʧʰε
+Birsanu:{ind long prs ipfv pos 3 alpha b } = birsãdaʧʰa
+Birsanu:{ind long prs ipfv pos 3 beta a } = birsãdaʧʰin
+Birsanu:{ind long prs ipfv pos 3 beta b } = birsãdaʧʰan
+Birsanu:{ind long prs ipfv neg 1 alpha a } = birsãdinã % long negative present
+Birsanu:{ind long prs ipfv neg 1 beta b } = birsãdajnaũ
+Birsanu:{ind long prs ipfv neg 2 alpha a } = birsãdinas
+Birsanu:{ind long prs ipfv neg 2 alpha b } = birsãdajnas
+Birsanu:{ind long prs ipfv neg 2 beta a } = birsãdinau
+Birsanu:{ind long prs ipfv neg 2 beta b } = birsãdajnau
+Birsanu:{ind long prs ipfv neg 3 alpha a } = birsãdina
+Birsanu:{ind long prs ipfv neg 3 alpha b } = birsãdajna
+Birsanu:{ind long prs ipfv neg 3 beta a } = birsãdinan
+Birsanu:{ind long prs ipfv neg 3 beta b } = birsãdajnan
+Birsanu:{ind long pst pfv pos 1 alpha a  } = birsẽ % simple past
+Birsanu:{ind long pst pfv pos 1 beta b  } = birsjaũ
+Birsanu:{ind long pst pfv pos 2 alpha a  } = birsis
+Birsanu:{ind long pst pfv pos 2 alpha b  } = birsis
+Birsanu:{ind long pst pfv pos 2 beta a  } = birsjau
+Birsanu:{ind long pst pfv pos 2 beta b  } = birsjau
+Birsanu:{ind long pst pfv pos 3 alpha a  } = birsi
+Birsanu:{ind long pst pfv pos 3 alpha b  } = birsjo
+Birsanu:{ind long pst pfv pos 3 beta a  } = birsin
+Birsanu:{ind long pst pfv pos 3 beta b  } = birse
+Birsanu:{ind long pst pfv neg 1 alpha a  } = birsinã % negative simple past
+Birsanu:{ind long pst pfv neg 1 beta b  } = birsenaũ
+Birsanu:{ind long pst pfv neg 2 alpha a  } = birsinas
+Birsanu:{ind long pst pfv neg 2 alpha b  } = birsinas
+Birsanu:{ind long pst pfv neg 2 beta a  } = birsinau
+Birsanu:{ind long pst pfv neg 2 beta b  } = birsenau
+Birsanu:{ind long pst pfv neg 3 alpha a  } = birsina
+Birsanu:{ind long pst pfv neg 3 alpha b  } = birsena
+Birsanu:{ind long pst pfv neg 3 beta a  } = birsinan
+Birsanu:{ind long pst pfv neg 3 beta b  } = birsenan
+Birsanu:{ind short pst ipfv pos 1 alpha a} = birsãtʰẽ % past imperfective
+Birsanu:{ind short pst ipfv pos 1 beta b} = birsãtʰjaũ
+Birsanu:{ind short pst ipfv pos 2 alpha a} = birsãtʰis
+Birsanu:{ind short pst ipfv pos 2 alpha b} = birsãtʰis
+Birsanu:{ind short pst ipfv pos 2 beta a} = birsãtʰjau
+Birsanu:{ind short pst ipfv pos 2 beta b} = birsãtʰjau
+Birsanu:{ind short pst ipfv pos 3 alpha a} = birsãtʰi
+Birsanu:{ind short pst ipfv pos 3 alpha b} = birsãtʰjo
+Birsanu:{ind short pst ipfv pos 3 beta a} = birsãtʰin
+Birsanu:{ind short pst ipfv pos 3 beta b} = birsãtʰe
+Birsanu:{ind short pst ipfv neg 1 alpha a} = birsannatʰẽ % short negative past imperfective
+Birsanu:{ind short pst ipfv neg 1 beta b} = birsannatʰjaũ
+Birsanu:{ind short pst ipfv neg 2 alpha a} = birsannatʰis
+Birsanu:{ind short pst ipfv neg 2 alpha b} = birsannatʰis
+Birsanu:{ind short pst ipfv neg 2 beta a} = birsannatʰjau
+Birsanu:{ind short pst ipfv neg 2 beta b} = birsannatʰjau
+Birsanu:{ind short pst ipfv neg 3 alpha a} = birsannatʰi
+Birsanu:{ind short pst ipfv neg 3 alpha b} = birsannatʰjo
+Birsanu:{ind short pst ipfv neg 3 beta a} = birsannatʰin
+Birsanu:{ind short pst ipfv neg 3 beta b} = birsannatʰe
+Birsanu:{ind long pst ipfv pos 1 alpha a } = birsãdatʰẽ % narrative past imperfective
+Birsanu:{ind long pst ipfv pos 1 beta b } = birsãdatʰjaũ
+Birsanu:{ind long pst ipfv pos 2 alpha a } = birsãdatʰis
+Birsanu:{ind long pst ipfv pos 2 alpha b } = birsãdatʰis
+Birsanu:{ind long pst ipfv pos 2 beta a } = birsãdatʰjau
+Birsanu:{ind long pst ipfv pos 2 beta b } = birsãdatʰjau
+Birsanu:{ind long pst ipfv pos 3 alpha a } = birsãdatʰi
+Birsanu:{ind long pst ipfv pos 3 alpha b } = birsãdatʰjo
+Birsanu:{ind long pst ipfv pos 3 beta a } = birsãdatʰin
+Birsanu:{ind long pst ipfv pos 3 beta b } = birsãdatʰe
+Birsanu:{ind long pst ipfv neg 1 alpha a } = birsãdinatʰẽ % long negative past imperfective
+Birsanu:{ind long pst ipfv neg 1 beta b } = birsãdajnatʰjaũ
+Birsanu:{ind long pst ipfv neg 2 alpha a } = birsãdinatʰis
+Birsanu:{ind long pst ipfv neg 2 alpha b } = birsãdajnatʰis
+Birsanu:{ind long pst ipfv neg 2 beta a } = birsãdinatʰjau
+Birsanu:{ind long pst ipfv neg 2 beta b } = birsãdajnatʰjau
+Birsanu:{ind long pst ipfv neg 3 alpha a } = birsãdinatʰi
+Birsanu:{ind long pst ipfv neg 3 alpha b } = birsãdajnatʰjo
+Birsanu:{ind long pst ipfv neg 3 beta a } = birsãdinatʰin
+Birsanu:{ind long pst ipfv neg 3 beta b } = birsãdajnatʰe
+Birsanu:{ind pos short fut 1 alpha a     } = birsũlā % future
+Birsanu:{ind pos short fut 1 beta b     } = birsaũlā
+Birsanu:{ind pos short fut 2 alpha a     } = birselis
+Birsanu:{ind pos short fut 2 alpha b     } = birselās
+Birsanu:{ind pos short fut 2 beta a     } = birsauli
+Birsanu:{ind pos short fut 2 beta b     } = birsaulā
+Birsanu:{ind pos short fut 3 alpha a     } = birseli
+Birsanu:{ind pos short fut 3 alpha b     } = birselā
+Birsanu:{ind pos short fut 3 beta a     } = birselin
+Birsanu:{ind pos short fut 3 beta b     } = birselān
+Birsanu:{ind neg short fut 1 alpha a     } = birsojna % suffixal negative future
+Birsanu:{ind neg short fut 1 beta b     } = birsojnaũ
+Birsanu:{ind neg short fut 2 alpha a     } = birsojnas
+Birsanu:{ind neg short fut 2 alpha b     } = birsojnas
+Birsanu:{ind neg short fut 2 beta a     } = birsojnau
+Birsanu:{ind neg short fut 2 beta b     } = birsojnau
+Birsanu:{ind neg short fut 3 alpha a     } = birsojna
+Birsanu:{ind neg short fut 3 alpha b     } = birsojna
+Birsanu:{ind neg short fut 3 beta a     } = birsojnan
+Birsanu:{ind neg short fut 3 beta b     } = birsojnan
+Birsanu:{ind neg long fut 1 alpha a      } = nabirsũlā % prefixal negative future
+Birsanu:{ind neg long fut 1 beta b      } = nabirsaũlā
+Birsanu:{ind neg long fut 2 alpha a      } = nabirselis
+Birsanu:{ind neg long fut 2 alpha b      } = nabirselās
+Birsanu:{ind neg long fut 2 beta a      } = nabirsauli
+Birsanu:{ind neg long fut 2 beta b      } = nabirsaulā
+Birsanu:{ind neg long fut 3 alpha a      } = nabirseli
+Birsanu:{ind neg long fut 3 alpha b      } = nabirselā
+Birsanu:{ind neg long fut 3 beta a      } = nabirselin
+Birsanu:{ind neg long fut 3 beta b      } = nabirselān
+Birsanu:{inj pos 1 alpha a               } = birsũ % injunctive
+Birsanu:{inj pos 1 beta b               } = birsaũ
+Birsanu:{inj pos 2 alpha a               } = birses
+Birsanu:{inj pos 2 alpha b               } = birses
+Birsanu:{inj pos 2 beta a               } = birse
+Birsanu:{inj pos 2 beta b               } = birse
+Birsanu:{inj pos 3 alpha a               } = birsos
+Birsanu:{inj pos 3 alpha b               } = birsos
+Birsanu:{inj pos 3 beta a               } = birsun
+Birsanu:{inj pos 3 beta b               } = birsun
+Birsanu:{inj neg 1 alpha a               } = nabirsũ % negative injunctive
+Birsanu:{inj neg 1 beta b               } = nabirsaũ
+Birsanu:{inj neg 2 alpha a               } = nabirses
+Birsanu:{inj neg 2 alpha b               } = nabirses
+Birsanu:{inj neg 2 beta a               } = nabirse
+Birsanu:{inj neg 2 beta b               } = nabirse
+Birsanu:{inj neg 3 alpha a               } = nabirsos
+Birsanu:{inj neg 3 alpha b               } = nabirsos
+Birsanu:{inj neg 3 beta a               } = nabirsun
+Birsanu:{inj neg 3 beta b               } = nabirsun
+Birsanu:{imp pos 2 alpha a               } = birsii % imperative
+Birsanu:{imp pos 2 alpha b               } = birsii
+Birsanu:{imp pos 2 beta a               } = birsa
+Birsanu:{imp pos 2 beta b               } = birsa
+Birsanu:{imp neg 2 alpha a               } = nabirsii % negative imperative
+Birsanu:{imp neg 2 alpha b               } = nabirsii
+Birsanu:{imp neg 2 beta a               } = nabirsa
+Birsanu:{imp neg 2 beta b               } = nabirsa
+}
+

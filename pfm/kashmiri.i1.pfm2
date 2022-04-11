@@ -1,0 +1,154 @@
+﻿Language: Kashmiri(Indo-Aryan; Kashmir)
+
+Past tense verb inflection in Kashmiri.  Analysis by G. Stump 7/2013, based on 
+George A. Grierson. 1911. A manual of the Kāshmīrī language. Oxford: Clarendon Press.
+
+%We use the characters I, U, Ü to represent the overshort (mātrā) counterparts of /i u ü/.
+
+
+Content paradigm schema = {
+	AGR:{fem/masc sg/pl 1/2/3}
+       TNS:{past recent/indefinite/remote}
+}
+
+
+Lexical specifications:
+
+Lexeme: FLY
+Meaning: fly
+Syntactic category: V
+Inflection class: three
+
+Lexeme: BURN_INSIDE
+Meaning: burn inside
+Syntactic category: V
+Inflection class: two
+
+Root(FLY) = wuph
+Root(BURN_INSIDE) = wup
+
+Corr: 
+Corr(<L[two], σ>) = <Stem(L), pm2(σ)>
+Corr(<L[three], σ>) = <Stem(L), pm3(σ)>
+
+Property mapping pm2 = {
+(TNS:{recent}) → (TNS:{a})
+(TNS:{indefinite}) → (TNS:{b})
+(TNS:{remote}) → (TNS:{c})
+}
+
+Property mapping pm3 = {
+(TNS:{recent}) → (TNS:{b})
+(TNS:{indefinite}) → (TNS:{c})
+(TNS:{remote}) → (TNS:{d})
+}
+
+Paradigm function: 
+PF(<L, σ:{AGR:{1 pl}}>) = PF(<L, σ:{AGR:{3 pl}}>)
+PF(<X, σ>) = [ iv : [ iii : [ ii : [ i : <X, σ> ] ] ] ] 
+
+Word-realization rules: 
+
+Block i	
+i, X [V], σ:{TNS:{past d}} → Xi
+
+Block ii
+ii, X [V], σ:{TNS:{past a} AGR:{sg masc}} → Xu
+ii, X [V], σ:{TNS:{past a} AGR:{3 sg masc}} → XU
+ii, X [V], σ:{TNS:{past a} AGR:{pl masc}} → XI
+ii, X [V], σ:{TNS:{past a} AGR:{sg fem}} → XÜ
+ii, X [V], σ:{TNS:{past a} AGR:{pl fem}} → Xɛ
+ii, X [V], σ:{TNS:{past}} → Xy
+ii, X [V], σ:{TNS:{past a}} → X
+
+Block iii
+iii, X [V], σ:{TNS:{past b} AGR:{masc sg}} → Xō
+iii, X [V], σ:{TNS:{past b} AGR:{masc pl}} → Xē
+iii, X [V], σ:{TNS:{past} AGR:{masc}} → Xā
+iii, X [V], σ:{TNS:{past} AGR:{fem}} → Xēyɛ
+iii, X [V], σ:{TNS:{past a} AGR:{masc/fem}} → X
+
+Block iv
+iv, X [V], σ:{AGR:{1 sg}} → Xs
+iv, X [V], σ:{AGR:{2 sg}} → Xkh
+iv, X [V], σ:{AGR:{2 pl}} → Xwa
+iv, X [V], σ:{AGR:{3 sg masc}} → Xv
+iv, X [V], σ:{AGR:{3 pl masc}} → Xy
+iv, X [V], σ:{TNS:{past a} AGR:{3 sg/pl masc}} → X
+
+ShowOnlyTruth 
+
+Truth = {
+PF(<BURN_INSIDE, σ:{AGR:{1 sg masc} TNS:{past recent}}>) = wupus
+PF(<BURN_INSIDE, σ:{AGR:{2 sg masc} TNS:{past recent}}>) = wupukh
+PF(<BURN_INSIDE, σ:{AGR:{3 sg masc} TNS:{past recent}}>) = wupU
+PF(<BURN_INSIDE, σ:{AGR:{1 pl masc} TNS:{past recent}}>) = wupI
+PF(<BURN_INSIDE, σ:{AGR:{2 pl masc} TNS:{past recent}}>) = wupIwa
+PF(<BURN_INSIDE, σ:{AGR:{3 pl masc} TNS:{past recent}}>) = wupI
+PF(<BURN_INSIDE, σ:{AGR:{1 sg masc} TNS:{past indefinite}}>) = wupyōs
+PF(<BURN_INSIDE, σ:{AGR:{2 sg masc} TNS:{past indefinite}}>) = wupyōkh
+PF(<BURN_INSIDE, σ:{AGR:{3 sg masc} TNS:{past indefinite}}>) = wupyōv
+PF(<BURN_INSIDE, σ:{AGR:{1 pl masc} TNS:{past indefinite}}>) = wupyēy
+PF(<BURN_INSIDE, σ:{AGR:{2 pl masc} TNS:{past indefinite}}>) = wupyēwa
+PF(<BURN_INSIDE, σ:{AGR:{3 pl masc} TNS:{past indefinite}}>) = wupyēy
+PF(<BURN_INSIDE, σ:{AGR:{1 sg masc} TNS:{past remote}}>) = wupyās
+PF(<BURN_INSIDE, σ:{AGR:{2 sg masc} TNS:{past remote}}>) = wupyākh
+PF(<BURN_INSIDE, σ:{AGR:{3 sg masc} TNS:{past remote}}>) = wupyāv
+PF(<BURN_INSIDE, σ:{AGR:{1 pl masc} TNS:{past remote}}>) = wupyāy
+PF(<BURN_INSIDE, σ:{AGR:{2 pl masc} TNS:{past remote}}>) = wupyāwa
+PF(<BURN_INSIDE, σ:{AGR:{3 pl masc} TNS:{past remote}}>) = wupyāy
+PF(<BURN_INSIDE, σ:{AGR:{1 sg fem} TNS:{past recent}}>) = wupÜs
+PF(<BURN_INSIDE, σ:{AGR:{2 sg fem} TNS:{past recent}}>) = wupÜkh
+PF(<BURN_INSIDE, σ:{AGR:{3 sg fem} TNS:{past recent}}>) = wupÜ
+PF(<BURN_INSIDE, σ:{AGR:{1 pl fem} TNS:{past recent}}>) = wupɛ
+PF(<BURN_INSIDE, σ:{AGR:{2 pl fem} TNS:{past recent}}>) = wupɛwa
+PF(<BURN_INSIDE, σ:{AGR:{3 pl fem} TNS:{past recent}}>) = wupɛ
+PF(<BURN_INSIDE, σ:{AGR:{1 sg fem} TNS:{past indefinite}}>) = wupyēyɛs
+PF(<BURN_INSIDE, σ:{AGR:{2 sg fem} TNS:{past indefinite}}>) = wupyēyɛkh
+PF(<BURN_INSIDE, σ:{AGR:{3 sg fem} TNS:{past indefinite}}>) = wupyēyɛ
+PF(<BURN_INSIDE, σ:{AGR:{1 pl fem} TNS:{past indefinite}}>) = wupyēyɛ
+PF(<BURN_INSIDE, σ:{AGR:{2 pl fem} TNS:{past indefinite}}>) = wupyēyɛwa
+PF(<BURN_INSIDE, σ:{AGR:{3 pl fem} TNS:{past indefinite}}>) = wupyēyɛ
+PF(<BURN_INSIDE, σ:{AGR:{1 sg fem} TNS:{past remote}}>) = wupyēyɛs
+PF(<BURN_INSIDE, σ:{AGR:{2 sg fem} TNS:{past remote}}>) = wupyēyɛkh
+PF(<BURN_INSIDE, σ:{AGR:{3 sg fem} TNS:{past remote}}>) = wupyēyɛ
+PF(<BURN_INSIDE, σ:{AGR:{1 pl fem} TNS:{past remote}}>) = wupyēyɛ
+PF(<BURN_INSIDE, σ:{AGR:{2 pl fem} TNS:{past remote}}>) = wupyēyɛwa
+PF(<BURN_INSIDE, σ:{AGR:{3 pl fem} TNS:{past remote}}>) = wupyēyɛ
+PF(<FLY, σ:{AGR:{1 sg masc} TNS:{past recent}}>) = wuphyōs
+PF(<FLY, σ:{AGR:{2 sg masc} TNS:{past recent}}>) = wuphyōkh
+PF(<FLY, σ:{AGR:{3 sg masc} TNS:{past recent}}>) = wuphyōv
+PF(<FLY, σ:{AGR:{1 pl masc} TNS:{past recent}}>) = wuphyēy
+PF(<FLY, σ:{AGR:{2 pl masc} TNS:{past recent}}>) = wuphyēwa
+PF(<FLY, σ:{AGR:{3 pl masc} TNS:{past recent}}>) = wuphyēy
+PF(<FLY, σ:{AGR:{1 sg masc} TNS:{past indefinite}}>) = wuphyās
+PF(<FLY, σ:{AGR:{2 sg masc} TNS:{past indefinite}}>) = wuphyākh
+PF(<FLY, σ:{AGR:{3 sg masc} TNS:{past indefinite}}>) = wuphyāv
+PF(<FLY, σ:{AGR:{1 pl masc} TNS:{past indefinite}}>) = wuphyāy
+PF(<FLY, σ:{AGR:{2 pl masc} TNS:{past indefinite}}>) = wuphyāwa
+PF(<FLY, σ:{AGR:{3 pl masc} TNS:{past indefinite}}>) = wuphyāy
+PF(<FLY, σ:{AGR:{1 sg masc} TNS:{past remote}}>) = wuphiyās
+PF(<FLY, σ:{AGR:{2 sg masc} TNS:{past remote}}>) = wuphiyākh
+PF(<FLY, σ:{AGR:{3 sg masc} TNS:{past remote}}>) = wuphiyāv
+PF(<FLY, σ:{AGR:{1 pl masc} TNS:{past remote}}>) = wuphiyāy
+PF(<FLY, σ:{AGR:{2 pl masc} TNS:{past remote}}>) = wuphiyāwa
+PF(<FLY, σ:{AGR:{3 pl masc} TNS:{past remote}}>) = wuphiyāy
+PF(<FLY, σ:{AGR:{1 sg fem} TNS:{past recent}}>) = wuphyēyɛs
+PF(<FLY, σ:{AGR:{2 sg fem} TNS:{past recent}}>) = wuphyēyɛkh
+PF(<FLY, σ:{AGR:{3 sg fem} TNS:{past recent}}>) = wuphyēyɛ
+PF(<FLY, σ:{AGR:{1 pl fem} TNS:{past recent}}>) = wuphyēyɛ
+PF(<FLY, σ:{AGR:{2 pl fem} TNS:{past recent}}>) = wuphyēyɛwa
+PF(<FLY, σ:{AGR:{3 pl fem} TNS:{past recent}}>) = wuphyēyɛ
+PF(<FLY, σ:{AGR:{1 sg fem} TNS:{past indefinite}}>) = wuphyēyɛs
+PF(<FLY, σ:{AGR:{2 sg fem} TNS:{past indefinite}}>) = wuphyēyɛkh
+PF(<FLY, σ:{AGR:{3 sg fem} TNS:{past indefinite}}>) = wuphyēyɛ
+PF(<FLY, σ:{AGR:{1 pl fem} TNS:{past indefinite}}>) = wuphyēyɛ
+PF(<FLY, σ:{AGR:{2 pl fem} TNS:{past indefinite}}>) = wuphyēyɛwa
+PF(<FLY, σ:{AGR:{3 pl fem} TNS:{past indefinite}}>) = wuphyēyɛ
+PF(<FLY, σ:{AGR:{1 sg fem} TNS:{past remote}}>) = wuphiyēyɛs
+PF(<FLY, σ:{AGR:{2 sg fem} TNS:{past remote}}>) = wuphiyēyɛkh
+PF(<FLY, σ:{AGR:{3 sg fem} TNS:{past remote}}>) = wuphiyēyɛ
+PF(<FLY, σ:{AGR:{1 pl fem} TNS:{past remote}}>) = wuphiyēyɛ
+PF(<FLY, σ:{AGR:{2 pl fem} TNS:{past remote}}>) = wuphiyēyɛwa
+PF(<FLY, σ:{AGR:{3 pl fem} TNS:{past remote}}>) = wuphiyēyɛ
+}
